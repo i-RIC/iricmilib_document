@@ -1,0 +1,14 @@
+.. _sec_how_to_develop_models:
+
+How to develop models
+=======================
+
+.. toctree::
+   :maxdepth: 2
+
+   04/01_overview
+   04/02_creating_solver_def
+   04/03_developing_model
+   04/03_developing_calculator
+   04/04_io_types
+   04/05_tips

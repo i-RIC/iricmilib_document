@@ -1,0 +1,74 @@
+.. _sec_ref_iRICMI_RIn_Time:
+
+iRICMI_RIn_Time
+===============
+
+Register the memory address to receive the value of time (in seconds).
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_RIn_Time(t, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_RIn_Time(t)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   t = iRICMI_RIn_Time()
+
+Arguments and returned value
+----------------------------
+
+t
+~
+
+.. list-table:: Information about t
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - t
+   * - I/O
+     - Output
+
+   * - Description
+     - The variable to register the memory address, to receive value of time
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

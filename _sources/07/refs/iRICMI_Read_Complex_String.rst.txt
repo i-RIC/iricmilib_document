@@ -1,0 +1,140 @@
+.. _sec_ref_iRICMI_Read_Complex_String:
+
+iRICMI_Read_Complex_String
+==========================
+
+Reads the value of string variable of a complex type grid attribute from the CGNS file.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Complex_String(groupname, num, name, strvalue, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Complex_String(groupname, num, name, strvalue)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   strvalue = iRICMI_Read_Complex_String(groupname, num, name)
+
+Arguments and returned value
+----------------------------
+
+groupname
+~~~~~~~~~
+
+.. list-table:: Information about groupname
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - groupname
+   * - I/O
+     - Input
+
+   * - Description
+     - The group name of the complex type grid attribute
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+num
+~~~
+
+.. list-table:: Information about num
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - num
+   * - I/O
+     - Input
+
+   * - Description
+     - The id (starts from 1) of the complex type grid attribute
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+name
+~~~~
+
+.. list-table:: Information about name
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - name
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the variable
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+strvalue
+~~~~~~~~
+
+.. list-table:: Information about strvalue
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - strvalue
+   * - I/O
+     - Output
+
+   * - Description
+     - The value of the variable
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - char*
+   * - Type (Python)
+     - string
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

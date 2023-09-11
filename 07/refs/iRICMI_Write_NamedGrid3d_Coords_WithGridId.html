@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iRICMI_Write_NamedGrid3d_Coords_WithGridId &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="iRICMI_Read_BC_Count_WithGridId" href="iRICMI_Read_BC_Count_WithGridId.html" />
+    <link rel="prev" title="iRICMI_Write_NamedGrid2d_Coords_WithGridId" href="iRICMI_Write_NamedGrid2d_Coords_WithGridId.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../07_iricmilib_ref.html">iRIC-MI library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_basic.html">Basic functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_reading.html">Functions for reading and writing values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_registering_pointers.html">Functions for registering pointers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../04_functions_withgridid.html">Functions with <code class="docutils literal notranslate"><span class="pre">_WithGridId</span></code> suffix</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_NodeCount_WithGridId.html">iRICMI_Read_Grid_NodeCount_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_CellCount_WithGridId.html">iRICMI_Read_Grid_CellCount_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_IFaceCount_WithGridId.html">iRICMI_Read_Grid_IFaceCount_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_JFaceCount_WithGridId.html">iRICMI_Read_Grid_JFaceCount_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_KFaceCount_WithGridId.html">iRICMI_Read_Grid_KFaceCount_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid2d_Str_Size_WithGridId.html">iRICMI_Read_Grid2d_Str_Size_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid2d_Coords_WithGridId.html">iRICMI_Read_Grid2d_Coords_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_TriangleElementsSize_WithGridId.html">iRICMI_Read_Grid_TriangleElementsSize_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_TriangleElements_WithGridId.html">iRICMI_Read_Grid_TriangleElements_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Integer_Node_WithGridId.html">iRICMI_Read_Grid_Integer_Node_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Real_Node_WithGridId.html">iRICMI_Read_Grid_Real_Node_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Complex_Node_WithGridId.html">iRICMI_Read_Grid_Complex_Node_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Integer_Cell_WithGridId.html">iRICMI_Read_Grid_Integer_Cell_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Real_Cell_WithGridId.html">iRICMI_Read_Grid_Real_Cell_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Complex_Cell_WithGridId.html">iRICMI_Read_Grid_Complex_Cell_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_FunctionalDimensionSize_WithGridId.html">iRICMI_Read_Grid_FunctionalDimensionSize_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_FunctionalDimension_Integer_WithGridId.html">iRICMI_Read_Grid_FunctionalDimension_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_FunctionalDimension_Real_WithGridId.html">iRICMI_Read_Grid_FunctionalDimension_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Functional_Integer_Node_WithGridId.html">iRICMI_Read_Grid_Functional_Integer_Node_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Functional_Real_Node_WithGridId.html">iRICMI_Read_Grid_Functional_Real_Node_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Functional_Integer_Cell_WithGridId.html">iRICMI_Read_Grid_Functional_Integer_Cell_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid_Functional_Real_Cell_WithGridId.html">iRICMI_Read_Grid_Functional_Real_Cell_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_Grid2d_Open_WithGridId.html">iRICMI_Read_Grid2d_Open_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Write_Grid1d_Coords_WithGridId.html">iRICMI_Write_Grid1d_Coords_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Write_Grid2d_Coords_WithGridId.html">iRICMI_Write_Grid2d_Coords_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Write_Grid3d_Coords_WithGridId.html">iRICMI_Write_Grid3d_Coords_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Write_NamedGrid1d_Coords_WithGridId.html">iRICMI_Write_NamedGrid1d_Coords_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Write_NamedGrid2d_Coords_WithGridId.html">iRICMI_Write_NamedGrid2d_Coords_WithGridId</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">iRICMI_Write_NamedGrid3d_Coords_WithGridId</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#format-fortran">Format (FORTRAN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#format-c-c">Format (C/C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#format-python">Format (Python)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arguments-and-returned-value">Arguments and returned value</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_Count_WithGridId.html">iRICMI_Read_BC_Count_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_IndicesSize_WithGridId.html">iRICMI_Read_BC_IndicesSize_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_Indices_WithGridId.html">iRICMI_Read_BC_Indices_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_Integer_WithGridId.html">iRICMI_Read_BC_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_Real_WithGridId.html">iRICMI_Read_BC_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_RealSingle_WithGridId.html">iRICMI_Read_BC_RealSingle_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_StringLen_WithGridId.html">iRICMI_Read_BC_StringLen_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_String_WithGridId.html">iRICMI_Read_BC_String_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_FunctionalSize_WithGridId.html">iRICMI_Read_BC_FunctionalSize_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_Functional_WithGridId.html">iRICMI_Read_BC_Functional_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_FunctionalWithName_WithGridId.html">iRICMI_Read_BC_FunctionalWithName_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_FunctionalWithName_StringLen_WithGridId.html">iRICMI_Read_BC_FunctionalWithName_StringLen_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_FunctionalWithName_String_WithGridId.html">iRICMI_Read_BC_FunctionalWithName_String_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_Functional_RealSingle_WithGridId.html">iRICMI_Read_BC_Functional_RealSingle_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_Read_BC_FunctionalWithName_RealSingle_WithGridId.html">iRICMI_Read_BC_FunctionalWithName_RealSingle_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid2d_Coords_WithGridId.html">iRICMI_RIn_Grid2d_Coords_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid3d_Coords_WithGridId.html">iRICMI_RIn_Grid3d_Coords_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_Node_Integer_WithGridId.html">iRICMI_RIn_Grid_Node_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_Node_Real_WithGridId.html">iRICMI_RIn_Grid_Node_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_Cell_Integer_WithGridId.html">iRICMI_RIn_Grid_Cell_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_Cell_Real_WithGridId.html">iRICMI_RIn_Grid_Cell_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_IFace_Integer_WithGridId.html">iRICMI_RIn_Grid_IFace_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_IFace_Real_WithGridId.html">iRICMI_RIn_Grid_IFace_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_JFace_Integer_WithGridId.html">iRICMI_RIn_Grid_JFace_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_JFace_Real_WithGridId.html">iRICMI_RIn_Grid_JFace_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_KFace_Integer_WithGridId.html">iRICMI_RIn_Grid_KFace_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_Grid_KFace_Real_WithGridId.html">iRICMI_RIn_Grid_KFace_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid2d_Coords_WithGridId.html">iRICMI_ROut_Grid2d_Coords_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid3d_Coords_WithGridId.html">iRICMI_ROut_Grid3d_Coords_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_Node_Integer_WithGridId.html">iRICMI_ROut_Grid_Node_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_Node_Real_WithGridId.html">iRICMI_ROut_Grid_Node_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_Cell_Integer_WithGridId.html">iRICMI_ROut_Grid_Cell_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_Cell_Real_WithGridId.html">iRICMI_ROut_Grid_Cell_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_IFace_Integer_WithGridId.html">iRICMI_ROut_Grid_IFace_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_IFace_Real_WithGridId.html">iRICMI_ROut_Grid_IFace_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_JFace_Integer_WithGridId.html">iRICMI_ROut_Grid_JFace_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_JFace_Real_WithGridId.html">iRICMI_ROut_Grid_JFace_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_KFace_Integer_WithGridId.html">iRICMI_ROut_Grid_KFace_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_Grid_KFace_Real_WithGridId.html">iRICMI_ROut_Grid_KFace_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_BC_Integer_WithGridId.html">iRICMI_RIn_BC_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_RIn_BC_Real_WithGridId.html">iRICMI_RIn_BC_Real_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_BC_Integer_WithGridId.html">iRICMI_ROut_BC_Integer_WithGridId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iRICMI_ROut_BC_Real_WithGridId.html">iRICMI_ROut_BC_Real_WithGridId</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+          <li class="breadcrumb-item"><a href="../04_functions_withgridid.html">Functions with <code class="docutils literal notranslate"><span class="pre">_WithGridId</span></code> suffix</a></li>
+      <li class="breadcrumb-item active">iRICMI_Write_NamedGrid3d_Coords_WithGridId</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/07/refs/iRICMI_Write_NamedGrid3d_Coords_WithGridId.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="iricmi-write-namedgrid3d-coords-withgridid">
+<span id="sec-ref-iricmi-write-namedgrid3d-coords-withgridid"></span><h1>iRICMI_Write_NamedGrid3d_Coords_WithGridId<a class="headerlink" href="#iricmi-write-namedgrid3d-coords-withgridid" title="Permalink to this heading"></a></h1>
+<p>Writes the Grid coordinates to the CGNS file.</p>
+<section id="format-fortran">
+<h2>Format (FORTRAN)<a class="headerlink" href="#format-fortran" title="Permalink to this heading"></a></h2>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">iRICMI_Write_NamedGrid3d_Coords_WithGridId</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">,</span><span class="w"> </span><span class="n">x_arr</span><span class="p">,</span><span class="w"> </span><span class="n">y_arr</span><span class="p">,</span><span class="w"> </span><span class="n">z_arr</span><span class="p">,</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="format-c-c">
+<h2>Format (C/C++)<a class="headerlink" href="#format-c-c" title="Permalink to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iRICMI_Write_NamedGrid3d_Coords_WithGridId</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">,</span><span class="w"> </span><span class="n">x_arr</span><span class="p">,</span><span class="w"> </span><span class="n">y_arr</span><span class="p">,</span><span class="w"> </span><span class="n">z_arr</span><span class="p">,</span><span class="w"> </span><span class="n">gid</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="format-python">
+<h2>Format (Python)<a class="headerlink" href="#format-python" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_arr</span><span class="p">,</span> <span class="n">y_arr</span><span class="p">,</span> <span class="n">z_arr</span><span class="p">,</span> <span class="n">gid</span> <span class="o">=</span> <span class="n">iRICMI_Write_NamedGrid3d_Coords_WithGridId</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">isize</span><span class="p">,</span> <span class="n">jsize</span><span class="p">,</span> <span class="n">ksize</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="arguments-and-returned-value">
+<h2>Arguments and returned value<a class="headerlink" href="#arguments-and-returned-value" title="Permalink to this heading"></a></h2>
+<section id="name">
+<h3>name<a class="headerlink" href="#name" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 661 </span><span class="caption-text">Information about name</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>name</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O</p></td>
+<td><p>Input</p></td>
+</tr>
+<tr class="row-even"><td><p>Description</p></td>
+<td><p>The name of the grid</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (FORTRAN)</p></td>
+<td><p>character(*)</p></td>
+</tr>
+<tr class="row-even"><td><p>Type (C/C++)</p></td>
+<td><p>const char*</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (Python)</p></td>
+<td><p>string</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="isize">
+<h3>isize<a class="headerlink" href="#isize" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-number">Table 662 </span><span class="caption-text">Information about isize</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>isize</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O</p></td>
+<td><p>Input</p></td>
+</tr>
+<tr class="row-even"><td><p>Description</p></td>
+<td><p>The size (number of nodes) of the grid in I direction</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (FORTRAN)</p></td>
+<td><p>integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Type (C/C++)</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (Python)</p></td>
+<td><p>int</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="jsize">
+<h3>jsize<a class="headerlink" href="#jsize" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-number">Table 663 </span><span class="caption-text">Information about jsize</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>jsize</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O</p></td>
+<td><p>Input</p></td>
+</tr>
+<tr class="row-even"><td><p>Description</p></td>
+<td><p>The size (number of nodes) of the grid in J direction</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (FORTRAN)</p></td>
+<td><p>integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Type (C/C++)</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (Python)</p></td>
+<td><p>int</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ksize">
+<h3>ksize<a class="headerlink" href="#ksize" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-number">Table 664 </span><span class="caption-text">Information about ksize</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>ksize</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O</p></td>
+<td><p>Input</p></td>
+</tr>
+<tr class="row-even"><td><p>Description</p></td>
+<td><p>The size (number of nodes) of the grid in K direction</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (FORTRAN)</p></td>
+<td><p>integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Type (C/C++)</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (Python)</p></td>
+<td><p>int</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="x-arr">
+<h3>x_arr<a class="headerlink" href="#x-arr" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-number">Table 665 </span><span class="caption-text">Information about x_arr</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>x_arr</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O</p></td>
+<td><p>Output</p></td>
+</tr>
+<tr class="row-even"><td><p>Description</p></td>
+<td><p>The values of the x coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (FORTRAN)</p></td>
+<td><p>double precision</p></td>
+</tr>
+<tr class="row-even"><td><p>Type (C/C++)</p></td>
+<td><p>double*</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (Python)</p></td>
+<td><p>float</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="y-arr">
+<h3>y_arr<a class="headerlink" href="#y-arr" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-number">Table 666 </span><span class="caption-text">Information about y_arr</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>y_arr</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O</p></td>
+<td><p>Output</p></td>
+</tr>
+<tr class="row-even"><td><p>Description</p></td>
+<td><p>The values of the y coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (FORTRAN)</p></td>
+<td><p>double precision</p></td>
+</tr>
+<tr class="row-even"><td><p>Type (C/C++)</p></td>
+<td><p>double*</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (Python)</p></td>
+<td><p>float</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="z-arr">
+<h3>z_arr<a class="headerlink" href="#z-arr" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-number">Table 667 </span><span class="caption-text">Information about z_arr</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>z_arr</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O</p></td>
+<td><p>Output</p></td>
+</tr>
+<tr class="row-even"><td><p>Description</p></td>
+<td><p>The values of the z coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (FORTRAN)</p></td>
+<td><p>double precision</p></td>
+</tr>
+<tr class="row-even"><td><p>Type (C/C++)</p></td>
+<td><p>double*</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (Python)</p></td>
+<td><p>float</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="gid">
+<h3>gid<a class="headerlink" href="#gid" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-number">Table 668 </span><span class="caption-text">Information about gid</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>gid</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O</p></td>
+<td><p>Output</p></td>
+</tr>
+<tr class="row-even"><td><p>Description</p></td>
+<td><p>The id (starts from 1) of the grid</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (FORTRAN)</p></td>
+<td><p>integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Type (C/C++)</p></td>
+<td><p>int*</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (Python)</p></td>
+<td><p>int</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ier">
+<h3>ier<a class="headerlink" href="#ier" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-number">Table 669 </span><span class="caption-text">Information about ier</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>ier</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O</p></td>
+<td><p>Output</p></td>
+</tr>
+<tr class="row-even"><td><p>Description</p></td>
+<td><p>Error code. If an error occured, the value is not 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (FORTRAN)</p></td>
+<td><p>integer</p></td>
+</tr>
+<tr class="row-even"><td><p>Type (C/C++)</p></td>
+<td><p>int</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type (Python)</p></td>
+<td><p>(not defined)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="iRICMI_Write_NamedGrid2d_Coords_WithGridId.html" class="btn btn-neutral float-left" title="iRICMI_Write_NamedGrid2d_Coords_WithGridId" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="iRICMI_Read_BC_Count_WithGridId.html" class="btn btn-neutral float-right" title="iRICMI_Read_BC_Count_WithGridId" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

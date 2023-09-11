@@ -1,0 +1,202 @@
+.. _sec_developing_model:
+
+Developing models
+====================
+
+.. contents:: Contents
+   :depth: 3
+
+The details of how to develop models are described on this page.
+
+It is described for the two patterns below:
+
+* Creating a model from scratch
+* Implementing the iRIC-MI library into existing models
+
+Creating a model from scratch
+---------------------------------
+
+When you create a model from scratch, we recommend you to start from 
+editing the sample models bundled to iRIC-MI.
+
+Please refer to :ref:`sec_sample_models` for the sample programs.
+
+Implementing the iRIC-MI library into existing models
+-------------------------------------------------------------
+
+When implemeting the iRIC-MI library into existing models,
+it is important to proceed step by step.
+
+Please follow the steps below.
+
+Add ``iRICMI_Model_Init()``, and ``iRICMI_Model_Terminate()``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Please add ``iRICMI_Model_Init()`` just after solver starts.
+* Please add ``iRICMI_Model_Terminate()`` just before solver ends.
+
+Register variables related to time
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Please register the variables below, using the iRIC-MI library functions below:
+
+* Current time: ``iRICMI_ROut_Time()``
+* Interval to exchange data with other models: ``iRICMI_ROut_Exchange_Interval()``
+* Interval to output data to CGNS files: ``iRICMI_ROut_Dump_Interval()``
+
+Call ``iRICMI_Model_Sync()`` for synchronization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Call ``iRICMI_Model_Sync()`` at the time you want to exchange data with other models and output result to Case1.cgn.
+
+``iRICMI_Model_Sync()`` should be called in two positions below:
+
+* Just before entering the time loop
+* Just before the time loop ends.
+
+Call ``iRICMI_Check_Cancel()`` for communicating with iRIC GUI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When "Stop" button is clicked on iRIC GUI, iRIC GUI does not kill the solver,
+but creates the file ".cancel". That is the file to inform the solver
+that user wants to cancel running.
+
+Models must check if ".cancel" exists, and if it does, it should cancel the execution.
+
+To check the existence of ".cancel", call ``iRICMI_Check_Cancel()``
+in the time loop, and check the value of cancel.
+
+If the value of cancel is 1, exit the time loop, and call ``iRICMI_Model_Terminate()``,
+to terminate the execution normally.
+
+Register variables to send/receive values to/from other models
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Register variables to send/receive values to/from other models.
+
+You can use the functions below:
+
+* ``iRICMI_RIn_xxxx``: Register variable for input. When ``iRICMI_Model_Sync()`` is called,
+  the value is received from other models in "coupled mode", or read from CGNS file in "single mode".
+
+* ``iRICMI_ROut_xxxx``: Register variable for output. When ``iRICMI_Model_Sync()`` is called,
+  value is sent to other models, and saved to CGNS file with specified interval.
+
+There are function families below:
+
+* ``iRICMI_R(In/Out)_(Integer/Real)``: For global values
+* ``iRICMI_R(In/Out)_BC_(Integer/Real)``: For boundary conditions
+* ``iRICMI_R(In/Out)_Complex_(Integer/Real)``: For complex type grid attributes
+* ``iRICMI_R(In/Out)_Grid_(Node/Cell/IFace/JFace/KFace)_(Integer/Real)``: For grid attributes
+
+Please refer to :ref:`sec_types_of_io` for the types above.
+
+Please refer to :ref:`sec_functions_for_registering_pointers` for the detail of the functions.
+
+.. note:: Notice about memory access violation
+
+   Please note that ``iRICMI_Model_Sync()`` access the memory that you've registered
+   with ``iRICMI_ROut_xxxxx()`` and ``iRICMI_RIn_xxxxx()``. You should call ``iRICMI_Model_Sync()``
+   after calling them, and the memory should not be deallocated before ``iRICMI_Model_Sync()`` 
+   is called.
+
+   Also please notice that when you pass memory to store grid attributes (iRICMI_ROut_Grid_Node for example),
+   it has enough size to store data defined at all grid nodes (or cells or edges).
+
+Modify the function to read calculation conditions and the grid
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This step is optional.
+
+Before implementing iRIC-MI library to the model, generally, input data is
+loaded from text files, NetCDF files, etc.
+
+Change the interface to read calculation conditions and grid, using iRIC-MI library.
+
+When you finish this step, it is possible to input calculation condition, 
+generate grids, and map geographic data to grid attributes, using iRIC GUI.
+
+It depends on the situation if it is better to work on this step or not.
+
+If the data to be input is simple enough and iRIC GUI provides enough
+functions to prepare the input data, we recommend you to finish this step.
+
+If the data is too complex and it is not possible to implement function to
+read input data using iRIC-MI library, you should keep using the original code
+to read input data.
+
+In cases the model has a good GUI, it is also better to use the original
+code for most of the I/O, and use iRIC-MI library only for exchanging
+data with other models.
+
+There is an exception: If the model has arguments, that should be changed
+to calculation conditions to read with iRIC-MI library.
+It is because that when the model is launched using ``iricmi_run``,
+it is not possible to pass arguments.
+
+Please refer to :ref:`sec_functions_for_reading_and_writing_values`
+for the detail of functions for this purpose.
+
+Controlling the timing to output result to CGNS files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As already written, when ``iRICMI_Model_Sync`` is called, calculation results
+stored in the variables that you've registered with ``iRICMI_ROut_xxxx`` are 
+output to Case1.cgn, with interval stored in the variable that you've
+registered with ``iRICMI_ROut_Dump_Interval()``.
+
+If you want to manually control the timing output calcultion results to Case1.cgn,
+you can do it with the modification below:
+
+* Specify negative value to the variable that you've registered with
+  ``iRICMI_ROut_Dump_Interval()``.
+* Call ``iRICMI_Model_Dump()`` at the timing that you want to output calculation results.
+
+.. _workflow_of_model:
+
+The flowchart of the model
+----------------------------
+
+Finally, the flowchart of the model will be like below.
+
+.. uml::
+
+   start
+   :Call iRICMI_Model_Init();
+   :Reads calculation condition and grids using iRICMI_Read_xxx();
+   :Setup variables to be used for simulation;
+   :Register variables using iRICMI_RIn_xxx(), iRICMI_ROut_xxx();
+   :Call iRICMI_Model_Sync() for exchanging data with other model, and outputting initial condition;
+   repeat
+   :Call iRICMI_Check_Cancel(), and if cancel = 1, exit the time loop;
+   :Calculate the variable values at the next time step;
+   :Increament the time value stored in the variable that you've registered with iRICMI_ROut_Time();
+   :Call iRICMI_Model_Sync() for exchanging data with other model, and output calculation result; 
+   repeat while (Satisfies finalization condition?)
+   :Call iRICMI_Model_Terminate();
+   stop
+
+Please refer to :ref:`sec_sequence` also, to deeply understand how the models and iRIC-MI library works.
+
+Notices for programming languages
+--------------------------------------
+
+FORTRAN
+~~~~~~~~~~~
+
+* Use FORTRAN 90 or newer.
+* Add ``use iricmi`` where you want to call iricmi library functions.
+* Compile iricmi.f90 in "iricmi/sdk/fortran" with your source code.
+* Link against iricmi.lib in "iricmi/sdk/lib" folder.
+
+C/C++
+~~~~~~~
+
+* Add ``#include <iricmi.h>`` to include the file in "iricmi/sdk/include" folder,
+  where you want to call iricmi library functions. 
+* Link against iricmi.lib in "iricmi/sdk/lib" folder.
+
+Python
+~~~~~~~~
+
+* Add ``import iricmi`` to use iricmi library functions.

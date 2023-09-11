@@ -1,0 +1,74 @@
+.. _sec_ref_iRICMI_Read_Grid_JFaceCount:
+
+iRICMI_Read_Grid_JFaceCount
+===========================
+
+Reads the number of jfaces of the grid from the CGNS file.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid_JFaceCount(count, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid_JFaceCount(count)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   count = iRICMI_Read_Grid_JFaceCount()
+
+Arguments and returned value
+----------------------------
+
+count
+~~~~~
+
+.. list-table:: Information about count
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - count
+   * - I/O
+     - Output
+
+   * - Description
+     - The number of jfaces of the grid
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

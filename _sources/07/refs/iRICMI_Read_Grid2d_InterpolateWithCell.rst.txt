@@ -1,0 +1,187 @@
+.. _sec_ref_iRICMI_Read_Grid2d_InterpolateWithCell:
+
+iRICMI_Read_Grid2d_InterpolateWithCell
+======================================
+
+Returns the information to interpolate the value at the specified coordinates, with the values defined at grid nodes.
+
+You can use this function when you already know which cell contains the coordinates.
+If not please use iRICMI_Read_Grid2d_Interpolate instead.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid2d_InterpolateWithCell(grid_handle, x, y, cellId, nodeids_arr, weights_arr, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid2d_InterpolateWithCell(grid_handle, x, y, cellId, nodeids_arr, weights_arr)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   nodeids_arr, weights_arr = iRICMI_Read_Grid2d_InterpolateWithCell(grid_handle, x, y, cellId)
+
+Arguments and returned value
+----------------------------
+
+grid_handle
+~~~~~~~~~~~
+
+.. list-table:: Information about grid_handle
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - grid_handle
+   * - I/O
+     - Input
+
+   * - Description
+     - Grid handle
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+x
+~
+
+.. list-table:: Information about x
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - x
+   * - I/O
+     - Input
+
+   * - Description
+     - The value of x coordinate
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double
+   * - Type (Python)
+     - float
+
+y
+~
+
+.. list-table:: Information about y
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - y
+   * - I/O
+     - Input
+
+   * - Description
+     - The value of y coordinate
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double
+   * - Type (Python)
+     - float
+
+cellId
+~~~~~~
+
+.. list-table:: Information about cellId
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - cellId
+   * - I/O
+     - Input
+
+   * - Description
+     - Cell ID
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+nodeids_arr
+~~~~~~~~~~~
+
+.. list-table:: Information about nodeids_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - nodeids_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - Array of ID of the vertices of the cell
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+weights_arr
+~~~~~~~~~~~
+
+.. list-table:: Information about weights_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - weights_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - Array of weights values to interpolate the value at the coordinates from the those defined at cell vertices
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

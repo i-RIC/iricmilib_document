@@ -1,0 +1,14 @@
+.. _sec_rio_bc:
+
+Boundary conditions
+================================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ../refs/iRICMI_RIn_BC_Integer
+   ../refs/iRICMI_RIn_BC_Real
+   ../refs/iRICMI_ROut_BC_Integer
+   ../refs/iRICMI_ROut_BC_Real
+

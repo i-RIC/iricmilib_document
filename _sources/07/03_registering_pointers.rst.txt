@@ -1,0 +1,16 @@
+.. _sec_functions_for_registering_pointers:
+
+Functions for registering pointers
+======================================
+
+This section lists the functions for registering pointers for sending or receiving data.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   03/01_time
+   03/02_global
+   03/03_grid
+   03/04_bc
+   03/05_complex

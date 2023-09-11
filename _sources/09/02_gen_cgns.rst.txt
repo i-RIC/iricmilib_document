@@ -1,0 +1,34 @@
+Running BMI model exchanging data with iRIC models
+=========================================================
+
+Run BMI model exchaning data with iRIC models.
+
+:numref:`run_cem` shows the code to run CEM as a model that exchange data with iRIC models.
+
+.. code-block:: python
+   :caption: Code to run CEM with iRIC models
+   :name: run_cem
+   :linenos:
+
+   import iricmi_pymt_util
+   import pymt.models
+
+   cem = pymt.models.Cem()
+   args = cem.setup(number_of_rows=100, number_of_cols=200, grid_spacing=200.0)
+   cem.initialize(*args)
+   iricmi_pymt_util.buildCgns(cem, '/home/ubuntu/iricmilib/iricmi_pymt_util/template.cgn', '/home/ubuntu/iricmilib/iricmi_pymt_util/cem.cgn')
+
+
+Source code of buildcgns.py that generates CGNS file is shown in :numref:`iricmi_pymt_util_buildcgns`.
+
+.. note::
+
+   For CEM, there was a limitation below:
+
+   * Calling get_grid_x() and get_grid_y() caused exception. It seems that CEM does not support reading grid coordinates. through BMI. grid_ndim() and grid_shape() was functional, so a rectangular dummy grid is output to CGNS file.
+
+.. literalinclude:: ../../../../iricmi_pymt_util/iricmi_pymt_util/buildcgns.py
+   :name: iricmi_pymt_util_buildcgns
+   :language: python
+   :linenos:
+   :caption: source code of buildcgns.py

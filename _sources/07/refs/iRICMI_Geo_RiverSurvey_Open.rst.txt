@@ -1,0 +1,96 @@
+.. _sec_ref_iRICMI_Geo_RiverSurvey_Open:
+
+iRICMI_Geo_RiverSurvey_Open
+===========================
+
+Opens the geographic data file that contains river survey data.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Geo_RiverSurvey_Open(filename, id, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Geo_RiverSurvey_Open(filename, id)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   id = iRICMI_Geo_RiverSurvey_Open(filename)
+
+Arguments and returned value
+----------------------------
+
+filename
+~~~~~~~~
+
+.. list-table:: Information about filename
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - filename
+   * - I/O
+     - Input
+
+   * - Description
+     - Filename
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+id
+~~
+
+.. list-table:: Information about id
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - id
+   * - I/O
+     - Output
+
+   * - Description
+     - River Survey Data ID
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

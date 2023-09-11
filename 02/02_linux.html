@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to run models" href="../03_how_to_run.html" />
+    <link rel="prev" title="Windows" href="01_windows.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_windows.html">Windows</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-libraries">Install libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-pymt-using-mambaforge">Install pymt using mambaforge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-iriclib">Install iriclib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#clone-iriclib-repository-with-git">Clone iriclib repository with git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#edit-cmakelists-txt">Edit CMakeLists.txt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-and-install-iriclib">Build and install iriclib</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-and-install-iric-mi">Build and install iRIC-MI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#clone-iricmilib-repository-with-git">Clone iricmilib repository with git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-and-install-iric-mi-library">Build and install iRIC-MI library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-and-install-iricmi-server">Build and install iricmi_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-iricmi-run">Install iricmi_run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-sample-solvers">Install sample solvers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-environmental-variables">Add environmental variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#test-run">Test run</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../02_install.html">How to Install iRIC-MI</a></li>
+      <li class="breadcrumb-item active">Linux</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/02/02_linux.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="linux">
+<h1>Linux<a class="headerlink" href="#linux" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>iRIC-MI can be built on Linux. When you want to use iRIC-MI on public cloud like AWS, Azure, Google Cloud Platform, or HPC whose OS is Linux, please refer to this section.</p>
+<p>As an example, the procedure to install iRIC-MI on Ubuntu 22.04 is introduced.</p>
+<p>You can download Ubuntu from the URL below:</p>
+<p><a class="reference external" href="https://ubuntu.com/download">https://ubuntu.com/download</a></p>
+<p>In this section, pymt is also installed, so that BMI models can be executed connected with iRIC models.</p>
+<p>Please refer to the URL below for the information of pymt and BMI.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pymt.readthedocs.io/en/latest/">https://pymt.readthedocs.io/en/latest/</a></p></li>
+<li><p><a class="reference external" href="https://bmi.readthedocs.io/en/stable/">https://bmi.readthedocs.io/en/stable/</a></p></li>
+</ul>
+</section>
+<section id="install-libraries">
+<h2>Install libraries<a class="headerlink" href="#install-libraries" title="Permalink to this heading"></a></h2>
+<p>Install the libraries needed to build iriclib and iRIC-MI library. Input the commands in <a class="reference internal" href="#install-libraries-commands"><span class="std std-numref">Listing 1</span></a>.</p>
+<div class="literal-block-wrapper docutils container" id="install-libraries-commands">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Commands for installing libraries</span><a class="headerlink" href="#install-libraries-commands" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<span class="linenos">2</span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libvtk9-dev
+<span class="linenos">3</span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libpoco-dev
+<span class="linenos">4</span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libmpich-dev<span class="w"> </span>mpich
+<span class="linenos">5</span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>swig
+<span class="linenos">6</span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cmake
+<span class="linenos">7</span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>qtbase5-dev
+</pre></div>
+</div>
+</div>
+</section>
+<section id="install-pymt-using-mambaforge">
+<h2>Install pymt using mambaforge<a class="headerlink" href="#install-pymt-using-mambaforge" title="Permalink to this heading"></a></h2>
+<p>Install pymt using mambaforge.</p>
+<p>mambaforge is a package for installing mamba quickly. mamba is a fast cross-platform package manager, that can be used instead of conda.</p>
+<p>Please refer to the following URL for detail about mamba.</p>
+<p><a class="reference external" href="https://mamba.readthedocs.io/en/latest/index.html">https://mamba.readthedocs.io/en/latest/index.html</a></p>
+<p>Input the commands in <a class="reference internal" href="#install-mambaforge-commands"><span class="std std-numref">Listing 2</span></a></p>
+<div class="literal-block-wrapper docutils container" id="install-mambaforge-commands">
+<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">Commands for installing mambaforge</span><a class="headerlink" href="#install-mambaforge-commands" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-</span><span class="k">$(</span>uname<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span><span class="s2">.sh&quot;</span>
+<span class="linenos">2</span>bash<span class="w"> </span>Mambaforge-<span class="k">$(</span>uname<span class="k">)</span>-<span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span>.sh
+</pre></div>
+</div>
+</div>
+<p>When commands in <a class="reference internal" href="#install-mambaforge-commands"><span class="std std-numref">Listing 2</span></a> is executed, prompts to select prefix is shown. Please input <code class="docutils literal notranslate"><span class="pre">/opt/mambaforge</span></code>.</p>
+<p>Input the commands in <a class="reference internal" href="#install-pymt-commands"><span class="std std-numref">Listing 3</span></a></p>
+<div class="literal-block-wrapper docutils container" id="install-pymt-commands">
+<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">Commands for installing pymt</span><a class="headerlink" href="#install-pymt-commands" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>/opt/mambaforge/bin/mamba<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>pymt
+</pre></div>
+</div>
+</div>
+<p>Add the line in <a class="reference internal" href="#path-mambaforge"><span class="std std-numref">Listing 4</span></a> to ~/.bashrc.</p>
+<div class="literal-block-wrapper docutils container" id="path-mambaforge">
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">The line to be added to .bashrc</span><a class="headerlink" href="#path-mambaforge" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/opt/mambaforge/bin:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+</div>
+<p>Logout then login again, to apply the change to PATH.</p>
+</section>
+<section id="install-iriclib">
+<h2>Install iriclib<a class="headerlink" href="#install-iriclib" title="Permalink to this heading"></a></h2>
+<p>Install iriclib with the steps below:</p>
+<ol class="arabic simple">
+<li><p>Clone iriclib repository with git</p></li>
+<li><p>Edit CMakeLists.txt</p></li>
+<li><p>Build and install iriclib</p></li>
+</ol>
+<section id="clone-iriclib-repository-with-git">
+<h3>Clone iriclib repository with git<a class="headerlink" href="#clone-iriclib-repository-with-git" title="Permalink to this heading"></a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/i-RIC/iriclib_v4.git
+<span class="linenos">2</span>git<span class="w"> </span>checkout<span class="w"> </span>iricmi
+</pre></div>
+</div>
+</section>
+<section id="edit-cmakelists-txt">
+<h3>Edit CMakeLists.txt<a class="headerlink" href="#edit-cmakelists-txt" title="Permalink to this heading"></a></h3>
+<p>Change the <code class="docutils literal notranslate"><span class="pre">find_package</span></code> section at line 43, to the following.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>find_package(Python 3.10 EXACT REQUIRED COMPONENTS Interpreter Development)
+</pre></div>
+</div>
+<p>Change the <code class="docutils literal notranslate"><span class="pre">target_include_directories</span></code> section at line 277 to 283, to the following.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span># iriclib include directories
+<span class="linenos">2</span>target_include_directories(iriclib
+<span class="linenos">3</span>  PUBLIC
+<span class="linenos">4</span>    &quot;$&lt;BUILD_INTERFACE:${PROJECT_SOURCE_DIR}&gt;&quot;
+<span class="linenos">5</span>    &quot;$&lt;BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/private&gt;&quot;
+<span class="linenos">6</span>    &quot;$&lt;INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}&gt;&quot;
+<span class="linenos">7</span>    ${HDF5_INCLUDE_DIRS}
+<span class="linenos">8</span>)
+</pre></div>
+</div>
+<p>Change the <code class="docutils literal notranslate"><span class="pre">target_link_libraries</span></code> section at line 285 to 290, to the following.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span># iriclib link libraries
+<span class="linenos">2</span>target_link_libraries(iriclib
+<span class="linenos">3</span>  PRIVATE
+<span class="linenos">4</span>    ${HDF5_LIBRARIES}
+<span class="linenos">5</span>    Poco::Foundation
+<span class="linenos">6</span>)
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It will be easier to install, by improving CMakeList.txt. When improved, we will not need to edit CMakeList.txt.</p>
+</div>
+</section>
+<section id="build-and-install-iriclib">
+<h3>Build and install iriclib<a class="headerlink" href="#build-and-install-iriclib" title="Permalink to this heading"></a></h3>
+<p>Install iriclib with the commands in <a class="reference internal" href="#install-iriclib-commands"><span class="std std-numref">Listing 5</span></a></p>
+<div class="literal-block-wrapper docutils container" id="install-iriclib-commands">
+<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">The commands to install iriclib</span><a class="headerlink" href="#install-iriclib-commands" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nb">cd</span><span class="w"> </span>iriclib_v4
+<span class="linenos"> 2</span>cmake<span class="w"> </span><span class="se">\</span>
+<span class="linenos"> 3</span><span class="w">  </span>-D<span class="w"> </span>PocoFoundation_DIR:STRING<span class="o">=</span>/usr/lib/x86_64-linux-gnu/cmake/Poco/<span class="w"> </span><span class="se">\</span>
+<span class="linenos"> 4</span><span class="w">  </span>-D<span class="w"> </span>HDF5_INCLUDE_DIRS:STRING<span class="o">=</span>/usr/include/hdf5/serial<span class="w"> </span><span class="se">\</span>
+<span class="linenos"> 5</span><span class="w">  </span>-D<span class="w"> </span>HDF5_LIBRARIES:STRING<span class="o">=</span>/usr/lib/x86_64-linux-gnu/hdf5/serial/lib/libhdf5.so<span class="w"> </span><span class="se">\</span>
+<span class="linenos"> 6</span>.
+<span class="linenos"> 7</span>make
+<span class="linenos"> 8</span>sudo<span class="w"> </span>make<span class="w"> </span>install
+<span class="linenos"> 9</span>sudo<span class="w"> </span>ldconfig
+<span class="linenos">10</span>sudo<span class="w"> </span>cp<span class="w"> </span>/usr/local/bin/Lib/site-packages/*<span class="w"> </span>/opt/mambaforge/lib/python3.10/site-packages
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="build-and-install-iric-mi">
+<h2>Build and install iRIC-MI<a class="headerlink" href="#build-and-install-iric-mi" title="Permalink to this heading"></a></h2>
+<p>Install iRIC-MI with the steps below:</p>
+<ol class="arabic simple">
+<li><p>Clone iricmilib repository with git</p></li>
+<li><p>Build and install iRIC-MI library</p></li>
+<li><p>Build and install iricmi_server</p></li>
+<li><p>Install iricmi_run</p></li>
+<li><p>Install sample solvers</p></li>
+<li><p>Add environmental variables</p></li>
+</ol>
+<section id="clone-iricmilib-repository-with-git">
+<h3>Clone iricmilib repository with git<a class="headerlink" href="#clone-iricmilib-repository-with-git" title="Permalink to this heading"></a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kskinoue0612/iricmilib.git
+</pre></div>
+</div>
+</section>
+<section id="build-and-install-iric-mi-library">
+<h3>Build and install iRIC-MI library<a class="headerlink" href="#build-and-install-iric-mi-library" title="Permalink to this heading"></a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nb">cd</span><span class="w"> </span>iricmilib/iricmilib/src
+<span class="linenos"> 2</span>cmake<span class="w"> </span><span class="se">\</span>
+<span class="linenos"> 3</span><span class="w">  </span>-D<span class="w"> </span>PocoFoundation_DIR:STRING<span class="o">=</span>/usr/lib/x86_64-linux-gnu/cmake/Poco/<span class="w"> </span><span class="se">\</span>
+<span class="linenos"> 4</span><span class="w">  </span>-D<span class="w"> </span>PocoXML_DIR:STRING<span class="o">=</span>/usr/lib/x86_64-linux-gnu/cmake/Poco/<span class="w"> </span><span class="se">\</span>
+<span class="linenos"> 5</span><span class="w">  </span>-D<span class="w"> </span>HDF5_INCLUDE_DIRS:STRING<span class="o">=</span>/usr/include/hdf5/serial<span class="w"> </span><span class="se">\</span>
+<span class="linenos"> 6</span><span class="w">  </span>-D<span class="w"> </span>HDF5_LIBRARIES:STRING<span class="o">=</span>/usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5.so<span class="w"> </span><span class="se">\</span>
+<span class="linenos"> 7</span>.
+<span class="linenos"> 8</span>make
+<span class="linenos"> 9</span>sudo<span class="w"> </span>make<span class="w"> </span>install
+<span class="linenos">10</span>sudo<span class="w"> </span>ldconfig
+<span class="linenos">11</span>sudo<span class="w"> </span>cp<span class="w"> </span>iricmi.f90<span class="w"> </span>/usr/local/src
+<span class="linenos">12</span><span class="nb">cd</span><span class="w"> </span>../bindings/python
+<span class="linenos">13</span>swig<span class="w"> </span>-c++<span class="w"> </span>-python<span class="w"> </span>-cppext<span class="w"> </span>cpp<span class="w"> </span>iricmi.i
+<span class="linenos">14</span>g++<span class="w"> </span>-fPIC<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>_iricmi.so<span class="w"> </span>iricmi_wrap.cpp<span class="w"> </span>-I/opt/mambaforge/include/python3.10<span class="w"> </span>-I../../src<span class="w"> </span>-liricmi<span class="w"> </span>/opt/mambaforge/lib/libpython3.10.so
+<span class="linenos">15</span>sudo<span class="w"> </span>cp<span class="w"> </span>_iricmi.so<span class="w"> </span>/opt/mambaforge/lib/python3.10/site-packages
+<span class="linenos">16</span>sudo<span class="w"> </span>cp<span class="w"> </span>iricmi_custom.py<span class="w"> </span>/opt/mambaforge/lib/python3.10/site-packages/iricmi.py
+</pre></div>
+</div>
+</section>
+<section id="build-and-install-iricmi-server">
+<h3>Build and install iricmi_server<a class="headerlink" href="#build-and-install-iricmi-server" title="Permalink to this heading"></a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">cd</span><span class="w"> </span>../../iricmi_server
+<span class="linenos">2</span>g++<span class="w"> </span>-c<span class="w"> </span>main.cpp
+<span class="linenos">3</span>g++<span class="w"> </span>-c<span class="w"> </span>server.cpp
+<span class="linenos">4</span>g++<span class="w"> </span>-o<span class="w"> </span>iricmi_server<span class="w"> </span>*.o<span class="w"> </span>-liricmi
+<span class="linenos">5</span>
+<span class="linenos">6</span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/iric/bin
+<span class="linenos">7</span>sudo<span class="w"> </span>copy<span class="w"> </span>iricmi_server<span class="w"> </span>/opt/iric/bin
+</pre></div>
+</div>
+</section>
+<section id="install-iricmi-run">
+<h3>Install iricmi_run<a class="headerlink" href="#install-iricmi-run" title="Permalink to this heading"></a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">cd</span><span class="w"> </span>../tools
+<span class="linenos">2</span>mv<span class="w"> </span>iricmi_run.ubuntu.py<span class="w"> </span>iricmi_run
+<span class="linenos">3</span>chmod<span class="w"> </span>a+x<span class="w"> </span>iricmi_run
+<span class="linenos">4</span>sudo<span class="w"> </span>cp<span class="w"> </span>iricmi_run<span class="w"> </span>/opt/iric/bin
+</pre></div>
+</div>
+</section>
+<section id="install-sample-solvers">
+<h3>Install sample solvers<a class="headerlink" href="#install-sample-solvers" title="Permalink to this heading"></a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">cd</span><span class="w"> </span>../testmodels
+<span class="linenos">2</span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/opt/iric/solvers
+<span class="linenos">3</span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>global_receive_python<span class="w"> </span>/opt/iric/solvers
+<span class="linenos">4</span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>global_send_python<span class="w"> </span>/opt/iric/solvers
+<span class="linenos">5</span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>grid_att_receive_python<span class="w"> </span>/opt/iric/solvers
+<span class="linenos">6</span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>grid_att_send_python<span class="w"> </span>/opt/iric/solvers
+<span class="linenos">7</span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>grid2d_edge_python<span class="w"> </span>/opt/iric/solvers
+<span class="linenos">8</span>sudo<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>grid2d3d_python<span class="w"> </span>/opt/iric/solvers
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the example above, only the sample models developed with python are installed.</p>
+<p>You can also install sample models developed with C++ and FORTRAN. Before installing, you need to build the source code.</p>
+<p>You can build C++ models with g++, with <code class="docutils literal notranslate"><span class="pre">-liricmi</span></code>. The command below builds global_receive_c++.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>g++<span class="w"> </span>-o<span class="w"> </span>global_receive_c++<span class="w"> </span>main.cpp<span class="w"> </span>-liricmi
+</pre></div>
+</div>
+<p>You can build FORTRAN models with gfortran, with <code class="docutils literal notranslate"><span class="pre">-iricmi</span></code>, after compiling iricmi.f90. The command below builds global_receive_fortran.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>gfortran<span class="w"> </span>-c<span class="w"> </span>/usr/local/src/iricmi.f90
+<span class="linenos">2</span>gfortran<span class="w"> </span>-o<span class="w"> </span>global_receive_fortran<span class="w"> </span>main.f90<span class="w"> </span>iricmi.o<span class="w"> </span>-liricmi
+</pre></div>
+</div>
+</div>
+</section>
+<section id="add-environmental-variables">
+<h3>Add environmental variables<a class="headerlink" href="#add-environmental-variables" title="Permalink to this heading"></a></h3>
+<p>Add the line in <a class="reference internal" href="#env-bashrc"><span class="std std-numref">Listing 6</span></a> to ~/.bashrc.</p>
+<div class="literal-block-wrapper docutils container" id="env-bashrc">
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">The line to be added to .bashrc</span><a class="headerlink" href="#env-bashrc" title="Permalink to this code"></a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/opt/iric/bin:opt/mambaforge/bin:<span class="nv">$PATH</span>
+<span class="linenos">2</span><span class="nb">export</span><span class="w"> </span><span class="nv">IRICMI_ROOT_PATH</span><span class="o">=</span>/opt/iric
+<span class="linenos">3</span><span class="nb">export</span><span class="w"> </span><span class="nv">IRICMI_LOG_LEVEL</span><span class="o">=</span>WARNING
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="test-run">
+<h2>Test run<a class="headerlink" href="#test-run" title="Permalink to this heading"></a></h2>
+<p>Run model to check that iRIC-MI and sample models are installed successfully.</p>
+<p>cd to testdata/grid2d_edge_python, and input the command below:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>iricmi_run
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_windows.html" class="btn btn-neutral float-left" title="Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../03_how_to_run.html" class="btn btn-neutral float-right" title="How to run models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

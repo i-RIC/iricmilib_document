@@ -1,0 +1,23 @@
+Future works
+==============
+
+Improving iRIC GUI to run models in "coupled" mode
+-------------------------------------------------------
+
+* Add function to edit input data for multiple projects
+* Launch iricmi_run.py 
+
+Extending iRIC-MI library
+-------------------------------
+
+* Support outputting particles, polygons, polylines
+
+Utility tool
+---------------
+
+* Tool to merge calculation results in CGNS files to one CGNS file, so that iRIC GUI can be used to visualize the results of multiple models on the same screen.
+
+Utility functions
+-------------------------
+
+* Support reading result from CGNS files and pass the values to solvers. It will be helpful when one of a solver takes a lot of time to run.

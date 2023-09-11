@@ -1,0 +1,96 @@
+.. _sec_ref_iRICMI_Read_Complex_Count:
+
+iRICMI_Read_Complex_Count
+=========================
+
+Reads the number of complex type grid attribute for the specified type.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Complex_Count(groupname, num, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Complex_Count(groupname, num)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   num = iRICMI_Read_Complex_Count(groupname)
+
+Arguments and returned value
+----------------------------
+
+groupname
+~~~~~~~~~
+
+.. list-table:: Information about groupname
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - groupname
+   * - I/O
+     - Input
+
+   * - Description
+     - The group name of the complex type grid attribute
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+num
+~~~
+
+.. list-table:: Information about num
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - num
+   * - I/O
+     - Output
+
+   * - Description
+     - The id (starts from 1) of the complex type grid attribute
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

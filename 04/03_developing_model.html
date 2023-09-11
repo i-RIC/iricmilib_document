@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developing models &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developing calculator" href="03_developing_calculator.html" />
+    <link rel="prev" title="Creating “definition.xml”" href="02_creating_solver_def.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_creating_solver_def.html">Creating “definition.xml”</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Developing models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-model-from-scratch">Creating a model from scratch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementing-the-iric-mi-library-into-existing-models">Implementing the iRIC-MI library into existing models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#add-iricmi-model-init-and-iricmi-model-terminate">Add <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Init()</span></code>, and <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Terminate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#register-variables-related-to-time">Register variables related to time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#call-iricmi-model-sync-for-synchronization">Call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> for synchronization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#call-iricmi-check-cancel-for-communicating-with-iric-gui">Call <code class="docutils literal notranslate"><span class="pre">iRICMI_Check_Cancel()</span></code> for communicating with iRIC GUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#register-variables-to-send-receive-values-to-from-other-models">Register variables to send/receive values to/from other models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modify-the-function-to-read-calculation-conditions-and-the-grid">Modify the function to read calculation conditions and the grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controlling-the-timing-to-output-result-to-cgns-files">Controlling the timing to output result to CGNS files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-flowchart-of-the-model">The flowchart of the model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notices-for-programming-languages">Notices for programming languages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fortran">FORTRAN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-c">C/C++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python">Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03_developing_calculator.html">Developing calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_io_types.html">Types of input and output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_tips.html">Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../04_how_to_develop_models.html">How to develop models</a></li>
+      <li class="breadcrumb-item active">Developing models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/04/03_developing_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="developing-models">
+<span id="sec-developing-model"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Developing models</a><a class="headerlink" href="#developing-models" title="Permalink to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#developing-models" id="id1">Developing models</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-a-model-from-scratch" id="id2">Creating a model from scratch</a></p></li>
+<li><p><a class="reference internal" href="#implementing-the-iric-mi-library-into-existing-models" id="id3">Implementing the iRIC-MI library into existing models</a></p>
+<ul>
+<li><p><a class="reference internal" href="#add-iricmi-model-init-and-iricmi-model-terminate" id="id4">Add <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Init()</span></code>, and <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Terminate()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#register-variables-related-to-time" id="id5">Register variables related to time</a></p></li>
+<li><p><a class="reference internal" href="#call-iricmi-model-sync-for-synchronization" id="id6">Call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> for synchronization</a></p></li>
+<li><p><a class="reference internal" href="#call-iricmi-check-cancel-for-communicating-with-iric-gui" id="id7">Call <code class="docutils literal notranslate"><span class="pre">iRICMI_Check_Cancel()</span></code> for communicating with iRIC GUI</a></p></li>
+<li><p><a class="reference internal" href="#register-variables-to-send-receive-values-to-from-other-models" id="id8">Register variables to send/receive values to/from other models</a></p></li>
+<li><p><a class="reference internal" href="#modify-the-function-to-read-calculation-conditions-and-the-grid" id="id9">Modify the function to read calculation conditions and the grid</a></p></li>
+<li><p><a class="reference internal" href="#controlling-the-timing-to-output-result-to-cgns-files" id="id10">Controlling the timing to output result to CGNS files</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#the-flowchart-of-the-model" id="id11">The flowchart of the model</a></p></li>
+<li><p><a class="reference internal" href="#notices-for-programming-languages" id="id12">Notices for programming languages</a></p>
+<ul>
+<li><p><a class="reference internal" href="#fortran" id="id13">FORTRAN</a></p></li>
+<li><p><a class="reference internal" href="#c-c" id="id14">C/C++</a></p></li>
+<li><p><a class="reference internal" href="#python" id="id15">Python</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>The details of how to develop models are described on this page.</p>
+<p>It is described for the two patterns below:</p>
+<ul class="simple">
+<li><p>Creating a model from scratch</p></li>
+<li><p>Implementing the iRIC-MI library into existing models</p></li>
+</ul>
+<section id="creating-a-model-from-scratch">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Creating a model from scratch</a><a class="headerlink" href="#creating-a-model-from-scratch" title="Permalink to this heading"></a></h2>
+<p>When you create a model from scratch, we recommend you to start from
+editing the sample models bundled to iRIC-MI.</p>
+<p>Please refer to <a class="reference internal" href="../08_sample_models.html#sec-sample-models"><span class="std std-ref">Sample models</span></a> for the sample programs.</p>
+</section>
+<section id="implementing-the-iric-mi-library-into-existing-models">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Implementing the iRIC-MI library into existing models</a><a class="headerlink" href="#implementing-the-iric-mi-library-into-existing-models" title="Permalink to this heading"></a></h2>
+<p>When implemeting the iRIC-MI library into existing models,
+it is important to proceed step by step.</p>
+<p>Please follow the steps below.</p>
+<section id="add-iricmi-model-init-and-iricmi-model-terminate">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Add <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Init()</span></code>, and <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Terminate()</span></code></a><a class="headerlink" href="#add-iricmi-model-init-and-iricmi-model-terminate" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Please add <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Init()</span></code> just after solver starts.</p></li>
+<li><p>Please add <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Terminate()</span></code> just before solver ends.</p></li>
+</ul>
+</section>
+<section id="register-variables-related-to-time">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Register variables related to time</a><a class="headerlink" href="#register-variables-related-to-time" title="Permalink to this heading"></a></h3>
+<p>Please register the variables below, using the iRIC-MI library functions below:</p>
+<ul class="simple">
+<li><p>Current time: <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Time()</span></code></p></li>
+<li><p>Interval to exchange data with other models: <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Exchange_Interval()</span></code></p></li>
+<li><p>Interval to output data to CGNS files: <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Dump_Interval()</span></code></p></li>
+</ul>
+</section>
+<section id="call-iricmi-model-sync-for-synchronization">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> for synchronization</a><a class="headerlink" href="#call-iricmi-model-sync-for-synchronization" title="Permalink to this heading"></a></h3>
+<p>Call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> at the time you want to exchange data with other models and output result to Case1.cgn.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> should be called in two positions below:</p>
+<ul class="simple">
+<li><p>Just before entering the time loop</p></li>
+<li><p>Just before the time loop ends.</p></li>
+</ul>
+</section>
+<section id="call-iricmi-check-cancel-for-communicating-with-iric-gui">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Call <code class="docutils literal notranslate"><span class="pre">iRICMI_Check_Cancel()</span></code> for communicating with iRIC GUI</a><a class="headerlink" href="#call-iricmi-check-cancel-for-communicating-with-iric-gui" title="Permalink to this heading"></a></h3>
+<p>When “Stop” button is clicked on iRIC GUI, iRIC GUI does not kill the solver,
+but creates the file “.cancel”. That is the file to inform the solver
+that user wants to cancel running.</p>
+<p>Models must check if “.cancel” exists, and if it does, it should cancel the execution.</p>
+<p>To check the existence of “.cancel”, call <code class="docutils literal notranslate"><span class="pre">iRICMI_Check_Cancel()</span></code>
+in the time loop, and check the value of cancel.</p>
+<p>If the value of cancel is 1, exit the time loop, and call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Terminate()</span></code>,
+to terminate the execution normally.</p>
+</section>
+<section id="register-variables-to-send-receive-values-to-from-other-models">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Register variables to send/receive values to/from other models</a><a class="headerlink" href="#register-variables-to-send-receive-values-to-from-other-models" title="Permalink to this heading"></a></h3>
+<p>Register variables to send/receive values to/from other models.</p>
+<p>You can use the functions below:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iRICMI_RIn_xxxx</span></code>: Register variable for input. When <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> is called,
+the value is received from other models in “coupled mode”, or read from CGNS file in “single mode”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_xxxx</span></code>: Register variable for output. When <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> is called,
+value is sent to other models, and saved to CGNS file with specified interval.</p></li>
+</ul>
+<p>There are function families below:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iRICMI_R(In/Out)_(Integer/Real)</span></code>: For global values</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iRICMI_R(In/Out)_BC_(Integer/Real)</span></code>: For boundary conditions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iRICMI_R(In/Out)_Complex_(Integer/Real)</span></code>: For complex type grid attributes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iRICMI_R(In/Out)_Grid_(Node/Cell/IFace/JFace/KFace)_(Integer/Real)</span></code>: For grid attributes</p></li>
+</ul>
+<p>Please refer to <a class="reference internal" href="04_io_types.html#sec-types-of-io"><span class="std std-ref">Types of input and output</span></a> for the types above.</p>
+<p>Please refer to <a class="reference internal" href="../07/03_registering_pointers.html#sec-functions-for-registering-pointers"><span class="std std-ref">Functions for registering pointers</span></a> for the detail of the functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice about memory access violation</p>
+<p>Please note that <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> access the memory that you’ve registered
+with <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_xxxxx()</span></code> and <code class="docutils literal notranslate"><span class="pre">iRICMI_RIn_xxxxx()</span></code>. You should call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code>
+after calling them, and the memory should not be deallocated before <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code>
+is called.</p>
+<p>Also please notice that when you pass memory to store grid attributes (iRICMI_ROut_Grid_Node for example),
+it has enough size to store data defined at all grid nodes (or cells or edges).</p>
+</div>
+</section>
+<section id="modify-the-function-to-read-calculation-conditions-and-the-grid">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Modify the function to read calculation conditions and the grid</a><a class="headerlink" href="#modify-the-function-to-read-calculation-conditions-and-the-grid" title="Permalink to this heading"></a></h3>
+<p>This step is optional.</p>
+<p>Before implementing iRIC-MI library to the model, generally, input data is
+loaded from text files, NetCDF files, etc.</p>
+<p>Change the interface to read calculation conditions and grid, using iRIC-MI library.</p>
+<p>When you finish this step, it is possible to input calculation condition,
+generate grids, and map geographic data to grid attributes, using iRIC GUI.</p>
+<p>It depends on the situation if it is better to work on this step or not.</p>
+<p>If the data to be input is simple enough and iRIC GUI provides enough
+functions to prepare the input data, we recommend you to finish this step.</p>
+<p>If the data is too complex and it is not possible to implement function to
+read input data using iRIC-MI library, you should keep using the original code
+to read input data.</p>
+<p>In cases the model has a good GUI, it is also better to use the original
+code for most of the I/O, and use iRIC-MI library only for exchanging
+data with other models.</p>
+<p>There is an exception: If the model has arguments, that should be changed
+to calculation conditions to read with iRIC-MI library.
+It is because that when the model is launched using <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code>,
+it is not possible to pass arguments.</p>
+<p>Please refer to <a class="reference internal" href="../07/02_reading.html#sec-functions-for-reading-and-writing-values"><span class="std std-ref">Functions for reading and writing values</span></a>
+for the detail of functions for this purpose.</p>
+</section>
+<section id="controlling-the-timing-to-output-result-to-cgns-files">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Controlling the timing to output result to CGNS files</a><a class="headerlink" href="#controlling-the-timing-to-output-result-to-cgns-files" title="Permalink to this heading"></a></h3>
+<p>As already written, when <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync</span></code> is called, calculation results
+stored in the variables that you’ve registered with <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_xxxx</span></code> are
+output to Case1.cgn, with interval stored in the variable that you’ve
+registered with <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Dump_Interval()</span></code>.</p>
+<p>If you want to manually control the timing output calcultion results to Case1.cgn,
+you can do it with the modification below:</p>
+<ul class="simple">
+<li><p>Specify negative value to the variable that you’ve registered with
+<code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Dump_Interval()</span></code>.</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Dump()</span></code> at the timing that you want to output calculation results.</p></li>
+</ul>
+</section>
+</section>
+<section id="the-flowchart-of-the-model">
+<span id="workflow-of-model"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">The flowchart of the model</a><a class="headerlink" href="#the-flowchart-of-the-model" title="Permalink to this heading"></a></h2>
+<p>Finally, the flowchart of the model will be like below.</p>
+<p class="plantuml">
+<img src="../_images/plantuml-18ad13326fb4449022a3ed122ea6b2116d55f458.png" alt="start
+:Call iRICMI_Model_Init();
+:Reads calculation condition and grids using iRICMI_Read_xxx();
+:Setup variables to be used for simulation;
+:Register variables using iRICMI_RIn_xxx(), iRICMI_ROut_xxx();
+:Call iRICMI_Model_Sync() for exchanging data with other model, and outputting initial condition;
+repeat
+:Call iRICMI_Check_Cancel(), and if cancel = 1, exit the time loop;
+:Calculate the variable values at the next time step;
+:Increament the time value stored in the variable that you've registered with iRICMI_ROut_Time();
+:Call iRICMI_Model_Sync() for exchanging data with other model, and output calculation result;
+repeat while (Satisfies finalization condition?)
+:Call iRICMI_Model_Terminate();
+stop"/>
+</p>
+<p>Please refer to <a class="reference internal" href="../05/01_workflow.html#sec-sequence"><span class="std std-ref">The workflow of iricmi_server and models</span></a> also, to deeply understand how the models and iRIC-MI library works.</p>
+</section>
+<section id="notices-for-programming-languages">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Notices for programming languages</a><a class="headerlink" href="#notices-for-programming-languages" title="Permalink to this heading"></a></h2>
+<section id="fortran">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">FORTRAN</a><a class="headerlink" href="#fortran" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Use FORTRAN 90 or newer.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">iricmi</span></code> where you want to call iricmi library functions.</p></li>
+<li><p>Compile iricmi.f90 in “iricmi/sdk/fortran” with your source code.</p></li>
+<li><p>Link against iricmi.lib in “iricmi/sdk/lib” folder.</p></li>
+</ul>
+</section>
+<section id="c-c">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">C/C++</a><a class="headerlink" href="#c-c" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;iricmi.h&gt;</span></code> to include the file in “iricmi/sdk/include” folder,
+where you want to call iricmi library functions.</p></li>
+<li><p>Link against iricmi.lib in “iricmi/sdk/lib” folder.</p></li>
+</ul>
+</section>
+<section id="python">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Python</a><a class="headerlink" href="#python" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">iricmi</span></code> to use iricmi library functions.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_creating_solver_def.html" class="btn btn-neutral float-left" title="Creating “definition.xml”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_developing_calculator.html" class="btn btn-neutral float-right" title="Developing calculator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

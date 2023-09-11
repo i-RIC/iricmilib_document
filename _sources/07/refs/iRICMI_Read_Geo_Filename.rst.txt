@@ -1,0 +1,140 @@
+.. _sec_ref_iRICMI_Read_Geo_Filename:
+
+iRICMI_Read_Geo_Filename
+========================
+
+Reads the file name and data type of geographic data.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Geo_Filename(name, geoid, strvalue, type, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Geo_Filename(name, geoid, strvalue, type)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   strvalue, type = iRICMI_Read_Geo_Filename(name, geoid)
+
+Arguments and returned value
+----------------------------
+
+name
+~~~~
+
+.. list-table:: Information about name
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - name
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the geographic data group
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+geoid
+~~~~~
+
+.. list-table:: Information about geoid
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - geoid
+   * - I/O
+     - Input
+
+   * - Description
+     - Geographic data number
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+strvalue
+~~~~~~~~
+
+.. list-table:: Information about strvalue
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - strvalue
+   * - I/O
+     - Output
+
+   * - Description
+     - The name of the file
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - char*
+   * - Type (Python)
+     - string
+
+type
+~~~~
+
+.. list-table:: Information about type
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - type
+   * - I/O
+     - Output
+
+   * - Description
+     - Geographic data type
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

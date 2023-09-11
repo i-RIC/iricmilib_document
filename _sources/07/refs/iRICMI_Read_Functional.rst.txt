@@ -1,0 +1,118 @@
+.. _sec_ref_iRICMI_Read_Functional:
+
+iRICMI_Read_Functional
+======================
+
+Reads the x and y values of a functional variable (in double precision) from the CGNS file.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Functional(name, x_arr, y_arr, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Functional(name, x_arr, y_arr)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   x_arr, y_arr = iRICMI_Read_Functional(name)
+
+Arguments and returned value
+----------------------------
+
+name
+~~~~
+
+.. list-table:: Information about name
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - name
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the variable
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+x_arr
+~~~~~
+
+.. list-table:: Information about x_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - x_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - The values of the parameter
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+y_arr
+~~~~~
+
+.. list-table:: Information about y_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - y_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - The values of the value
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

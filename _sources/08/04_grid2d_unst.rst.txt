@@ -1,0 +1,134 @@
+.. _sec_sample_model_grid2d_unst:
+
+``grid2d_unst``
+=============================================
+
+``grid_unst`` is a model that reads two dimensional unstructured grid,
+send values defined at grid nodes and cells.
+It also receive values defined at grid nodes, cells.
+
+Also it is possible to change the grid coordinates at every time step, by giving dx and dy values other than zero.
+
+In the sample project, "st" is the project that runs :ref:`sec_sample_model_grid2d3d`,
+and "unst" is the project that runs ``grid_unst``, and the values are exchanged
+in both direction.
+
+``grid2d_unst`` is implemented in FORTRAN, C++ and Python. On this page FORTRAN version is explained.
+
+``grid2d_unst``
+--------------------------
+
+:numref:`grid2d_unst_fortran_definition` shows "definition.xml" of ``grid2d_unst``, and
+:numref:`grid2d_unst_fortran_main_f90` shows the source code of ``grid2d_unst``.
+
+The important points are as follows:
+
+* In :numref:`grid2d3d_fortran_definition`, two \<GridType\> element is defined. The first one with name"input" is for two dimensional grid, and the other one with name "output3d" is for three dimensional grid. It is important that the for \<GridType\> with name "output3d", attribute "post" is defined, and the value is "true". It means that the grid should not be created in Pre-processing window, but generated inside the model, and used only for post-processing.
+* Output data is defined for both two dimensional grid and three dimensional grid. For two dimensional grid, the names are "outputNode2d", "outputCell2d", etc. For three dimensional grid, the names are "outputNode3d", "outputCell3d", etc.
+* Time dependent input data is defined for both two dimensional grid and three dimensional grid. For two dimensional grid, the names are "inputNode2d", "inputCell2d", etc. For three dimensional grid, the names are "inputNode3d", "inputCell3d", etc.
+* Line 95 of :numref:`grid2d3d_fortran_main_f90` calls :ref:`sec_ref_iRICMI_RIn_Grid3d_Coords_WithGridId`, to output the grid. The three dimensional grid is saved to Case1.cgn, and also sent to ``iricmi_server``. It is important that the value of the first argument is "output3d", that matches the name of grid type defined in :numref:`grid2d3d_fortran_definition`.
+* Line 103 and 104 of :numref:`grid2d3d_fortran_main_f90` calls :ref:`sec_ref_iRICMI_ROut_Grid2d_Coords_WithGridId` and :ref:`sec_ref_iRICMI_ROut_Grid3d_Coords_WithGridId`. Calling these subroutines, the model passes the variables that stores the coordinates of the grid, and informs that the shape of the grids can change.
+
+.. literalinclude:: ../../../../testmodels/grid2d_unst_fortran/definition.xml
+   :name: grid2d_unst_fortran_definition
+   :language: xml
+   :linenos:
+   :caption: definition.xml of ``grid2d_unst``
+
+.. literalinclude:: ../../../../testmodels/grid2d_unst_fortran/main.f90
+   :name: grid2d_unst_fortran_main_f90
+   :language: fortran
+   :linenos:
+   :caption: source code main.f90 of ``grid2d_unst``
+
+Project data
+---------------
+
+The project data to run ``grid2d_unst`` and ``grid2d3d`` is stored in testdata/grid2d_unst_fortran folder.
+
+:numref:`grid2d_unst_fortran_iricmi_project` shows iricmi_project.xml. You can see that
+connections are defined to exchange data between two regions.
+
+:numref:`image_grid2d_unst_st_input` and :numref:`image_grid2d_unst_unst_input` shows the shape of grids defined for "st" and "unst".
+The gray area in :numref:`image_grid2d_unst_unst_input` corresponds to the grid region of "st", so the grid of "unst" is inside that of "st".
+
+For "unst", dx = 0.01, dy = -0.02. It means that for "unst" the region of the grids slide every time step.
+
+As explained in :ref:`sec_how_to_run_coupled`, you can run the models for the project, by "chdir"ing to the
+project folder, and launch ``iricmi_run``.
+
+.. literalinclude:: ../../../../testdata/grid2d_unst_fortran/iricmi_project.xml
+   :name: grid2d_unst_fortran_iricmi_project
+   :language: xml
+   :linenos:
+   :caption: iricmi_project.xml for ``grid2d_unst`` and ``grid2d3d``
+
+.. _image_grid2d_unst_st_input:
+
+.. figure:: images/grid2d_unst_st_input.png
+
+   The grid defined for "st"
+
+.. _image_grid2d_unst_unst_input:
+
+.. figure:: images/grid2d_unst_unst_input.png
+
+   The grid defined for "unst"
+
+Result
+-----------
+
+The screenshots to visualize the calculation result are shown from 
+:numref:`image_grid2d_unst_st_output1` to :numref:`image_grid2d_unst_unst_received100`.
+
+From the screenshots, we can check the followings:
+* Mapping grid atribute values works for structured grid and unstructured grid.
+* When the grid coordinates are changed for each time step, it is applied to mapping result.
+
+.. _image_grid2d_unst_st_output1:
+
+.. figure:: images/grid2d_unst_st_output1.png
+
+   outputNode2d of "st" (t = 0)
+
+.. _image_grid2d_unst_st_output100:
+
+.. figure:: images/grid2d_unst_st_output100.png
+
+   outputNode2d of "st" (t = 100)
+
+.. _image_grid2d_unst_st_received1:
+
+.. figure:: images/grid2d_unst_st_received1.png
+
+   receivedNode2d of "st" (t = 0)
+
+.. _image_grid2d_unst_st_received100:
+
+.. figure:: images/grid2d_unst_st_received100.png
+
+   receivedNode2d of "st" (t = 100)
+
+.. _image_grid2d_unst_unst_output1:
+
+.. figure:: images/grid2d_unst_unst_output1.png
+
+   outputNode2d of "unst" (t = 0)
+
+.. _image_grid2d_unst_unst_output100:
+
+.. figure:: images/grid2d_unst_unst_output100.png
+
+   outputNode2d of "unst" (t = 100)
+
+.. _image_grid2d_unst_unst_received1:
+
+.. figure:: images/grid2d_unst_unst_received1.png
+
+   receivedNode2d of "unst" (t = 0)
+
+.. _image_grid2d_unst_unst_received100:
+
+.. figure:: images/grid2d_unst_unst_received100.png
+
+   receivedNode2d of "unst" (t = 100)

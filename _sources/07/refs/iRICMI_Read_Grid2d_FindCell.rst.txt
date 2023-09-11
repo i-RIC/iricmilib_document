@@ -1,0 +1,140 @@
+.. _sec_ref_iRICMI_Read_Grid2d_FindCell:
+
+iRICMI_Read_Grid2d_FindCell
+===========================
+
+Finds and returns the ID of the cell that includes the specified coordinates.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid2d_FindCell(grid_handle, x, y, cellId, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid2d_FindCell(grid_handle, x, y, cellId)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   cellId = iRICMI_Read_Grid2d_FindCell(grid_handle, x, y)
+
+Arguments and returned value
+----------------------------
+
+grid_handle
+~~~~~~~~~~~
+
+.. list-table:: Information about grid_handle
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - grid_handle
+   * - I/O
+     - Input
+
+   * - Description
+     - Grid handle
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+x
+~
+
+.. list-table:: Information about x
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - x
+   * - I/O
+     - Input
+
+   * - Description
+     - The value of x coordinate
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double
+   * - Type (Python)
+     - float
+
+y
+~
+
+.. list-table:: Information about y
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - y
+   * - I/O
+     - Input
+
+   * - Description
+     - The value of y coordinate
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double
+   * - Type (Python)
+     - float
+
+cellId
+~~~~~~
+
+.. list-table:: Information about cellId
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - cellId
+   * - I/O
+     - Output
+
+   * - Description
+     - Cell ID
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

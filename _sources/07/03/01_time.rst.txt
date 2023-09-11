@@ -1,0 +1,12 @@
+Values related to time
+=======================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ../refs/iRICMI_RIn_Time
+   ../refs/iRICMI_RIn_Dump_Interval
+   ../refs/iRICMI_ROut_Time
+   ../refs/iRICMI_ROut_Exchange_Interval
+   ../refs/iRICMI_ROut_Dump_Interval

@@ -1,0 +1,118 @@
+.. _sec_ref_iRICMI_Read_Grid_FunctionalDimensionSize:
+
+iRICMI_Read_Grid_FunctionalDimensionSize
+========================================
+
+Reads the size of dimension data of functional grid attribute from the CGNS file.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid_FunctionalDimensionSize(name, dimname, count, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid_FunctionalDimensionSize(name, dimname, count)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   count = iRICMI_Read_Grid_FunctionalDimensionSize(name, dimname)
+
+Arguments and returned value
+----------------------------
+
+name
+~~~~
+
+.. list-table:: Information about name
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - name
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the grid attribute
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+dimname
+~~~~~~~
+
+.. list-table:: Information about dimname
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - dimname
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the dimension
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+count
+~~~~~
+
+.. list-table:: Information about count
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - count
+   * - I/O
+     - Output
+
+   * - Description
+     - The number of values of the dimension
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

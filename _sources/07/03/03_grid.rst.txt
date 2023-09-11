@@ -1,0 +1,33 @@
+.. _sec_rio_grid_attributes:
+
+Grid coordinates and attributes
+=======================================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ../refs/iRICMI_RIn_Grid2d_Coords
+   ../refs/iRICMI_RIn_Grid3d_Coords
+   ../refs/iRICMI_RIn_Grid_Node_Integer
+   ../refs/iRICMI_RIn_Grid_Node_Real
+   ../refs/iRICMI_RIn_Grid_Cell_Integer
+   ../refs/iRICMI_RIn_Grid_Cell_Real
+   ../refs/iRICMI_RIn_Grid_IFace_Integer
+   ../refs/iRICMI_RIn_Grid_IFace_Real
+   ../refs/iRICMI_RIn_Grid_JFace_Integer
+   ../refs/iRICMI_RIn_Grid_JFace_Real
+   ../refs/iRICMI_RIn_Grid_KFace_Integer
+   ../refs/iRICMI_RIn_Grid_KFace_Real
+   ../refs/iRICMI_ROut_Grid2d_Coords
+   ../refs/iRICMI_ROut_Grid3d_Coords
+   ../refs/iRICMI_ROut_Grid_Node_Integer
+   ../refs/iRICMI_ROut_Grid_Node_Real
+   ../refs/iRICMI_ROut_Grid_Cell_Integer
+   ../refs/iRICMI_ROut_Grid_Cell_Real
+   ../refs/iRICMI_ROut_Grid_IFace_Integer
+   ../refs/iRICMI_ROut_Grid_IFace_Real
+   ../refs/iRICMI_ROut_Grid_JFace_Integer
+   ../refs/iRICMI_ROut_Grid_JFace_Real
+   ../refs/iRICMI_ROut_Grid_KFace_Integer
+   ../refs/iRICMI_ROut_Grid_KFace_Real

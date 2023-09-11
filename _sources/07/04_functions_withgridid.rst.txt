@@ -1,0 +1,87 @@
+.. _sec_functions_withgridid:
+
+Functions with ``_WithGridId`` suffix
+========================================
+
+Functions that handle grid-related data have versions with the suffix  ``_WithGridId``.
+
+The difference of functions with ``_WithGridId`` is that they have
+an additional variable ``gridid``. Please use these functions if the model
+you are developing handles multiple grids (such as both two-dimensional grid and three-dimensional grids).
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   refs/iRICMI_Read_Grid_NodeCount_WithGridId
+   refs/iRICMI_Read_Grid_CellCount_WithGridId
+   refs/iRICMI_Read_Grid_IFaceCount_WithGridId
+   refs/iRICMI_Read_Grid_JFaceCount_WithGridId
+   refs/iRICMI_Read_Grid_KFaceCount_WithGridId
+   refs/iRICMI_Read_Grid2d_Str_Size_WithGridId
+   refs/iRICMI_Read_Grid2d_Coords_WithGridId
+   refs/iRICMI_Read_Grid_TriangleElementsSize_WithGridId
+   refs/iRICMI_Read_Grid_TriangleElements_WithGridId
+   refs/iRICMI_Read_Grid_Integer_Node_WithGridId
+   refs/iRICMI_Read_Grid_Real_Node_WithGridId
+   refs/iRICMI_Read_Grid_Complex_Node_WithGridId
+   refs/iRICMI_Read_Grid_Integer_Cell_WithGridId
+   refs/iRICMI_Read_Grid_Real_Cell_WithGridId
+   refs/iRICMI_Read_Grid_Complex_Cell_WithGridId
+   refs/iRICMI_Read_Grid_FunctionalDimensionSize_WithGridId
+   refs/iRICMI_Read_Grid_FunctionalDimension_Integer_WithGridId
+   refs/iRICMI_Read_Grid_FunctionalDimension_Real_WithGridId
+   refs/iRICMI_Read_Grid_Functional_Integer_Node_WithGridId
+   refs/iRICMI_Read_Grid_Functional_Real_Node_WithGridId
+   refs/iRICMI_Read_Grid_Functional_Integer_Cell_WithGridId
+   refs/iRICMI_Read_Grid_Functional_Real_Cell_WithGridId
+   refs/iRICMI_Read_Grid2d_Open_WithGridId
+   refs/iRICMI_Write_Grid1d_Coords_WithGridId
+   refs/iRICMI_Write_Grid2d_Coords_WithGridId
+   refs/iRICMI_Write_Grid3d_Coords_WithGridId
+   refs/iRICMI_Write_NamedGrid1d_Coords_WithGridId
+   refs/iRICMI_Write_NamedGrid2d_Coords_WithGridId
+   refs/iRICMI_Write_NamedGrid3d_Coords_WithGridId
+   refs/iRICMI_Read_BC_Count_WithGridId
+   refs/iRICMI_Read_BC_IndicesSize_WithGridId
+   refs/iRICMI_Read_BC_Indices_WithGridId
+   refs/iRICMI_Read_BC_Integer_WithGridId
+   refs/iRICMI_Read_BC_Real_WithGridId
+   refs/iRICMI_Read_BC_RealSingle_WithGridId
+   refs/iRICMI_Read_BC_StringLen_WithGridId
+   refs/iRICMI_Read_BC_String_WithGridId
+   refs/iRICMI_Read_BC_FunctionalSize_WithGridId
+   refs/iRICMI_Read_BC_Functional_WithGridId
+   refs/iRICMI_Read_BC_FunctionalWithName_WithGridId
+   refs/iRICMI_Read_BC_FunctionalWithName_StringLen_WithGridId
+   refs/iRICMI_Read_BC_FunctionalWithName_String_WithGridId
+   refs/iRICMI_Read_BC_Functional_RealSingle_WithGridId
+   refs/iRICMI_Read_BC_FunctionalWithName_RealSingle_WithGridId
+   refs/iRICMI_RIn_Grid2d_Coords_WithGridId
+   refs/iRICMI_RIn_Grid3d_Coords_WithGridId
+   refs/iRICMI_RIn_Grid_Node_Integer_WithGridId
+   refs/iRICMI_RIn_Grid_Node_Real_WithGridId
+   refs/iRICMI_RIn_Grid_Cell_Integer_WithGridId
+   refs/iRICMI_RIn_Grid_Cell_Real_WithGridId
+   refs/iRICMI_RIn_Grid_IFace_Integer_WithGridId
+   refs/iRICMI_RIn_Grid_IFace_Real_WithGridId
+   refs/iRICMI_RIn_Grid_JFace_Integer_WithGridId
+   refs/iRICMI_RIn_Grid_JFace_Real_WithGridId
+   refs/iRICMI_RIn_Grid_KFace_Integer_WithGridId
+   refs/iRICMI_RIn_Grid_KFace_Real_WithGridId
+   refs/iRICMI_ROut_Grid2d_Coords_WithGridId
+   refs/iRICMI_ROut_Grid3d_Coords_WithGridId
+   refs/iRICMI_ROut_Grid_Node_Integer_WithGridId
+   refs/iRICMI_ROut_Grid_Node_Real_WithGridId
+   refs/iRICMI_ROut_Grid_Cell_Integer_WithGridId
+   refs/iRICMI_ROut_Grid_Cell_Real_WithGridId
+   refs/iRICMI_ROut_Grid_IFace_Integer_WithGridId
+   refs/iRICMI_ROut_Grid_IFace_Real_WithGridId
+   refs/iRICMI_ROut_Grid_JFace_Integer_WithGridId
+   refs/iRICMI_ROut_Grid_JFace_Real_WithGridId
+   refs/iRICMI_ROut_Grid_KFace_Integer_WithGridId
+   refs/iRICMI_ROut_Grid_KFace_Real_WithGridId
+   refs/iRICMI_RIn_BC_Integer_WithGridId
+   refs/iRICMI_RIn_BC_Real_WithGridId
+   refs/iRICMI_ROut_BC_Integer_WithGridId
+   refs/iRICMI_ROut_BC_Real_WithGridId

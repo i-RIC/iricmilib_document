@@ -1,0 +1,211 @@
+What ``iricmi_run`` do
+=============================
+
+.. contents:: Contents
+   :depth: 3
+
+``iricmi_run`` is the tool to run models. In :ref:`sec_how_to_run_models_overview`, The steps
+to run models using ``iricmi_run`` is described.
+
+In this section what ``iricmi_run`` do is explained, for both "standalone" mode and "coupled" mode.
+Please refer to :ref:`sec_how_to_run_models_overview` about what is "standalone" mode and "coupled" mode,
+and how to use ``iricmi_run``.
+
+Running in "standalone" mode
+---------------------------------
+
+The steps below are executed in "standalone" mode.
+
+1. Loading project.xml to identify for which model the project is prepared
+2. Finding the model executable
+3. Launching the model executable
+
+.. _sec_iricmi_run_standalone_load_project_xml:
+
+Loading project.xml to identify for which model the project is prepared
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``iricmi_run`` loads "project.xml" in the current folder.
+
+:numref:`iricmi_run_project_example` shows an example of project.xml.
+It actually contains much information than shown below and information
+ignored by ``iricmi_run`` is omitted.
+
+.. code-block:: xml
+   :caption: Example of project.xml
+   :name: iricmi_run_project_example
+   :linenos:
+
+   <?xml version="1.0" encoding="UTF-8"?>
+   <iRICProject solverName="global_send_c++" solverVersion="1.0">
+     (omitted)
+   </iRICProject>
+
+``iricmi_run`` reads "solverName" and "solverVersion" attribute of \<iRICProject/\> element, to know
+for which model the data in the project folder is prepared.
+
+.. _sec_iricmi_run_standalone_find_model_executable:
+
+Finding the model executable
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``iricmi_run`` scans the "solvers" and "private/solvers" subfolder in the path refered by
+"IRICMI_ROOT_PATH" environmental variable.
+
+Each subfolder in "solvers" is expected to contains "definition.xml", model executable,
+and DLLs needed to run the model.
+
+``iricmi_run`` reads "definition.xml" in each subfolder, and tries to find the model that
+coinsides with the project.xml.
+
+:numref:`iricmi_run_definition_example` shows an example of definition.xml
+(information ignored by ``iricmi_run`` is omitted).
+
+``iricmi_run`` reads "name", "version" attributes of \<SolverDefinition/\> element.
+If they are equal to the values of "solverName" and "solverVersion" in project.xml,
+it is recognized to be the model for the project.
+
+.. code-block:: xml
+   :caption: Example of definition.xml
+   :name: iricmi_run_definition_example
+   :linenos:
+
+   <?xml version="1.0" encoding="UTF-8"?>
+   <SolverDefinition
+     name="global_send_c++"
+     version="1.0"
+     executable="global_send_c++.exe"
+   >
+     (omitted)
+   </SolverDefinition>
+
+Launching the model executable
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When the model that coinsides the project is found, launch the model executable.
+
+``iricmi_run`` launch the executable file, that is referred with "executable" attribute of definition.xml.
+
+For example in :numref:`iricmi_run_definition_example`, it is "global_send_c++.exe".
+
+If the extention of the executable is ".exe", ``iricmi_run`` just launch it as a subprocess.
+If the extention is ".py", ``iricmi_run`` launch it with command "python (the executable)".
+
+``iricmi_run`` reads the STDOUT of the executable, output to STDOUT so that user can see, and writes to consoleLog.txt also.
+
+Running in "coupled" mode
+-----------------------------
+
+The steps below are executed in "coupled" mode.
+
+1. Loading iricmi_project.xml to identify the list of subfolders
+2. Loading project.xml in each subfolder to identify for which model the subfolder is prepared
+3. Finding the model executable for each subfolder
+4. Launching ``iricmi_server`` and models with ``mpiexec``
+
+Loading iricmi_project.xml to identify the list of subfolders
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Loads iricmi_project.xml to reads information about models.
+:numref:`iricmi_run_iricmi_project_example` shows an example of iricmi_project.xml.
+
+It actually contains \<Connections /\> element, but ignored by ``iricmi_run``, so omitted.
+
+The "name" attribute of \<Model/\> elements (in this case "global_send_c++" and "global_receive_c++")
+are the name of subfolders in the project folder.
+
+The subfolders are expected to be iRIC project folders, that contains information that each model
+needs for running.
+
+.. code-block:: xml
+   :caption: Example of iricmi_project.xml
+   :name: iricmi_run_iricmi_project_example
+   :linenos:
+
+   <iRICMIProject>
+     <Models>
+       <Model name="global_send_c++" nodes="1" />
+       <Model name="global_receive_c++" nodes="1" />
+     </Models>
+
+     (omitted)
+
+   </iRICMIProject>
+
+.. note::
+
+   Currently, "nodes" attribute of \<Model/\> element is not used actually, and expected to be 1 always.
+
+   It is for future use, in case iRIC-MI will support parallelizion of models using MPI.
+   In that case, "nodes" should be the number of nodes (in other words "processes") for that model.
+
+.. note::
+
+   With the example above, the names of subfolders are identical to the names of models.
+   But actually, the names of subfolders are arbitrary.
+
+For each subfolders refered in \<Model/\> element in iricmi_project.xml, do the next step.
+
+Loading project.xml in each subfolder to identify for which model the subfolder is prepared
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This step is identical to that in "standalone" mode.
+
+``iricmi_run`` loads "project.xml" in each subfolder, and reads
+"solverName" and "solverVersion" attribute of \<iRICProject/\> element, to know
+for which model the data in the project folder is prepared.
+
+Finding the model executable for each subfolder
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This step is identical to that in "standalone" mode.
+
+``iricmi_run`` scans the "solvers" subfolder in the path refered by
+"IRICMI_ROOT_PATH" environmental variable, and tries to find the model that
+coinsides with the project.xml.
+
+Launching ``iricmi_server`` and models with ``mpiexec``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When the models that coinside the projects in each subfolder is identified, launch the programs below
+using ``mpiexec``:
+
+* ``iricmi_server``
+* The model executable for each subfoler
+
+``mpiexec`` is the tool to launch programs communicating each other using MPI.
+Please refer to the URL below about ``mpiexec``.
+
+https://www.mpich.org/static/docs/v3.1/www1/mpiexec.html
+
+``iricmi_run`` launch programs with the command below:
+
+.. code-block:: bash
+
+   mpiexec -l -n 1 iricmi_server : -n 1 (model executable for the first subfolder) : -n 1 (model executable for the second subfolder) ...
+
+Thanks to ``-l`` option, mpiexec output the logs output to STDOUT by each programs (``iricmi_server`` and models),
+with prefix like '[0]', '[1]', etc.
+
+The number in the prefix is the rank of the program. So, '[0]' is the log of ``iricmi_server``, and '[1]', '[2]',
+... are log of models that run projects in subfolders.
+
+``iricmi_run`` reads the STDOUT of the ``mpiexec``, recognizes which program output the log,
+and writes the log to files shown in :numref:`iricmi_run_coupled_output_file`.
+
+.. _iricmi_run_coupled_output_file:
+
+.. list-table:: The file to write logs
+   :header-rows: 1
+
+   * - Prefix
+     - Program that output log
+     - File to write
+   
+   * - [0]
+     - ``iricmi_run``
+     - server_consoleLog.txt
+   
+   * - [1], [2], ..
+     - Model that run project in subfolder
+     - (subfolder)/consoleLog.txt

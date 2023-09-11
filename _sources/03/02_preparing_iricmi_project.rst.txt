@@ -1,0 +1,177 @@
+.. _sec_preparing_iricmi_project:
+
+Preparing iricmi_project.xml
+==============================
+
+.. contents:: Contents
+   :depth: 3
+
+As explained in :ref:`sec_how_to_run_overview_iricmi_project`,
+when users want to run models in "coupled" mode, they need to prepare
+iricmi_project.xml.
+
+Now, iRIC-MI GUI can be launched from iRIC GUI, and that can be used to prepare iricmi_project.xml
+
+In this page, the steps to create iricmi_project.xml by hand is described, so that you can understand the 
+meanings of the settings in iricmi_project.xml.
+
+:numref:`prepare_iricmi_project_example` shows an example of iricmi_project.xml.
+
+As you see, it contains \<Model /\> elements and \<Connection /\> elements.
+
+.. code-block:: xml
+   :caption: Example of iricmi_project.xml
+   :name: prepare_iricmi_project_example
+   :linenos:
+
+   <iRICMIProject>
+     <Models>
+       <Model name="global_send_c++" nodes="1" />
+       <Model name="global_receive_c++" nodes="1" />
+     </Models>
+     <Connections>
+       <Connection>
+         <From model="global_send_c++" type="global" name="discharge" />
+         <To model="global_receive_c++" type="calculationCondition" name="discharge" />
+       </Connection>
+     </Connections>
+   </iRICMIProject>
+
+The detail about preparing the elements is described below.
+
+Defining \<Model /\> element
+--------------------------------
+
+\<Model /\> element describes the subfolders that contain the data for the models.
+The attributes of \<Model /\> element is shown in :numref:`table_attributes_of_model_element`.
+
+.. _table_attributes_of_model_element:
+
+.. list-table:: The attributes of \<Model /\> element
+   :header-rows: 1
+
+   * - Attribute name
+     - Description
+
+   * - name
+     - The name of subfolder that contains the input data of the model
+
+   * - nodes
+     - Not used now. Please specify 1 always.
+
+.. note::
+
+   With the example above, the names of subfolders are identical to the names of models.
+   But actually, the names of subfolders are arbitrary.
+
+   It can be "fastmech1", "fastmech2", .., or "xxx_river", "yyy_river", for example.
+
+.. note::
+
+   "nodes" attribute is for future use, in case iRIC-MI will support parallelizion of models using MPI.
+   In that case, "nodes" should be the number of nodes (in other words "processes") for that model.
+
+Defining \<Connection /\> element
+---------------------------------
+
+\<Connection /\> element describes how the time dependent data is exchanged between the models.
+
+As shown in :numref:`prepare_iricmi_project_example`, \<Connection \/> element contains \<From /\>
+element and \<To /\> element.
+
+:numref:`table_from_to_attributes` shows the attributes of \<From /\> and \<To /\> elemennts.
+
+.. _table_from_to_attributes:
+
+.. list-table:: The attributes of \<From /\> and \<To /\> elements
+   :header-rows: 1
+
+   * - Attribute name
+     - Description
+
+   * - model
+     - The name of model. It should be equal to one of the "name" attribute of \<Model /\> elements.
+
+   * - type
+     - The type of data to connect. Please refer to :numref:`table_types_connection_from` and :numref:`table_types_connection_to` for the values to specify.
+  
+   * - name
+     - The name of the data.
+
+   * - typeName
+     - (Optional) The type name of boundary condition or complex type grid attribute.
+  
+   * - index
+     - (Optional) The index of boundary condition or complex type grid attribute. It starts from 1, not 0.
+
+.. _table_types_connection_from:
+
+.. list-table:: The type values for \<From /\> elements
+   :header-rows: 1
+
+   * - Value
+     - Description
+
+   * - global
+     - Global output
+
+   * - boundaryCondition
+     - Boundary condition
+
+   * - complexAttribute
+     - Complex type grid attribute
+
+   * - gridAttribute
+     - Attribute defined at grid nodes or cells
+
+.. _table_types_connection_to:
+
+.. list-table:: The type values for \<To /\> elements
+   :header-rows: 1
+
+   * - Value
+     - Description
+
+   * - calculationCondition
+     - Calculation condition
+
+   * - boundaryCondition
+     - Boundary condition
+
+   * - complexAttribute
+     - Complex type grid attribute
+
+   * - gridAttribute
+     - Attribute defined at grid nodes or cells
+
+When you want to write \<Connection \/> element in iricmi_project.xml, you need to
+work on the steps below:
+
+1. Reads the project.xml in the subfolder, to know the model used to run the project in it. You can know the model, by checking "solverName" and "solverVersion" attributes of \<iRICProject /\> element.
+
+2. Check the subfolders in "solvers" folder in the path that environmental variable "IRICMI_ROOT_PATH" refers, and find the folder that contains the model you've itentified in step 1. You can identify by checking "name" and "version" attributes of \<SolverDefinition /\> element.
+
+3. Reads the definition.xml that you've identified in step 2. and checks the value of "name" attribute of \<Item \/> element that you want to connect. For boundary condition and complex type grid attribute, you also needs to check the value of "type", and specify them as typeName" attributes in \<From /\> element or \<To/\> element.
+
+4. In case of boundary condition and complex type grid attribute, you also needs to check the value of "index". You can know the value to specify, by opening the project with iRIC GUI. The index values are specified as 1, 2, 3, ..., from top to bottom.
+
+Please refer to :ref:`sec_creating_definition_xml` and for the examples of the definitions of time dependent input and output in definition.xml.
+
+Notice about making connections
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Inputs and outputs can be categorized to two groups:
+
+* Scalar value: Global, Boundary Condition, Complex type grid attribute
+* Grid attribute values defined at nodes or cells
+ 
+Please note that connections can be made between an input and an output in the same group.
+For example, it is not possible to make a connection between global output and grid attribute input.
+
+For scalar values, the values are just copied from output to input.
+
+For grid attribute values, when the grid shapes are just the same, values are copied.
+When grid shapes are different, interpolation is executed. 
+
+Please refer to :ref:`sec_mapping_grid_attribute` for detail.
+ 

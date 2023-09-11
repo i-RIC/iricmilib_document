@@ -1,0 +1,23 @@
+.. _sec_tips_for_developers:
+
+Tips
+=====
+
+This section describes additonal tips for model developers.
+
+About Environmental Variable IRICMI_LOG_LEVEL
+-----------------------------------------------
+
+iRIC installer define Environmental Variable IRICMI_LOG_LEVEL with value "WARNING", but
+you can change the value so that iRIC-MI library outputs more detailed log.
+
+The values you can specify are show below:
+
+* FATAL
+* CRITICAL
+* ERROR
+* WARNING
+* NOTICE
+* INFORMATION
+* DEBUG
+* TRACE

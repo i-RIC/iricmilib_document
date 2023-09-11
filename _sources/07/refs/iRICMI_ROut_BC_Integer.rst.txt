@@ -1,0 +1,140 @@
+.. _sec_ref_iRICMI_ROut_BC_Integer:
+
+iRICMI_ROut_BC_Integer
+======================
+
+Register the memory address to send the value of integer variable of a boundary condition.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_ROut_BC_Integer(type, num, name, val, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_ROut_BC_Integer(type, num, name, val)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   val = iRICMI_ROut_BC_Integer(type, num, name)
+
+Arguments and returned value
+----------------------------
+
+type
+~~~~
+
+.. list-table:: Information about type
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - type
+   * - I/O
+     - Input
+
+   * - Description
+     - The type name of the boundary condition
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+num
+~~~
+
+.. list-table:: Information about num
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - num
+   * - I/O
+     - Input
+
+   * - Description
+     - The id (starts from 1) of the boundary condition
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+name
+~~~~
+
+.. list-table:: Information about name
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - name
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the variable
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+val
+~~~
+
+.. list-table:: Information about val
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - val
+   * - I/O
+     - Output
+
+   * - Description
+     - The variable to register the memory address, to send value
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

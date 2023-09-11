@@ -1,0 +1,109 @@
+.. _sec_mapping_grid_attribute:
+
+Mapping grid attributes values
+=======================================
+
+As explained in :ref:`sec_copy_from_output_to_input`,
+when making connection between grid attributes of models, it can happen that the coordinates of grids
+are different between input and output.
+
+In such cases, we can not just copy values, but need to map values.
+
+This section describes how the mapping is executed.
+
+Values defined at nodes or cells
+--------------------------------------------
+
+The patterns are listed below:
+
+* Map from node to node
+* Map from node to cell
+* Map from cell to node
+* Map from cell to cell
+
+It is implemented as combinations of below:
+
+Mapping from...
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Values defined at nodes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. Find the cell that contains the "point" that we want to map to.
+2. Calculate the "weights" of the nodes of the cell. The node near to the point has heavier weight.
+3. Calculate the mapped value as weighted average of values defined at nodes.
+
+.. note:: 
+
+   For step 1., vtkPointSet::FindCell() is used.
+
+   Please refer to https://vtk.org/doc/nightly/html/classvtkPointSet.html for detail.
+
+:numref:`image_mapping_node` shows an image of mapping values defined at nodes.
+To calculate the value defined at the gray circle, the values defined at red circles are used.
+
+.. _image_mapping_node:
+
+.. figure:: images/mapping_node.png
+
+   Image of mapping values defined at nodes
+
+Values defined at cells
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. Find the cell that contains the "point" that we want to map to.
+2. Just use the value defined at that cell, as mapped value.
+
+.. note:: 
+
+   For step 1., vtkPointSet::FindCell() is used.
+
+   Please refer to https://vtk.org/doc/nightly/html/classvtkPointSet.html for detail.
+
+:numref:`image_mapping_cell` shows an image of mapping values defined at cells.
+For the value of the cell whose center is defined at the gray circle, the value defined the cell with bold border lines is used.
+
+.. _image_mapping_cell:
+
+.. figure:: images/mapping_cell.png
+
+   Image of mapping values defined at cells
+
+
+Mapping to...
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Values defined at nodes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As the "point" referred in "Mapping from..." section, use node position.
+
+Values defined at cells
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As the "point" referred in "Mapping from..." section, use cell center position.
+
+Values defined at edges
+------------------------
+
+Values defined at edges are mapped in a different way than nodes or cells,
+
+We expect that values defined at edges will be mapped to edges of a grid of another models, not nodes or cells.
+We also expect that the edges are defined at the same line. For nodes and cells, we expect that the grid shapes can be very different, in cases, but for edges we do not.
+
+Mapping values defined at edges is implemented like below:
+
+1. Calculate the center of each edge.
+2. Find the edge whose center is the **nearest**.
+3. Just use the value defined at that edge, as mapped value.
+
+We expect that when mapping values defined at edges, usually you want to map values at partial areas (for example where grids touch each other), In such cases, please prepare the variable to temporary stores the values at all edges, exchange data, then copy the values you want to use.
+
+:numref:`image_mapping_edge` shows an image of mapping values defined at edges.
+For the value of the edges whose center is defined at the gray circle, the value defined the edge with red circles are used.
+
+.. _image_mapping_edge:
+
+.. figure:: images/mapping_edge.png
+
+   Image of mapping values defined at edges

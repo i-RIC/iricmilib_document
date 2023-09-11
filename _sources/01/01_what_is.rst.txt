@@ -1,0 +1,12 @@
+What is iRIC-MI?
+===================
+
+iRIC-MI is the short name of iRIC Model Interface.
+
+iRIC have been a system to setup input data, run a model, and visualize the result.
+It has been dedicated for running a single model.
+
+But recently, to execute simulations of complex phenomenon, it is becoming
+important to connect models and run together, exchanging data each other.
+
+iRIC-MI was developed for that purpose. iRIC-MI provides function to exchange data between models.

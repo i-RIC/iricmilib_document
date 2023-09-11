@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running BMI model exchanging data with iRIC models &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generates CGNS file" href="03_run.html" />
+    <link rel="prev" title="Generates solver definition file" href="01_definition.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_definition.html">Generates solver definition file</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Running BMI model exchanging data with iRIC models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_run.html">Generates CGNS file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+      <li class="breadcrumb-item active">Running BMI model exchanging data with iRIC models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/09/02_gen_cgns.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-bmi-model-exchanging-data-with-iric-models">
+<h1>Running BMI model exchanging data with iRIC models<a class="headerlink" href="#running-bmi-model-exchanging-data-with-iric-models" title="Permalink to this heading"></a></h1>
+<p>Run BMI model exchaning data with iRIC models.</p>
+<p><a class="reference internal" href="#run-cem"><span class="std std-numref">Listing 48</span></a> shows the code to run CEM as a model that exchange data with iRIC models.</p>
+<div class="literal-block-wrapper docutils container" id="run-cem">
+<div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text">Code to run CEM with iRIC models</span><a class="headerlink" href="#run-cem" title="Permalink to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">iricmi_pymt_util</span>
+<span class="linenos">2</span><span class="kn">import</span> <span class="nn">pymt.models</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">cem</span> <span class="o">=</span> <span class="n">pymt</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Cem</span><span class="p">()</span>
+<span class="linenos">5</span><span class="n">args</span> <span class="o">=</span> <span class="n">cem</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">number_of_rows</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">number_of_cols</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">grid_spacing</span><span class="o">=</span><span class="mf">200.0</span><span class="p">)</span>
+<span class="linenos">6</span><span class="n">cem</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="linenos">7</span><span class="n">iricmi_pymt_util</span><span class="o">.</span><span class="n">buildCgns</span><span class="p">(</span><span class="n">cem</span><span class="p">,</span> <span class="s1">&#39;/home/ubuntu/iricmilib/iricmi_pymt_util/template.cgn&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/ubuntu/iricmilib/iricmi_pymt_util/cem.cgn&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Source code of buildcgns.py that generates CGNS file is shown in <a class="reference internal" href="#iricmi-pymt-util-buildcgns"><span class="std std-numref">Listing 49</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For CEM, there was a limitation below:</p>
+<ul class="simple">
+<li><p>Calling get_grid_x() and get_grid_y() caused exception. It seems that CEM does not support reading grid coordinates. through BMI. grid_ndim() and grid_shape() was functional, so a rectangular dummy grid is output to CGNS file.</p></li>
+</ul>
+</div>
+<div class="literal-block-wrapper docutils container" id="iricmi-pymt-util-buildcgns">
+<div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text">source code of buildcgns.py</span><a class="headerlink" href="#iricmi-pymt-util-buildcgns" title="Permalink to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">shutil</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kn">import</span> <span class="nn">iric</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="k">def</span> <span class="nf">build_grid_2d</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+<span class="linenos"> 8</span>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="linenos">10</span>    
+<span class="linenos">11</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+<span class="linenos">12</span>        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">i</span>
+<span class="linenos">13</span>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+<span class="linenos">14</span>        <span class="n">y</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
+<span class="linenos">15</span>    
+<span class="linenos">16</span>    <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">),</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="k">def</span> <span class="nf">buildCgns</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">templateCgns</span><span class="p">,</span> <span class="n">outputCgns</span><span class="p">):</span>
+<span class="linenos">20</span>    <span class="c1"># single step </span>
+<span class="linenos">21</span>    <span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">templateCgns</span><span class="p">,</span> <span class="n">outputCgns</span><span class="p">)</span>
+<span class="linenos">24</span>    <span class="n">fid</span> <span class="o">=</span> <span class="n">iric</span><span class="o">.</span><span class="n">cg_iRIC_Open</span><span class="p">(</span><span class="n">outputCgns</span><span class="p">,</span> <span class="n">iric</span><span class="o">.</span><span class="n">IRIC_MODE_MODIFY</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>    <span class="n">grid_built</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span>    <span class="k">for</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">get_input_var_names</span><span class="p">():</span>
+<span class="linenos">29</span>        <span class="n">grid_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">var_grid</span><span class="p">(</span><span class="n">var_name</span><span class="p">)</span>
+<span class="linenos">30</span>        <span class="n">gt</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">grid_type</span><span class="p">(</span><span class="n">grid_id</span><span class="p">)</span>
+<span class="linenos">31</span>        <span class="k">if</span> <span class="n">gt</span> <span class="o">==</span> <span class="s1">&#39;scalar&#39;</span><span class="p">:</span>
+<span class="linenos">32</span>            <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">var_type</span><span class="p">(</span><span class="n">var_name</span><span class="p">))</span>
+<span class="linenos">33</span>            <span class="n">model</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+<span class="linenos">34</span>            <span class="c1"># Write initial data as function type data</span>
+<span class="linenos">35</span>            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="linenos">36</span>            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="linenos">37</span>            <span class="n">iric</span><span class="o">.</span><span class="n">cg_iRIC_Write_Functional</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="linenos">38</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">39</span>            <span class="n">ndim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">grid_ndim</span><span class="p">(</span><span class="n">grid_id</span><span class="p">)</span>
+<span class="linenos">40</span>            <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">ndim</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="linenos">41</span>            <span class="n">model</span><span class="o">.</span><span class="n">grid_shape</span><span class="p">(</span><span class="n">grid_id</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
+<span class="linenos">42</span>            <span class="k">if</span> <span class="ow">not</span> <span class="n">grid_built</span><span class="p">:</span>
+<span class="linenos">43</span>                <span class="c1"># Cem does not implement get_grid_x(), get_grid_y()</span>
+<span class="linenos">44</span>                <span class="c1"># grid_x = np.empty(shape, dtype=np.float64)</span>
+<span class="linenos">45</span>                <span class="c1"># grid_y = np.empty(shape, dtype=np.float64)</span>
+<span class="linenos">46</span>                <span class="c1"># model.get_grid_x(grid_id, grid_x)</span>
+<span class="linenos">47</span>                <span class="c1"># model.get_grid_y(grid_id, grid_y)[</span>
+<span class="linenos">48</span>                    
+<span class="linenos">49</span>                <span class="n">grid_x</span><span class="p">,</span> <span class="n">grid_y</span> <span class="o">=</span> <span class="n">build_grid_2d</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+<span class="linenos">50</span>                <span class="n">iric</span><span class="o">.</span><span class="n">cg_iRIC_Write_Grid2d_Coords</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">grid_x</span><span class="p">,</span> <span class="n">grid_y</span><span class="p">)</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span>                <span class="n">grid_built</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span>            <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span>            <span class="n">loc</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_var_location</span><span class="p">(</span><span class="n">var_name</span><span class="p">)</span>
+<span class="linenos">57</span><span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">58</span><span class="sd">            if loc == &#39;node&#39;:</span>
+<span class="linenos">59</span><span class="sd">                iric.cg_iRIC_Write_Grid_Real_Node(fid, var_name, val)</span>
+<span class="linenos">60</span><span class="sd">            elif loc == &#39;cell&#39;:</span>
+<span class="linenos">61</span><span class="sd">                iric.cg_iRIC_Write_Grid_Real_Cell(fid, var_name, val)</span>
+<span class="linenos">62</span><span class="sd">            &quot;&quot;&quot;</span>
+<span class="linenos">63</span>
+<span class="linenos">64</span>    <span class="n">iric</span><span class="o">.</span><span class="n">cg_iRIC_Close</span><span class="p">(</span><span class="n">fid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_definition.html" class="btn btn-neutral float-left" title="Generates solver definition file" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_run.html" class="btn btn-neutral float-right" title="Generates CGNS file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

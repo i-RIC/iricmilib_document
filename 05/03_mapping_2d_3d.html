@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapping values between two dimensional and three dimensional grids &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="What iricmi_run do" href="04_iricmi_run.html" />
+    <link rel="prev" title="Mapping grid attributes values" href="03_mapping.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_workflow.html">The workflow of <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_timing.html">Examples of sequences to exchange data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_mapping.html">Mapping grid attributes values</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mapping values between two dimensional and three dimensional grids</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#two-dimensional-grid-to-three-dimensinal-grid">Two dimensional grid to three dimensinal grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#three-dimensional-grid-to-two-dimensional-grid">Three dimensional grid to two dimensional grid</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="04_iricmi_run.html">What <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> do</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+      <li class="breadcrumb-item active">Mapping values between two dimensional and three dimensional grids</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/05/03_mapping_2d_3d.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mapping-values-between-two-dimensional-and-three-dimensional-grids">
+<span id="sec-mapping-values-2d-3d"></span><h1>Mapping values between two dimensional and three dimensional grids<a class="headerlink" href="#mapping-values-between-two-dimensional-and-three-dimensional-grids" title="Permalink to this heading"></a></h1>
+<p>When the grid dimensions (2D or 3D) are the same, iRIC-MI automatically map values between grid attributes (Please refer to <a class="reference internal" href="03_mapping.html#sec-mapping-grid-attribute"><span class="std std-ref">Mapping grid attributes values</span></a> for detail).</p>
+<p>In case grid dimensions are different, solver developers needs to calculate the values defined at three dimensional grid from those defined at two dimensional grid, or vice versa.</p>
+<p>iRIC-MI allows solver developers to read two dimensional grid created using iRIC GUI, then divide it vertically to generate three dimensional grid, and save it to file. Then, solver developer can use both two dimensional grid and three dimensional grid for exchanging data with other models.</p>
+<p>Example are explained below:</p>
+<section id="two-dimensional-grid-to-three-dimensinal-grid">
+<h2>Two dimensional grid to three dimensinal grid<a class="headerlink" href="#two-dimensional-grid-to-three-dimensinal-grid" title="Permalink to this heading"></a></h2>
+<p>Recieve two dimensional data like rainfall, use that data for three dimensional calculation, and output result like velocity, pressure to three dimensional grids.</p>
+</section>
+<section id="three-dimensional-grid-to-two-dimensional-grid">
+<h2>Three dimensional grid to two dimensional grid<a class="headerlink" href="#three-dimensional-grid-to-two-dimensional-grid" title="Permalink to this heading"></a></h2>
+<p>Calculate two dimensional data from three dimensional data, like velocity at ground, water surface, and send those data to other models that use two dimensional grids.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03_mapping.html" class="btn btn-neutral float-left" title="Mapping grid attributes values" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_iricmi_run.html" class="btn btn-neutral float-right" title="What iricmi_run do" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

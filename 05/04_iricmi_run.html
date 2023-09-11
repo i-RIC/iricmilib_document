@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What iricmi_run do &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="iRIC-MI library Reference" href="../07_iricmilib_ref.html" />
+    <link rel="prev" title="Mapping values between two dimensional and three dimensional grids" href="03_mapping_2d_3d.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_workflow.html">The workflow of <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_timing.html">Examples of sequences to exchange data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_mapping.html">Mapping grid attributes values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_mapping_2d_3d.html">Mapping values between two dimensional and three dimensional grids</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">What <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> do</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-in-standalone-mode">Running in “standalone” mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loading-project-xml-to-identify-for-which-model-the-project-is-prepared">Loading project.xml to identify for which model the project is prepared</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finding-the-model-executable">Finding the model executable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#launching-the-model-executable">Launching the model executable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-in-coupled-mode">Running in “coupled” mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loading-iricmi-project-xml-to-identify-the-list-of-subfolders">Loading iricmi_project.xml to identify the list of subfolders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#loading-project-xml-in-each-subfolder-to-identify-for-which-model-the-subfolder-is-prepared">Loading project.xml in each subfolder to identify for which model the subfolder is prepared</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finding-the-model-executable-for-each-subfolder">Finding the model executable for each subfolder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#launching-iricmi-server-and-models-with-mpiexec">Launching <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models with <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+      <li class="breadcrumb-item active">What <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> do</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/05/04_iricmi_run.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="what-iricmi-run-do">
+<h1><a class="toc-backref" href="#id2" role="doc-backlink">What <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> do</a><a class="headerlink" href="#what-iricmi-run-do" title="Permalink to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-iricmi-run-do" id="id2">What <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> do</a></p>
+<ul>
+<li><p><a class="reference internal" href="#running-in-standalone-mode" id="id3">Running in “standalone” mode</a></p>
+<ul>
+<li><p><a class="reference internal" href="#loading-project-xml-to-identify-for-which-model-the-project-is-prepared" id="id4">Loading project.xml to identify for which model the project is prepared</a></p></li>
+<li><p><a class="reference internal" href="#finding-the-model-executable" id="id5">Finding the model executable</a></p></li>
+<li><p><a class="reference internal" href="#launching-the-model-executable" id="id6">Launching the model executable</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#running-in-coupled-mode" id="id7">Running in “coupled” mode</a></p>
+<ul>
+<li><p><a class="reference internal" href="#loading-iricmi-project-xml-to-identify-the-list-of-subfolders" id="id8">Loading iricmi_project.xml to identify the list of subfolders</a></p></li>
+<li><p><a class="reference internal" href="#loading-project-xml-in-each-subfolder-to-identify-for-which-model-the-subfolder-is-prepared" id="id9">Loading project.xml in each subfolder to identify for which model the subfolder is prepared</a></p></li>
+<li><p><a class="reference internal" href="#finding-the-model-executable-for-each-subfolder" id="id10">Finding the model executable for each subfolder</a></p></li>
+<li><p><a class="reference internal" href="#launching-iricmi-server-and-models-with-mpiexec" id="id11">Launching <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models with <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code></a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> is the tool to run models. In <a class="reference internal" href="../03/01_overview.html#sec-how-to-run-models-overview"><span class="std std-ref">Overview</span></a>, The steps
+to run models using <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> is described.</p>
+<p>In this section what <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> do is explained, for both “standalone” mode and “coupled” mode.
+Please refer to <a class="reference internal" href="../03/01_overview.html#sec-how-to-run-models-overview"><span class="std std-ref">Overview</span></a> about what is “standalone” mode and “coupled” mode,
+and how to use <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code>.</p>
+<section id="running-in-standalone-mode">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Running in “standalone” mode</a><a class="headerlink" href="#running-in-standalone-mode" title="Permalink to this heading"></a></h2>
+<p>The steps below are executed in “standalone” mode.</p>
+<ol class="arabic simple">
+<li><p>Loading project.xml to identify for which model the project is prepared</p></li>
+<li><p>Finding the model executable</p></li>
+<li><p>Launching the model executable</p></li>
+</ol>
+<section id="loading-project-xml-to-identify-for-which-model-the-project-is-prepared">
+<span id="sec-iricmi-run-standalone-load-project-xml"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">Loading project.xml to identify for which model the project is prepared</a><a class="headerlink" href="#loading-project-xml-to-identify-for-which-model-the-project-is-prepared" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> loads “project.xml” in the current folder.</p>
+<p><a class="reference internal" href="#iricmi-run-project-example"><span class="std std-numref">Listing 19</span></a> shows an example of project.xml.
+It actually contains much information than shown below and information
+ignored by <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> is omitted.</p>
+<div class="literal-block-wrapper docutils container" id="iricmi-run-project-example">
+<div class="code-block-caption"><span class="caption-number">Listing 19 </span><span class="caption-text">Example of project.xml</span><a class="headerlink" href="#iricmi-run-project-example" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos">2</span><span class="nt">&lt;iRICProject</span><span class="w"> </span><span class="na">solverName=</span><span class="s">&quot;global_send_c++&quot;</span><span class="w"> </span><span class="na">solverVersion=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">3</span><span class="w">  </span>(omitted)
+<span class="linenos">4</span><span class="nt">&lt;/iRICProject&gt;</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> reads “solverName” and “solverVersion” attribute of &lt;iRICProject/&gt; element, to know
+for which model the data in the project folder is prepared.</p>
+</section>
+<section id="finding-the-model-executable">
+<span id="sec-iricmi-run-standalone-find-model-executable"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Finding the model executable</a><a class="headerlink" href="#finding-the-model-executable" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> scans the “solvers” and “private/solvers” subfolder in the path refered by
+“IRICMI_ROOT_PATH” environmental variable.</p>
+<p>Each subfolder in “solvers” is expected to contains “definition.xml”, model executable,
+and DLLs needed to run the model.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> reads “definition.xml” in each subfolder, and tries to find the model that
+coinsides with the project.xml.</p>
+<p><a class="reference internal" href="#iricmi-run-definition-example"><span class="std std-numref">Listing 20</span></a> shows an example of definition.xml
+(information ignored by <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> is omitted).</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> reads “name”, “version” attributes of &lt;SolverDefinition/&gt; element.
+If they are equal to the values of “solverName” and “solverVersion” in project.xml,
+it is recognized to be the model for the project.</p>
+<div class="literal-block-wrapper docutils container" id="iricmi-run-definition-example">
+<div class="code-block-caption"><span class="caption-number">Listing 20 </span><span class="caption-text">Example of definition.xml</span><a class="headerlink" href="#iricmi-run-definition-example" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos">2</span><span class="nt">&lt;SolverDefinition</span>
+<span class="linenos">3</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;global_send_c++&quot;</span>
+<span class="linenos">4</span><span class="w">  </span><span class="na">version=</span><span class="s">&quot;1.0&quot;</span>
+<span class="linenos">5</span><span class="w">  </span><span class="na">executable=</span><span class="s">&quot;global_send_c++.exe&quot;</span>
+<span class="linenos">6</span><span class="nt">&gt;</span>
+<span class="linenos">7</span><span class="w">  </span>(omitted)
+<span class="linenos">8</span><span class="nt">&lt;/SolverDefinition&gt;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="launching-the-model-executable">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Launching the model executable</a><a class="headerlink" href="#launching-the-model-executable" title="Permalink to this heading"></a></h3>
+<p>When the model that coinsides the project is found, launch the model executable.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> launch the executable file, that is referred with “executable” attribute of definition.xml.</p>
+<p>For example in <a class="reference internal" href="#iricmi-run-definition-example"><span class="std std-numref">Listing 20</span></a>, it is “global_send_c++.exe”.</p>
+<p>If the extention of the executable is “.exe”, <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> just launch it as a subprocess.
+If the extention is “.py”, <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> launch it with command “python (the executable)”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> reads the STDOUT of the executable, output to STDOUT so that user can see, and writes to consoleLog.txt also.</p>
+</section>
+</section>
+<section id="running-in-coupled-mode">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Running in “coupled” mode</a><a class="headerlink" href="#running-in-coupled-mode" title="Permalink to this heading"></a></h2>
+<p>The steps below are executed in “coupled” mode.</p>
+<ol class="arabic simple">
+<li><p>Loading iricmi_project.xml to identify the list of subfolders</p></li>
+<li><p>Loading project.xml in each subfolder to identify for which model the subfolder is prepared</p></li>
+<li><p>Finding the model executable for each subfolder</p></li>
+<li><p>Launching <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models with <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code></p></li>
+</ol>
+<section id="loading-iricmi-project-xml-to-identify-the-list-of-subfolders">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Loading iricmi_project.xml to identify the list of subfolders</a><a class="headerlink" href="#loading-iricmi-project-xml-to-identify-the-list-of-subfolders" title="Permalink to this heading"></a></h3>
+<p>Loads iricmi_project.xml to reads information about models.
+<a class="reference internal" href="#iricmi-run-iricmi-project-example"><span class="std std-numref">Listing 21</span></a> shows an example of iricmi_project.xml.</p>
+<p>It actually contains &lt;Connections /&gt; element, but ignored by <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code>, so omitted.</p>
+<p>The “name” attribute of &lt;Model/&gt; elements (in this case “global_send_c++” and “global_receive_c++”)
+are the name of subfolders in the project folder.</p>
+<p>The subfolders are expected to be iRIC project folders, that contains information that each model
+needs for running.</p>
+<div class="literal-block-wrapper docutils container" id="iricmi-run-iricmi-project-example">
+<div class="code-block-caption"><span class="caption-number">Listing 21 </span><span class="caption-text">Example of iricmi_project.xml</span><a class="headerlink" href="#iricmi-run-iricmi-project-example" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">&lt;iRICMIProject&gt;</span>
+<span class="linenos">2</span><span class="w">  </span><span class="nt">&lt;Models&gt;</span>
+<span class="linenos">3</span><span class="w">    </span><span class="nt">&lt;Model</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;global_send_c++&quot;</span><span class="w"> </span><span class="na">nodes=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">4</span><span class="w">    </span><span class="nt">&lt;Model</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;global_receive_c++&quot;</span><span class="w"> </span><span class="na">nodes=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">5</span><span class="w">  </span><span class="nt">&lt;/Models&gt;</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="w">  </span>(omitted)
+<span class="linenos">8</span>
+<span class="linenos">9</span><span class="nt">&lt;/iRICMIProject&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, “nodes” attribute of &lt;Model/&gt; element is not used actually, and expected to be 1 always.</p>
+<p>It is for future use, in case iRIC-MI will support parallelizion of models using MPI.
+In that case, “nodes” should be the number of nodes (in other words “processes”) for that model.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With the example above, the names of subfolders are identical to the names of models.
+But actually, the names of subfolders are arbitrary.</p>
+</div>
+<p>For each subfolders refered in &lt;Model/&gt; element in iricmi_project.xml, do the next step.</p>
+</section>
+<section id="loading-project-xml-in-each-subfolder-to-identify-for-which-model-the-subfolder-is-prepared">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Loading project.xml in each subfolder to identify for which model the subfolder is prepared</a><a class="headerlink" href="#loading-project-xml-in-each-subfolder-to-identify-for-which-model-the-subfolder-is-prepared" title="Permalink to this heading"></a></h3>
+<p>This step is identical to that in “standalone” mode.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> loads “project.xml” in each subfolder, and reads
+“solverName” and “solverVersion” attribute of &lt;iRICProject/&gt; element, to know
+for which model the data in the project folder is prepared.</p>
+</section>
+<section id="finding-the-model-executable-for-each-subfolder">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Finding the model executable for each subfolder</a><a class="headerlink" href="#finding-the-model-executable-for-each-subfolder" title="Permalink to this heading"></a></h3>
+<p>This step is identical to that in “standalone” mode.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> scans the “solvers” subfolder in the path refered by
+“IRICMI_ROOT_PATH” environmental variable, and tries to find the model that
+coinsides with the project.xml.</p>
+</section>
+<section id="launching-iricmi-server-and-models-with-mpiexec">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Launching <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models with <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code></a><a class="headerlink" href="#launching-iricmi-server-and-models-with-mpiexec" title="Permalink to this heading"></a></h3>
+<p>When the models that coinside the projects in each subfolder is identified, launch the programs below
+using <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></p></li>
+<li><p>The model executable for each subfoler</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> is the tool to launch programs communicating each other using MPI.
+Please refer to the URL below about <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>.</p>
+<p><a class="reference external" href="https://www.mpich.org/static/docs/v3.1/www1/mpiexec.html">https://www.mpich.org/static/docs/v3.1/www1/mpiexec.html</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> launch programs with the command below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>-l<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>iricmi_server<span class="w"> </span>:<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>model<span class="w"> </span>executable<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>subfolder<span class="o">)</span><span class="w"> </span>:<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>model<span class="w"> </span>executable<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>second<span class="w"> </span>subfolder<span class="o">)</span><span class="w"> </span>...
+</pre></div>
+</div>
+<p>Thanks to <code class="docutils literal notranslate"><span class="pre">-l</span></code> option, mpiexec output the logs output to STDOUT by each programs (<code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models),
+with prefix like ‘[0]’, ‘[1]’, etc.</p>
+<p>The number in the prefix is the rank of the program. So, ‘[0]’ is the log of <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>, and ‘[1]’, ‘[2]’,
+… are log of models that run projects in subfolders.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> reads the STDOUT of the <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>, recognizes which program output the log,
+and writes the log to files shown in <a class="reference internal" href="#iricmi-run-coupled-output-file"><span class="std std-numref">Table 6</span></a>.</p>
+<span id="iricmi-run-coupled-output-file"></span><table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">The file to write logs</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Prefix</p></th>
+<th class="head"><p>Program that output log</p></th>
+<th class="head"><p>File to write</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[0]</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code></p></td>
+<td><p>server_consoleLog.txt</p></td>
+</tr>
+<tr class="row-odd"><td><p>[1], [2], ..</p></td>
+<td><p>Model that run project in subfolder</p></td>
+<td><p>(subfolder)/consoleLog.txt</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03_mapping_2d_3d.html" class="btn btn-neutral float-left" title="Mapping values between two dimensional and three dimensional grids" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../07_iricmilib_ref.html" class="btn btn-neutral float-right" title="iRIC-MI library Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

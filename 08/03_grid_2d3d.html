@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grid2d3d &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="grid2d_unst" href="04_grid2d_unst.html" />
+    <link rel="prev" title="grid_att_send and grid_att_receive" href="02_grid_att_send_receive.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../08_sample_models.html">Sample models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_global_send_receive.html"><code class="docutils literal notranslate"><span class="pre">global_send</span></code> and <code class="docutils literal notranslate"><span class="pre">global_receive</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_grid_att_send_receive.html"><code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-data">Project data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#result">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="04_grid2d_unst.html"><code class="docutils literal notranslate"><span class="pre">grid2d_unst</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_grid2d_edge.html"><code class="docutils literal notranslate"><span class="pre">grid2d_edge</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../08_sample_models.html">Sample models</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/08/03_grid_2d3d.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="grid2d3d">
+<span id="sec-sample-model-grid2d3d"></span><h1><code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code><a class="headerlink" href="#grid2d3d" title="Permalink to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code> is a model that reads two dimensional grid, generate three dimensional grid inside,
+and send values defined at grid nodes, cells, and edges of two dimensional and three dimensional grids.
+It also receive values defined at grid nodes, cells, and edges.</p>
+<p>Also it is possible to change the grid coordinates at every time step, by giving dx and dy values other than zero.</p>
+<p>In the sample project, two regions are defined for model <code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code>, and the values are exchanged
+in both direction.</p>
+<p><code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code> is implemented in FORTRAN, C++ and Python. On this page FORTRAN version is explained.</p>
+<section id="id1">
+<h2><code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="#grid2d3d-fortran-definition"><span class="std std-numref">Listing 36</span></a> shows “definition.xml” of <code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code>, and
+<a class="reference internal" href="#grid2d3d-fortran-main-f90"><span class="std std-numref">Listing 37</span></a> shows the source code of <code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code>.</p>
+<p>The important points are as follows:</p>
+<ul class="simple">
+<li><p>In <a class="reference internal" href="#grid2d3d-fortran-definition"><span class="std std-numref">Listing 36</span></a>, two &lt;GridType&gt; element is defined. The first one with name”input” is for two dimensional grid, and the other one with name “output3d” is for three dimensional grid. It is important that the for &lt;GridType&gt; with name “output3d”, attribute “post” is defined, and the value is “true”. It means that the grid should not be created in Pre-processing window, but generated inside the model, and used only for post-processing.</p></li>
+<li><p>Output data is defined for both two dimensional grid and three dimensional grid. For two dimensional grid, the names are “outputNode2d”, “outputCell2d”, etc. For three dimensional grid, the names are “outputNode3d”, “outputCell3d”, etc.</p></li>
+<li><p>Time dependent input data is defined for both two dimensional grid and three dimensional grid. For two dimensional grid, the names are “inputNode2d”, “inputCell2d”, etc. For three dimensional grid, the names are “inputNode3d”, “inputCell3d”, etc.</p></li>
+<li><p>Line 95 of <a class="reference internal" href="#grid2d3d-fortran-main-f90"><span class="std std-numref">Listing 37</span></a> calls <a class="reference internal" href="../07/refs/iRICMI_RIn_Grid3d_Coords_WithGridId.html#sec-ref-iricmi-rin-grid3d-coords-withgridid"><span class="std std-ref">iRICMI_RIn_Grid3d_Coords_WithGridId</span></a>, to output the grid. The three dimensional grid is saved to Case1.cgn, and also sent to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>. It is important that the value of the first argument is “output3d”, that matches the name of grid type defined in <a class="reference internal" href="#grid2d3d-fortran-definition"><span class="std std-numref">Listing 36</span></a>.</p></li>
+<li><p>Line 103 and 104 of <a class="reference internal" href="#grid2d3d-fortran-main-f90"><span class="std std-numref">Listing 37</span></a> calls <a class="reference internal" href="../07/refs/iRICMI_ROut_Grid2d_Coords_WithGridId.html#sec-ref-iricmi-rout-grid2d-coords-withgridid"><span class="std std-ref">iRICMI_ROut_Grid2d_Coords_WithGridId</span></a> and <a class="reference internal" href="../07/refs/iRICMI_ROut_Grid3d_Coords_WithGridId.html#sec-ref-iricmi-rout-grid3d-coords-withgridid"><span class="std std-ref">iRICMI_ROut_Grid3d_Coords_WithGridId</span></a>. Calling these subroutines, the model passes the variables that stores the coordinates of the grid, and informs that the shape of the grids can change.</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="grid2d3d-fortran-definition">
+<div class="code-block-caption"><span class="caption-number">Listing 36 </span><span class="caption-text">definition.xml of <code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code></span><a class="headerlink" href="#grid2d3d-fortran-definition" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="nt">&lt;SolverDefinition</span>
+<span class="linenos">  2</span><span class="w">	</span><span class="na">xmlns=</span><span class="s">&quot;www.iric.net/SolverDefinition/1.0&quot;</span>
+<span class="linenos">  3</span><span class="w">	</span><span class="na">name=</span><span class="s">&quot;grid2d3d_fortran&quot;</span>
+<span class="linenos">  4</span><span class="w">	</span><span class="na">caption=</span><span class="s">&quot;Model for testing sending grid for both 2d and 3d (FORTRAN)&quot;</span>
+<span class="linenos">  5</span><span class="w">	</span><span class="na">version=</span><span class="s">&quot;1.0&quot;</span>
+<span class="linenos">  6</span><span class="w">	</span><span class="na">copyright=</span><span class="s">&quot;iRIC organization&quot;</span>
+<span class="linenos">  7</span><span class="w">	</span><span class="na">release=</span><span class="s">&quot;2020.6.20&quot;</span>
+<span class="linenos">  8</span><span class="w">	</span><span class="na">homepage=</span><span class="s">&quot;http://i-ric.org&quot;</span>
+<span class="linenos">  9</span><span class="w">	</span><span class="na">executable=</span><span class="s">&quot;grid2d3d_fortran.exe&quot;</span>
+<span class="linenos"> 10</span><span class="w">	</span><span class="na">iterationtype=</span><span class="s">&quot;time&quot;</span>
+<span class="linenos"> 11</span><span class="nt">&gt;</span>
+<span class="linenos"> 12</span><span class="w">	</span><span class="nt">&lt;CalculationCondition&gt;</span>
+<span class="linenos"> 13</span><span class="w">		</span><span class="nt">&lt;Tab</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Basic&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 14</span><span class="w">			</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dx&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Delta X&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 15</span><span class="w">				</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 16</span><span class="w">			</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 17</span><span class="w">			</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;dy&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Delta Y&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 18</span><span class="w">				</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 19</span><span class="w">			</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 20</span><span class="w">		</span><span class="nt">&lt;/Tab&gt;</span>
+<span class="linenos"> 21</span><span class="w">	</span><span class="nt">&lt;/CalculationCondition&gt;</span>
+<span class="linenos"> 22</span><span class="w">	</span><span class="nt">&lt;GridTypes&gt;</span>
+<span class="linenos"> 23</span><span class="w">		</span><span class="nt">&lt;GridType</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;input&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;2D grid&quot;</span><span class="w"> </span><span class="na">gridtype=</span><span class="s">&quot;structured2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 24</span><span class="w">			</span><span class="nt">&lt;GridRelatedCondition&gt;</span>
+<span class="linenos"> 25</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Elevation&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Elevation (m)&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 26</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;node&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;max&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 27</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputNode2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;inputNode2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 30</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;node&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 31</span><span class="w">						</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 32</span><span class="w">					</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos"> 33</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 34</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputCell2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;inputCell2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 35</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;cell&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 36</span><span class="w">						</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 37</span><span class="w">					</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos"> 38</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 39</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputIFace2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;inputIFace2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 40</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;iface&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 41</span><span class="w">						</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 42</span><span class="w">					</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos"> 43</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 44</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputJFace2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;inputJFace2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 45</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;jface&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 46</span><span class="w">						</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 47</span><span class="w">					</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos"> 48</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputNode2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;outputNode2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 51</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;node&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 52</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos"> 53</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputCell2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;outputCell2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 54</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;cell&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 55</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos"> 56</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputIFace2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;outputIFace2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 57</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;iface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 58</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos"> 59</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputJFace2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;outputJFace2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 60</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;jface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 61</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;receivedNode2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;receivedNode2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 64</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;node&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 65</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos"> 66</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;receivedCell2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;receivedCell2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 67</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;cell&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 68</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos"> 69</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;receivedIFace2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;receivedIFace2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 70</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;iface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 71</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos"> 72</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;receivedJFace2d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;receivedJFace2d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 73</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;jface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 74</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos"> 75</span><span class="w">			</span><span class="nt">&lt;/GridRelatedCondition&gt;</span>
+<span class="linenos"> 76</span><span class="w">		</span><span class="nt">&lt;/GridType&gt;</span>
+<span class="linenos"> 77</span><span class="w">		</span><span class="nt">&lt;GridType</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;output3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;3D grid&quot;</span><span class="w"> </span><span class="na">gridtype=</span><span class="s">&quot;structured3d&quot;</span><span class="w"> </span><span class="na">post=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 78</span><span class="w">			</span><span class="nt">&lt;GridRelatedCondition&gt;</span>
+<span class="linenos"> 79</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputNode3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;inputNode3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 80</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;node&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 81</span><span class="w">						</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 82</span><span class="w">					</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos"> 83</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 84</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputCell3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;inputCell3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 85</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;cell&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 86</span><span class="w">						</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 87</span><span class="w">					</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos"> 88</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 89</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputIFace3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;inputIFace3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 90</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;iface&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 91</span><span class="w">						</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 92</span><span class="w">					</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos"> 93</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 94</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputJFace3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;inputJFace3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 95</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;jface&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 96</span><span class="w">						</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 97</span><span class="w">					</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos"> 98</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos"> 99</span><span class="w">				</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputKFace3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;inputKFace3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">100</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;kface&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">101</span><span class="w">						</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">102</span><span class="w">					</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos">103</span><span class="w">				</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputNode3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;outputNode3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">106</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;node&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">107</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">108</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputCell3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;outputCell3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">109</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;cell&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">110</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">111</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputIFace3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;outputIFace3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">112</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;iface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">113</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">114</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputJFace3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;outputJFace3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">115</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;jface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">116</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">117</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputKFace3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;outputKFace3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">118</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;kface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">119</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;receivedNode3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;receivedNode3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">122</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;node&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">123</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">124</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;receivedCell3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;receivedCell3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">125</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;cell&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">126</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">127</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;receivedIFace3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;receivedIFace3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">128</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;iface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">129</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">130</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;receivedJFace3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;receivedJFace3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">131</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;jface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">132</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">133</span><span class="w">				</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;receivedKFace3d&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;receivedKFace3d&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">134</span><span class="w">					</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;kface&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">135</span><span class="w">				</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">136</span><span class="w">			</span><span class="nt">&lt;/GridRelatedCondition&gt;</span>
+<span class="linenos">137</span><span class="w">		</span><span class="nt">&lt;/GridType&gt;</span>
+<span class="linenos">138</span><span class="w">	</span><span class="nt">&lt;/GridTypes&gt;</span>
+<span class="linenos">139</span><span class="nt">&lt;/SolverDefinition&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="grid2d3d-fortran-main-f90">
+<div class="code-block-caption"><span class="caption-number">Listing 37 </span><span class="caption-text">source code main.f90 of <code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code></span><a class="headerlink" href="#grid2d3d-fortran-main-f90" title="Permalink to this code"></a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">subroutine </span><span class="n">updateData</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">,</span><span class="w"> </span><span class="k">data</span><span class="p">)</span>
+<span class="linenos">  2</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
+<span class="linenos">  3</span><span class="w">	</span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="kd">::</span><span class="w"> </span><span class="n">isize</span>
+<span class="linenos">  4</span><span class="w">	</span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="kd">::</span><span class="w"> </span><span class="n">jsize</span>
+<span class="linenos">  5</span><span class="w">	</span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="kd">::</span><span class="w"> </span><span class="n">ksize</span>
+<span class="linenos">  6</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="kd">::</span><span class="w"> </span><span class="k">data</span>
+<span class="linenos">  7</span><span class="k">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span>
+<span class="linenos">  8</span><span class="w">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="n">v</span>
+<span class="linenos">  9</span>
+<span class="linenos"> 10</span><span class="w">	</span><span class="k">do </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span>
+<span class="linenos"> 11</span><span class="w">		</span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span>
+<span class="linenos"> 12</span><span class="w">			</span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span>
+<span class="linenos"> 13</span><span class="w">				</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.05</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span>
+<span class="linenos"> 14</span><span class="w">				</span><span class="k">data</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span>
+<span class="linenos"> 15</span><span class="w">			</span><span class="k">end do</span>
+<span class="linenos"> 16</span><span class="k">		end do</span>
+<span class="linenos"> 17</span><span class="k">	end do</span>
+<span class="linenos"> 18</span><span class="k">end subroutine</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="k">program </span><span class="n">grid2d3d</span>
+<span class="linenos"> 21</span><span class="w">	</span><span class="k">use </span><span class="n">iricmi</span>
+<span class="linenos"> 22</span><span class="w">	</span><span class="k">implicit none</span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span><span class="k">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">ier</span>
+<span class="linenos"> 25</span><span class="w">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">canceled</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="w">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">dy</span>
+<span class="linenos"> 28</span><span class="w">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">k</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="w">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
+<span class="linenos"> 31</span><span class="nb">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="n">dt</span>
+<span class="linenos"> 32</span><span class="w">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="n">endtime</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span><span class="w">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span>
+<span class="linenos"> 35</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">gridX</span><span class="p">,</span><span class="w"> </span><span class="n">gridY</span>
+<span class="linenos"> 36</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">grid3dX</span><span class="p">,</span><span class="w"> </span><span class="n">grid3dY</span><span class="p">,</span><span class="w"> </span><span class="n">grid3dZ</span>
+<span class="linenos"> 37</span><span class="w">	</span>
+<span class="linenos"> 38</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">outputNode2d</span><span class="p">,</span><span class="w"> </span><span class="n">outputCell2d</span><span class="p">,</span><span class="w"> </span><span class="n">outputIFace2d</span><span class="p">,</span><span class="w"> </span><span class="n">outputJFace2d</span>
+<span class="linenos"> 39</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">inputNode2d</span><span class="p">,</span><span class="w"> </span><span class="n">inputCell2d</span><span class="p">,</span><span class="w"> </span><span class="n">inputIFace2d</span><span class="p">,</span><span class="w"> </span><span class="n">inputJFace2d</span>
+<span class="linenos"> 40</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">outputNode3d</span><span class="p">,</span><span class="w"> </span><span class="n">outputCell3d</span><span class="p">,</span><span class="w"> </span><span class="n">outputIFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">outputJFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">outputKFace3d</span>
+<span class="linenos"> 41</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">inputNode3d</span><span class="p">,</span><span class="w"> </span><span class="n">inputCell3d</span><span class="p">,</span><span class="w"> </span><span class="n">inputIFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">inputJFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">inputKFace3d</span>
+<span class="linenos"> 42</span><span class="w">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">grid3did</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Model_Init</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 45</span>
+<span class="linenos"> 46</span><span class="w">	</span><span class="nb">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos"> 47</span><span class="w">	</span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos"> 48</span><span class="w">	</span><span class="n">endtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="w">	</span><span class="c">! read grid</span>
+<span class="linenos"> 51</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Read_Grid2d_Str_Size</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 52</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">gridX</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">),</span><span class="w"> </span><span class="n">gridY</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">))</span>
+<span class="linenos"> 53</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">outputNode2d</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 54</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">outputCell2d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 55</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">outputIFace2d</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 56</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">outputJFace2d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 57</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">inputNode2d</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 58</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">inputCell2d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 59</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">inputIFace2d</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 60</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">inputJFace2d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Read_Real</span><span class="p">(</span><span class="s2">&quot;dx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 63</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Read_Real</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dy</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 64</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Read_Grid2d_Coords</span><span class="p">(</span><span class="n">gridX</span><span class="p">,</span><span class="w"> </span><span class="n">gridY</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span><span class="w">	</span><span class="c">! output 3dgrid</span>
+<span class="linenos"> 67</span><span class="w">	</span><span class="n">ksize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="linenos"> 68</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">grid3dX</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">),</span><span class="w"> </span><span class="n">grid3dY</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">),</span><span class="w"> </span><span class="n">grid3dZ</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">))</span>
+<span class="linenos"> 69</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">outputNode3d</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">))</span>
+<span class="linenos"> 70</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">outputCell3d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 71</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">outputIFace3d</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 72</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">outputJFace3d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 73</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">outputKFace3d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">))</span>
+<span class="linenos"> 74</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">inputNode3d</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">))</span>
+<span class="linenos"> 75</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">inputCell3d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 76</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">inputIFace3d</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 77</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">inputJFace3d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos"> 78</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">inputKFace3d</span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">))</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span><span class="w">	</span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span>
+<span class="linenos"> 81</span><span class="w">		</span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span>
+<span class="linenos"> 82</span><span class="w">			</span><span class="n">grid3dX</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gridX</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span>
+<span class="linenos"> 83</span><span class="w">			</span><span class="n">grid3dY</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gridY</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span>
+<span class="linenos"> 84</span><span class="w">		</span><span class="k">end do</span>
+<span class="linenos"> 85</span><span class="k">	end do</span>
+<span class="linenos"> 86</span><span class="k">	do </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span>
+<span class="linenos"> 87</span><span class="w">		</span><span class="n">grid3dZ</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos"> 88</span><span class="w">	</span><span class="k">end do</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="k">	call </span><span class="n">iRICMI_Write_NamedGrid3d_Coords_WithGridId</span><span class="p">(</span><span class="s2">&quot;output3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">,</span><span class="w"> </span><span class="n">grid3dX</span><span class="p">,</span><span class="w"> </span><span class="n">grid3dY</span><span class="p">,</span><span class="w"> </span><span class="n">grid3dZ</span><span class="p">,</span><span class="w"> </span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="w">	</span><span class="c">! register time</span>
+<span class="linenos"> 93</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Time</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 94</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Exchange_Interval</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 95</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Dump_Interval</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="w">	</span><span class="c">! register grid coords to output</span>
+<span class="linenos"> 98</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid2d_Coords_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">gridX</span><span class="p">,</span><span class="w"> </span><span class="n">gridY</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos"> 99</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid3d_Coords_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="n">grid3dX</span><span class="p">,</span><span class="w"> </span><span class="n">grid3dY</span><span class="p">,</span><span class="w"> </span><span class="n">grid3dZ</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="w">	</span><span class="c">! register grid attribute to output</span>
+<span class="linenos">102</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_Node_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;outputNode2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputNode2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">103</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_Cell_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;outputCell2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputCell2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">104</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_IFace_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;outputIFace2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputIFace2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">105</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_JFace_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;outputJFace2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputJFace2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_Node_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;receivedNode2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputNode2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">108</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_Cell_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;receivedCell2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputCell2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">109</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_IFace_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;receivedIFace2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputIFace2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">110</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_JFace_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;receivedJFace2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputJFace2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_Node_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inputNode2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputNode2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">113</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_Cell_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inputCell2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputCell2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">114</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_IFace_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inputIFace2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputIFace2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">115</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_JFace_Real_WithGridId</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inputJFace2d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputJFace2d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_Node_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;outputNode3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputNode3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">118</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_Cell_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;outputCell3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputCell3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">119</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_IFace_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;outputIFace3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputIFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">120</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_JFace_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;outputJFace3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputJFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">121</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_KFace_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;outputKFace3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">outputKFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">122</span>
+<span class="linenos">123</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_Node_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;receivedNode3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputNode3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">124</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_Cell_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;receivedCell3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputCell3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">125</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_IFace_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;receivedIFace3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputIFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">126</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_JFace_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;receivedJFace3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputJFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">127</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_KFace_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;receivedKFace3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputKFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">128</span>
+<span class="linenos">129</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_Node_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inputNode3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputNode3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">130</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_Cell_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inputCell3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputCell3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">131</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_IFace_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inputIFace3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputIFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">132</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_JFace_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inputJFace3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputJFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">133</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_KFace_Real_WithGridId</span><span class="p">(</span><span class="n">grid3did</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inputKFace3d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inputKFace3d</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">134</span>
+<span class="linenos">135</span><span class="w">	</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputNode2d</span><span class="p">)</span>
+<span class="linenos">136</span><span class="w">	</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputCell2d</span><span class="p">)</span>
+<span class="linenos">137</span><span class="w">	</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputIFace2d</span><span class="p">)</span>
+<span class="linenos">138</span><span class="w">	</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputJFace2d</span><span class="p">)</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="w">	</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">,</span><span class="w"> </span><span class="n">outputNode3d</span><span class="p">)</span>
+<span class="linenos">141</span><span class="w">	</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputCell3d</span><span class="p">)</span>
+<span class="linenos">142</span><span class="w">	</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputIFace3d</span><span class="p">)</span>
+<span class="linenos">143</span><span class="w">	</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputJFace3d</span><span class="p">)</span>
+<span class="linenos">144</span><span class="w">	</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">,</span><span class="w"> </span><span class="n">outputKFace3d</span><span class="p">)</span>
+<span class="linenos">145</span>
+<span class="linenos">146</span><span class="w">	</span><span class="c">! first sync before entering time loop</span>
+<span class="linenos">147</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Model_Sync</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">148</span>
+<span class="linenos">149</span><span class="w">	</span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(&#39;In grid2d3d t = &#39;, f5.1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span><span class="nb">	</span><span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">152</span><span class="w">		</span><span class="nb">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span>
+<span class="linenos">153</span>
+<span class="linenos">154</span><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">endtime</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">155</span><span class="k">			exit</span>
+<span class="linenos">156</span><span class="k">		end if</span>
+<span class="linenos">157</span><span class="k">		</span>
+<span class="linenos">158</span><span class="k">		call </span><span class="n">iRICMI_Check_Cancel</span><span class="p">(</span><span class="n">canceled</span><span class="p">)</span>
+<span class="linenos">159</span><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">canceled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">160</span><span class="k">			exit</span>
+<span class="linenos">161</span><span class="k">		end if</span>
+<span class="linenos">162</span>
+<span class="linenos">163</span><span class="k">		</span><span class="n">gridX</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gridX</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span>
+<span class="linenos">164</span><span class="w">		</span><span class="n">gridY</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gridY</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dy</span>
+<span class="linenos">165</span>
+<span class="linenos">166</span><span class="w">		</span><span class="n">grid3dX</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid3dX</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span>
+<span class="linenos">167</span><span class="w">		</span><span class="n">grid3dY</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid3dY</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dy</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span><span class="w">		</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputNode2d</span><span class="p">)</span>
+<span class="linenos">170</span><span class="w">		</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputCell2d</span><span class="p">)</span>
+<span class="linenos">171</span><span class="w">		</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputIFace2d</span><span class="p">)</span>
+<span class="linenos">172</span><span class="w">		</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputJFace2d</span><span class="p">)</span>
+<span class="linenos">173</span>
+<span class="linenos">174</span><span class="w">		</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">,</span><span class="w"> </span><span class="n">outputNode3d</span><span class="p">)</span>
+<span class="linenos">175</span><span class="w">		</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputCell3d</span><span class="p">)</span>
+<span class="linenos">176</span><span class="w">		</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputIFace3d</span><span class="p">)</span>
+<span class="linenos">177</span><span class="w">		</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">outputJFace3d</span><span class="p">)</span>
+<span class="linenos">178</span><span class="w">		</span><span class="k">call </span><span class="n">updateData</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ksize</span><span class="p">,</span><span class="w"> </span><span class="n">outputKFace3d</span><span class="p">)</span>
+<span class="linenos">179</span>
+<span class="linenos">180</span><span class="w">		</span><span class="k">call </span><span class="n">iRICMI_Model_Sync</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">181</span>
+<span class="linenos">182</span><span class="w">		</span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(&#39;In grid2d3d t = &#39;, f5.1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span>
+<span class="linenos">183</span><span class="nb">	</span><span class="k">end do</span>
+<span class="linenos">184</span>
+<span class="linenos">185</span><span class="k">	call </span><span class="n">iRICMI_Model_Terminate</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">186</span><span class="w">	</span><span class="k">stop</span>
+<span class="linenos">187</span><span class="k">end program</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="project-data">
+<h2>Project data<a class="headerlink" href="#project-data" title="Permalink to this heading"></a></h2>
+<p>The project data to run <code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code> is stored in testdata/grid2d3d_fortran folder.</p>
+<p><a class="reference internal" href="#grid2d3d-fortran-iricmi-project"><span class="std std-numref">Listing 38</span></a> shows iricmi_project.xml. You can see that
+connections are defined to exchange data between two regions, for both two dimensional and three dimensional grids.</p>
+<p><a class="reference internal" href="#image-grid2d3d-region1-input"><span class="std std-numref">Fig. 6</span></a> and <a class="reference internal" href="#image-grid2d3d-region2-input"><span class="std std-numref">Fig. 7</span></a> shows the shape of grids defined for “region1” and “region2”.
+The gray area in <a class="reference internal" href="#image-grid2d3d-region2-input"><span class="std std-numref">Fig. 7</span></a> corresponds to the grid region of “region1”, so the grid of “region2” is inside that of “region1”.</p>
+<p>For “region2”, dx = 0.01, dy = -0.02. It means that for “region2” the region of the grids slide every time step.</p>
+<p>As explained in <a class="reference internal" href="../03/01_overview.html#sec-how-to-run-coupled"><span class="std std-ref">Running models in “coupled” mode</span></a>, you can run the models for the project, by “chdir”ing to the
+project folder, and launch <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="grid2d3d-fortran-iricmi-project">
+<div class="code-block-caption"><span class="caption-number">Listing 38 </span><span class="caption-text">iricmi_project.xml for <code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code></span><a class="headerlink" href="#grid2d3d-fortran-iricmi-project" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos"> 2</span><span class="nt">&lt;iRICMIProject&gt;</span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="nt">&lt;Models&gt;</span>
+<span class="linenos"> 4</span><span class="w">        </span><span class="nt">&lt;Model</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;region1&quot;</span><span class="w"> </span><span class="na">nodes=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 5</span><span class="w">        </span><span class="nt">&lt;Model</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;region2&quot;</span><span class="w"> </span><span class="na">nodes=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="nt">&lt;/Models&gt;</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="nt">&lt;Connections&gt;</span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos"> 9</span><span class="w">            </span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;input&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputNode2d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">10</span><span class="w">            </span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region2&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;input&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputNode2d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">11</span><span class="w">        </span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">12</span><span class="w">        </span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos">13</span><span class="w">            </span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;input&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputCell2d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">14</span><span class="w">            </span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region2&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;input&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputCell2d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">15</span><span class="w">        </span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">16</span><span class="w">        </span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos">17</span><span class="w">            </span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;output3d&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputNode3d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">18</span><span class="w">            </span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region2&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;output3d&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputNode3d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">19</span><span class="w">        </span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">20</span><span class="w">        </span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos">21</span><span class="w">            </span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;output3d&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputCell3d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">22</span><span class="w">            </span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region2&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;output3d&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputCell3d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">23</span><span class="w">        </span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">24</span><span class="w">        </span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos">25</span><span class="w">            </span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region2&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;input&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputNode2d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">26</span><span class="w">            </span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;input&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputNode2d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">27</span><span class="w">        </span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">28</span><span class="w">        </span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos">29</span><span class="w">            </span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region2&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;input&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputCell2d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">30</span><span class="w">            </span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;input&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputCell2d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">31</span><span class="w">        </span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">32</span><span class="w">        </span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos">33</span><span class="w">            </span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region2&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;output3d&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputNode3d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">34</span><span class="w">            </span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;output3d&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputNode3d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">35</span><span class="w">        </span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">36</span><span class="w">        </span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos">37</span><span class="w">            </span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region2&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;output3d&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;outputCell3d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">38</span><span class="w">            </span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;region1&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">gridName=</span><span class="s">&quot;output3d&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;inputCell3d&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">39</span><span class="w">        </span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">40</span><span class="w">    </span><span class="nt">&lt;/Connections&gt;</span>
+<span class="linenos">41</span><span class="nt">&lt;/iRICMIProject&gt;</span>
+</pre></div>
+</div>
+</div>
+<figure class="align-default" id="id2">
+<span id="image-grid2d3d-region1-input"></span><img alt="../_images/grid2d3d_region1_input.png" src="../_images/grid2d3d_region1_input.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">The grid defined for “region1”</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<span id="image-grid2d3d-region2-input"></span><img alt="../_images/grid2d3d_region2_input.png" src="../_images/grid2d3d_region2_input.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">The grid defined for “region2”</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="result">
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this heading"></a></h2>
+<p>The screenshots to visualize the calculation result are shown from
+<a class="reference internal" href="#image-grid2d3d-region1-2d-output1"><span class="std std-numref">Fig. 8</span></a> to <a class="reference internal" href="#image-grid2d3d-region2-3d-received100"><span class="std std-numref">Fig. 23</span></a>.</p>
+<p>From the screenshots, we can check the followings:
+* Mapping grid atribute values works for both two dimensional and three dimensional grids.
+* When the grid coordinates are changed for each time step, it is applied to mapping result for both two dimensional and three dimensional grids.</p>
+<figure class="align-default" id="id4">
+<span id="image-grid2d3d-region1-2d-output1"></span><img alt="../_images/grid2d3d_region1_2d_output1.png" src="../_images/grid2d3d_region1_2d_output1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">outputNode2d of region1 (t = 0)</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5">
+<span id="image-grid2d3d-region1-2d-output100"></span><img alt="../_images/grid2d3d_region1_2d_output100.png" src="../_images/grid2d3d_region1_2d_output100.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">outputNode2d of region1 (t = 100)</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6">
+<span id="image-grid2d3d-region1-2d-received1"></span><img alt="../_images/grid2d3d_region1_2d_received1.png" src="../_images/grid2d3d_region1_2d_received1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">receivedNode2d of region1 (t = 0)</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id7">
+<span id="image-grid2d3d-region1-2d-received100"></span><img alt="../_images/grid2d3d_region1_2d_received100.png" src="../_images/grid2d3d_region1_2d_received100.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">receivedNode2d of region1 (t = 100)</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id8">
+<span id="image-grid2d3d-region2-2d-output1"></span><img alt="../_images/grid2d3d_region2_2d_output1.png" src="../_images/grid2d3d_region2_2d_output1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">outputNode2d of region2 (t = 0)</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id9">
+<span id="image-grid2d3d-region2-2d-output100"></span><img alt="../_images/grid2d3d_region2_2d_output100.png" src="../_images/grid2d3d_region2_2d_output100.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">outputNode2d of region2 (t = 100)</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id10">
+<span id="image-grid2d3d-region2-2d-received1"></span><img alt="../_images/grid2d3d_region2_2d_received1.png" src="../_images/grid2d3d_region2_2d_received1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">receivedNode2d of region2 (t = 0)</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id11">
+<span id="image-grid2d3d-region2-2d-received100"></span><img alt="../_images/grid2d3d_region2_2d_received100.png" src="../_images/grid2d3d_region2_2d_received100.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">receivedNode2d of region2 (t = 100)</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id12">
+<span id="image-grid2d3d-region1-3d-output1"></span><img alt="../_images/grid2d3d_region1_3d_output1.png" src="../_images/grid2d3d_region1_3d_output1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">outputNode3d of region1 (t = 0)</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id13">
+<span id="image-grid2d3d-region1-3d-output100"></span><img alt="../_images/grid2d3d_region1_3d_output100.png" src="../_images/grid2d3d_region1_3d_output100.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">outputNode3d of region1 (t = 100)</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id14">
+<span id="image-grid2d3d-region1-3d-received1"></span><img alt="../_images/grid2d3d_region1_3d_received1.png" src="../_images/grid2d3d_region1_3d_received1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">receivedNode3d of region1 (t = 0)</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id15">
+<span id="image-grid2d3d-region1-3d-received100"></span><img alt="../_images/grid2d3d_region1_3d_received100.png" src="../_images/grid2d3d_region1_3d_received100.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">receivedNode3d of region1 (t = 100)</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id16">
+<span id="image-grid2d3d-region2-3d-output1"></span><img alt="../_images/grid2d3d_region2_3d_output1.png" src="../_images/grid2d3d_region2_3d_output1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">outputNode3d of region2 (t = 0)</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id17">
+<span id="image-grid2d3d-region2-3d-output100"></span><img alt="../_images/grid2d3d_region2_3d_output100.png" src="../_images/grid2d3d_region2_3d_output100.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">outputNode3d of region2 (t = 100)</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id18">
+<span id="image-grid2d3d-region2-3d-received1"></span><img alt="../_images/grid2d3d_region2_3d_received1.png" src="../_images/grid2d3d_region2_3d_received1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">receivedNode3d of region2 (t = 0)</span><a class="headerlink" href="#id18" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id19">
+<span id="image-grid2d3d-region2-3d-received100"></span><img alt="../_images/grid2d3d_region2_3d_received100.png" src="../_images/grid2d3d_region2_3d_received100.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">receivedNode3d of region2 (t = 100)</span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_grid_att_send_receive.html" class="btn btn-neutral float-left" title="grid_att_send and grid_att_receive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_grid2d_unst.html" class="btn btn-neutral float-right" title="grid2d_unst" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

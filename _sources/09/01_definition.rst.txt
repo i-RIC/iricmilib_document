@@ -1,0 +1,135 @@
+Generates solver definition file
+========================================
+
+Generates solver definition file (definition.xml) based on the information that BMI models provides about I/O.
+
+:numref:`gen_definition_cem` shows the code to build definition.xml for CEM.
+
+.. code-block:: python
+   :caption: Code to build definition.xml for CEM
+   :name: gen_definition_cem
+   :linenos:
+
+   import iricmi_pymt_util
+   import pymt.models
+
+   cem = pymt.models.Cem()
+   iricmi_pymt_util.generateDefinition(cem, 'output/cem/definition.xml')
+
+
+The code in :numref:`gen_definition_cem` outputs the code in :numref:`definition_cem` to file 'output/cem/definition.xml'.
+Please note that spaces and newline characters are added for readability.
+
+.. code-block:: xml
+   :caption: definition.xml for CEM
+   :name: definition_cem
+   :linenos:
+
+   <SolverDefinition
+     name="cem" caption="cem" version="1.0" copyright="Please input value"
+     release="2023.08.09" homepage="Please input value"
+     iterationtype="time" gridtype="structured2d"
+   >
+     <CalculationCondition>
+       <Tab name="basic" caption="Basic Settings">
+         <Item
+           name="sea_surface_water_wave__azimuth_angle_of_opposite_of_phase_velocity"
+           caption="sea_surface_water_wave__azimuth_angle_of_opposite_of_phase_velocity[radians]"
+         >
+           <Definition conditionType="functional">
+             <Parameter valueType="real" caption="Time" />
+             <Value valueType="real" caption="Value" />
+           </Definition>
+         </Item>
+         <Item
+           name="sea_surface_water_wave__period"
+           caption="sea_surface_water_wave__period[seconds]"
+         >
+           <Definition conditionType="functional">
+             <Parameter valueType="real" caption="Time" />
+             <Value valueType="real" caption="Value" />
+           </Definition>
+         </Item>
+         <Item
+           name="sea_surface_water_wave__height"
+           caption="sea_surface_water_wave__height[meters]"
+         >
+           <Definition conditionType="functional">
+             <Parameter valueType="real" caption="Time" />
+             <Value valueType="real" caption="Value" />
+           </Definition>
+         </Item>
+         <Item
+           name="model__time_step"
+           caption="model__time_step[d]"
+         >
+           <Definition conditionType="functional">
+             <Parameter valueType="real" caption="Time" />
+             <Value valueType="real" caption="Value" />
+           </Definition>
+         </Item>
+       </Tab>
+     </CalculationCondition>
+     <GridRelatedCondition>
+       <Item
+         name="land_surface_water_sediment~bedload__mass_flow_rate"
+         caption="land_surface_water_sediment~bedload__mass_flow_rate[kg / s]"
+       >
+         <Definition valueType="real" position="node">
+           <Dimension name="Time" caption="Time" valueType="real" />
+         </Definition>
+       </Item>
+       <Item
+         name="land_surface__elevation"
+         caption="land_surface__elevation[meters]"
+       >
+         <Definition valueType="real" position="node">
+           <Dimension name="Time" caption="Time" valueType="real" />
+         </Definition>
+       </Item>
+       <Output
+         name="basin_outlet~coastal_center__x_coordinate"
+         caption="basin_outlet~coastal_center__x_coordinate[meters]"
+       >
+         <Definition valueType="real" position="node" />
+       </Output>
+       <Output
+         name="basin_outlet~coastal_water_sediment~bedload__mass_flow_rate"
+         caption="basin_outlet~coastal_water_sediment~bedload__mass_flow_rate[kg / s]"
+       >
+         <Definition valueType="real" position="node" />
+       </Output>
+       <Output
+         name="land_surface__elevation"
+         caption="land_surface__elevation[meters]"
+       >
+         <Definition valueType="real" position="node" />
+       </Output>
+       <Output
+         name="sea_water__depth"
+         caption="sea_water__depth[meters]"
+       >
+         <Definition valueType="real" position="node" />
+       </Output>
+       <Output
+         name="basin_outlet~coastal_center__y_coordinate"
+         caption="basin_outlet~coastal_center__y_coordinate[meters]"
+       >
+         <Definition valueType="real" position="node" />
+       </Output>
+     </GridRelatedCondition>
+     <GlobalOutput>
+       <Output name="model__time_step" caption="model__time_step[d]">
+         <Definition valueType="real" />
+       </Output>
+     </GlobalOutput>
+   </SolverDefinition>
+
+
+Source code of gendef.py that generates definition.xml is shown in :numref:`iricmi_pymt_util_gendef`.
+
+.. literalinclude:: ../../../../iricmi_pymt_util/iricmi_pymt_util/gendef.py
+   :name: iricmi_pymt_util_gendef
+   :language: python
+   :linenos:
+   :caption: source code of gendef.py

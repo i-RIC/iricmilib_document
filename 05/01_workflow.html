@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The workflow of iricmi_server and models &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples of sequences to exchange data" href="02_timing.html" />
+    <link rel="prev" title="How iRIC-MI works" href="../05_how_iricmi_works.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The workflow of <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-they-communicate">How they communicate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iricmi-server"><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialization">Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-step-processing">Time step processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finalization">Finalization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#models">Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Time step processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Finalization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02_timing.html">Examples of sequences to exchange data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_mapping.html">Mapping grid attributes values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_mapping_2d_3d.html">Mapping values between two dimensional and three dimensional grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_iricmi_run.html">What <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> do</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+      <li class="breadcrumb-item active">The workflow of <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/05/01_workflow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-workflow-of-iricmi-server-and-models">
+<span id="sec-sequence"></span><h1><a class="toc-backref" href="#id9" role="doc-backlink">The workflow of <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models</a><a class="headerlink" href="#the-workflow-of-iricmi-server-and-models" title="Permalink to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#the-workflow-of-iricmi-server-and-models" id="id9">The workflow of <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-they-communicate" id="id10">How they communicate</a></p></li>
+<li><p><a class="reference internal" href="#iricmi-server" id="id11"><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview" id="id12">Overview</a></p></li>
+<li><p><a class="reference internal" href="#initialization" id="id13">Initialization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#loading-information-about-models" id="id14">Loading information about models</a></p>
+<ul>
+<li><p><a class="reference internal" href="#loading-iricmi-project-xml" id="id15">Loading iricmi_project.xml</a></p></li>
+<li><p><a class="reference internal" href="#loading-project-xml-definition-xml-and-case1-input-cgn" id="id16">Loading project.xml, definition.xml, and Case1_input.cgn</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#initializing-mpi-to-communicate-with-models" id="id17">Initializing MPI to communicate with models</a></p></li>
+<li><p><a class="reference internal" href="#exchanging-data-with-models" id="id18">Exchanging data with models</a></p>
+<ul>
+<li><p><a class="reference internal" href="#receiving-data-from-models" id="id19">Receiving data from models</a></p></li>
+<li><p><a class="reference internal" href="#copying-values-from-output-to-input" id="id20">Copying values from “output” to “input”</a></p></li>
+<li><p><a class="reference internal" href="#sending-data-to-models" id="id21">Sending data to models</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#time-step-processing" id="id22">Time step processing</a></p>
+<ul>
+<li><p><a class="reference internal" href="#deciding-with-which-model-to-communicate" id="id23">Deciding with which model to communicate</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id24">Exchanging data with models</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id25">Receiving data from models</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id26">Copying values from “output” to “input”</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id27">Sending data to models</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#finalization" id="id28">Finalization</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#models" id="id29">Models</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id30">Overview</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id31">Initialization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#initializing-iricmi-library" id="id32">Initializing iricmi library</a></p>
+<ul>
+<li><p><a class="reference internal" href="#checking-the-mode" id="id33">Checking the mode</a></p></li>
+<li><p><a class="reference internal" href="#initializing-mpi-to-communicate-with-iricmi-server" id="id34">Initializing MPI to communicate with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a></p></li>
+<li><p><a class="reference internal" href="#copy-case1-cgn-to-case1-input-cgn" id="id35">Copy Case1.cgn to Case1_input.cgn</a></p></li>
+<li><p><a class="reference internal" href="#loading-information-about-the-model" id="id36">Loading information about the model</a></p></li>
+<li><p><a class="reference internal" href="#opening-case1-cgn-for-modifying" id="id37">Opening Case1.cgn for modifying</a></p></li>
+<li><p><a class="reference internal" href="#changing-current-directory-when-running-in-coupled-mode" id="id38">Changing current directory when running in “coupled” mode</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#registering-memory-address-to-iricmi-library" id="id39">Registering memory address to iricmi library</a></p></li>
+<li><p><a class="reference internal" href="#exchanging-data-with-other-models-through-iricmi-server-and-outputting-initial-condition" id="id40">Exchanging data with other models through <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>, and outputting initial condition</a></p>
+<ul>
+<li><p><a class="reference internal" href="#sends-data-to-iricmi-server" id="id41">Sends data to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a></p></li>
+<li><p><a class="reference internal" href="#receives-data-from-iricmi-server" id="id42">Receives data from <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a></p></li>
+<li><p><a class="reference internal" href="#stores-information-about-the-communication-with-iricmi-server" id="id43">Stores information about the communication with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a></p></li>
+<li><p><a class="reference internal" href="#outputs-initial-condition-to-case1-cgn" id="id44">Outputs initial condition to Case1.cgn</a></p></li>
+<li><p><a class="reference internal" href="#stores-information-about-outputting" id="id45">Stores information about outputting</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id7" id="id46">Time step processing</a></p>
+<ul>
+<li><p><a class="reference internal" href="#checking-condition-if-the-model-should-communicate-with-iricmi-server" id="id47">Checking condition if the model should communicate with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a></p></li>
+<li><p><a class="reference internal" href="#checking-condition-if-the-model-should-output-result-to-case1-cgn" id="id48">Checking condition if the model should output result to Case1.cgn</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id8" id="id49">Finalization</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>This section explains the workflow how <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models that implement iRIC-MI library works, to synchronize each other, and send or receive data.</p>
+<section id="how-they-communicate">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">How they communicate</a><a class="headerlink" href="#how-they-communicate" title="Permalink to this heading"></a></h2>
+<p>The feature is that the models do not communicate each other directly, but it always communicate through <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p>
+<p class="plantuml">
+<img src="../_images/plantuml-a117ccec44fe48e0f1e25307a989f300b34d13cd.png" alt="object &quot;iricmi_server&quot; as S
+object &quot;Model A&quot; as A
+object &quot;Model B&quot; as B
+object &quot;Model C&quot; as C
+
+S &lt;|--|&gt; A
+S &lt;|--|&gt; B
+S &lt;|--|&gt; C"/>
+</p>
+<p>This architecture is the key of the flexibility of iRIC-MI framework. It realize mutual communication between models
+without dead lock, and handling models running with different delta t values.</p>
+</section>
+<section id="iricmi-server">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a><a class="headerlink" href="#iricmi-server" title="Permalink to this heading"></a></h2>
+<section id="overview">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading"></a></h3>
+<p>The workflow consists of the steps below:</p>
+<ul class="simple">
+<li><p>Initialization</p></li>
+<li><p>Time step processing</p></li>
+<li><p>Finalization</p></li>
+</ul>
+<p class="plantuml">
+<img src="../_images/plantuml-a51124715c63b3ea5afe966520d1679cf8dc6121.png" alt="start
+:Initialization;
+repeat
+:Time step processing;
+repeat while (all models finished?)
+:Finalization;
+stop"/>
+</p>
+</section>
+<section id="initialization">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this heading"></a></h3>
+<p>The tasks below are done in the initialization step:</p>
+<ol class="arabic simple">
+<li><p>Loading information about models</p></li>
+<li><p>Initializing MPI to communicate with models</p></li>
+<li><p>Exchanging data with models</p></li>
+</ol>
+<section id="loading-information-about-models">
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">Loading information about models</a><a class="headerlink" href="#loading-information-about-models" title="Permalink to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> loads information about models in the steps below:</p>
+<ol class="arabic simple">
+<li><p>Loading iricmi_project.xml</p></li>
+<li><p>Loading project.xml, definition.xml, and Case1_input.cgn</p></li>
+</ol>
+<section id="loading-iricmi-project-xml">
+<h5><a class="toc-backref" href="#id15" role="doc-backlink">Loading iricmi_project.xml</a><a class="headerlink" href="#loading-iricmi-project-xml" title="Permalink to this heading"></a></h5>
+<p>Loads iricmi_project.xml to reads information about models and connections.
+<a class="reference internal" href="#iricmi-project-example"><span class="std std-numref">Listing 16</span></a> shows an example of iricmi_project.xml.</p>
+<p>The “name” attribute of &lt;Model/&gt; elements (in this case “global_send_c++” and “global_receive_c++”)
+are the name of subfolders in the project folder.</p>
+<p>The subfolders are expected to be iRIC project folders, that contains information that each model
+needs for running.</p>
+<div class="literal-block-wrapper docutils container" id="iricmi-project-example">
+<div class="code-block-caption"><span class="caption-number">Listing 16 </span><span class="caption-text">Example of iricmi_project.xml</span><a class="headerlink" href="#iricmi-project-example" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">&lt;iRICMIProject&gt;</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="nt">&lt;Models&gt;</span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="nt">&lt;Model</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;global_send_c++&quot;</span><span class="w"> </span><span class="na">nodes=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="nt">&lt;Model</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;global_receive_c++&quot;</span><span class="w"> </span><span class="na">nodes=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="nt">&lt;/Models&gt;</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="nt">&lt;Connections&gt;</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;global_send_c++&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;global&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;discharge&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 9</span><span class="w">      </span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;global_receive_c++&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;calculationCondition&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;discharge&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">10</span><span class="w">    </span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">11</span><span class="w">  </span><span class="nt">&lt;/Connections&gt;</span>
+<span class="linenos">12</span><span class="nt">&lt;/iRICMIProject&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Please refer to <a class="reference internal" href="../03/02_preparing_iricmi_project.html#sec-preparing-iricmi-project"><span class="std std-ref">Preparing iricmi_project.xml</span></a> about the information defined in iricmi_project.xml.</p>
+<p>For each subfolders referred in &lt;Model/&gt; element in iricmi_project.xml, do the next step.</p>
+</section>
+<section id="loading-project-xml-definition-xml-and-case1-input-cgn">
+<h5><a class="toc-backref" href="#id16" role="doc-backlink">Loading project.xml, definition.xml, and Case1_input.cgn</a><a class="headerlink" href="#loading-project-xml-definition-xml-and-case1-input-cgn" title="Permalink to this heading"></a></h5>
+<p>As written above, subfolders referred in iricmi_project.xml are expected to be iRIC project folders, and
+project.xml and Case1.cgn to be there.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models are launched,
+the models copy Case1.cgn to Case1_input.cgn, and <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> opens Case1_input.cgn in read only mode.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> reads project.xml, definition.xml, and Case1_input.cgn in the steps below:</p>
+<p>Loads project.xml in the subfolder. <a class="reference internal" href="#project-example"><span class="std std-numref">Listing 17</span></a> shows an example of project.xml.
+It actually contains much more information than shown below, and the information
+ignored by <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> is omitted.</p>
+<div class="literal-block-wrapper docutils container" id="project-example">
+<div class="code-block-caption"><span class="caption-number">Listing 17 </span><span class="caption-text">Example of project.xml</span><a class="headerlink" href="#project-example" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos">2</span><span class="nt">&lt;iRICProject</span><span class="w"> </span><span class="na">solverName=</span><span class="s">&quot;global_send_c++&quot;</span><span class="w"> </span><span class="na">solverVersion=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">3</span><span class="w">  </span>(omitted)
+<span class="linenos">4</span><span class="nt">&lt;/iRICProject&gt;</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> reads “solverName” and “solverVersion” attribute of &lt;iRICProject/&gt; element, to know
+which model the data in the subfolder is prepared for.</p>
+<p>Then, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> scans the “solvers” and “private/solvers” subfolder in the path referred by “IRICMI_ROOT_PATH” environmental variable.</p>
+<p>Each subfolder in “solvers” is expected to contains “definition.xml”, model executable, and DLLs needed to run the model.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> reads “definition.xml” in each subfolder, and tries to find the file that coinsides with the project.xml.</p>
+<p><a class="reference internal" href="#definition-example"><span class="std std-numref">Listing 18</span></a> shows an example of definition.xml (some information ignored by <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> is omitted).</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> reads “name” and “version” attributes of &lt;SolverDefinition/&gt; element. If they are equal to the values of
+“solverName” and “solverVersion” in project.xml, it is recognized to be the model for the project.</p>
+<div class="literal-block-wrapper docutils container" id="definition-example">
+<div class="code-block-caption"><span class="caption-number">Listing 18 </span><span class="caption-text">Example of definition.xml</span><a class="headerlink" href="#definition-example" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos"> 2</span><span class="nt">&lt;SolverDefinition</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="na">name=</span><span class="s">&quot;global_send_c++&quot;</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="na">version=</span><span class="s">&quot;1.0&quot;</span>
+<span class="linenos"> 5</span><span class="nt">&gt;</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="nt">&lt;CalculationCondition&gt;</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="nt">&lt;/CalculationCondition&gt;</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="nt">&lt;GlobalOutput&gt;</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;discharge&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Discharge&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">10</span><span class="w">      </span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">11</span><span class="w">    </span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">12</span><span class="w">  </span><span class="nt">&lt;/GlobalOutput&gt;</span>
+<span class="linenos">13</span><span class="nt">&lt;/SolverDefinition&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Then, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> allocates memory to store data exchanged between models.</p>
+<p>The data to be exchanged is the data referred in
+&lt;Connection/&gt; element in iricmi_project.xml, shown in numref:<cite>iricmi_project_example</cite>.</p>
+<p>If it is a global value, the memory to allocate is very small (it actually is a single scalar value).</p>
+<p>If it a grid attributes, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> reads Case1.cgn, to know the size of grids, and
+allocate memory to store the values of grid attribute (or output) defined at nodes, cells, or edges.</p>
+</section>
+</section>
+<section id="initializing-mpi-to-communicate-with-models">
+<h4><a class="toc-backref" href="#id17" role="doc-backlink">Initializing MPI to communicate with models</a><a class="headerlink" href="#initializing-mpi-to-communicate-with-models" title="Permalink to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> calls <code class="docutils literal notranslate"><span class="pre">MPI_Init()</span></code> to initialize MPI, and then set up communicators.</p>
+<p>This makes it possible to communicate with each models running in the project individually
+in the following steps.</p>
+</section>
+<section id="exchanging-data-with-models">
+<span id="sec-exchanging-data-with-models"></span><h4><a class="toc-backref" href="#id18" role="doc-backlink">Exchanging data with models</a><a class="headerlink" href="#exchanging-data-with-models" title="Permalink to this heading"></a></h4>
+<p>Exchange data with all models, so that all models are initialized appropriately.</p>
+<p>This process consists of the steps below:</p>
+<ol class="arabic simple">
+<li><p>Receiving data from models</p></li>
+<li><p>Copying values from “output” to “input”</p></li>
+<li><p>Sending data to models</p></li>
+</ol>
+<section id="receiving-data-from-models">
+<span id="sec-init-recieving-data-from-models"></span><h5><a class="toc-backref" href="#id19" role="doc-backlink">Receiving data from models</a><a class="headerlink" href="#receiving-data-from-models" title="Permalink to this heading"></a></h5>
+<p>Receives the values below from the model:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T\)</span> (Time)</p></li>
+<li><p><span class="math notranslate nohighlight">\(DT\)</span> (Exchange interval)</p></li>
+</ul>
+<p>In most cases, <span class="math notranslate nohighlight">\(T = 0\)</span>, and <span class="math notranslate nohighlight">\(DT\)</span> is equal to the delta t
+of the model.</p>
+<p>Then, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> asks if the model created a new grid, or changed grid coordinates.
+If new grid is created, or grid coordinates are changed, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> receive the data first.</p>
+<p>Then, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> checks the &lt;From/&gt; element in iricmi_project.xml, to know
+the values to receive.</p>
+<p>For example, in case of <a class="reference internal" href="#iricmi-project-example"><span class="std std-numref">Listing 16</span></a>, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> needs to
+receive “dischange” value from “global_send_c++” model.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> communicates with the model in the following steps:</p>
+<ul class="simple">
+<li><p>Sends the list of the data that model should send.</p></li>
+<li><p>Receives the data from models.</p></li>
+</ul>
+</section>
+<section id="copying-values-from-output-to-input">
+<span id="sec-copy-from-output-to-input"></span><h5><a class="toc-backref" href="#id20" role="doc-backlink">Copying values from “output” to “input”</a><a class="headerlink" href="#copying-values-from-output-to-input" title="Permalink to this heading"></a></h5>
+<p>Copy value from “output” to “input” inside <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p>
+<p>Copying is done based on information in &lt;Connection/&gt; element in iricmi_project.xml, to copy
+data from &lt;From/&gt; to &lt;To/&gt;.</p>
+<p>For data with single value (calculation condition, global output, etc.),
+actually the memory to store the data is shared, so no copying is needed.</p>
+<p>For data defined at grid nodes, cells or edges, the data is copied.</p>
+<p>It can happen that data is copyed between
+grids with different coordinates (for example data can be copyed between
+grid with cartesian coordinates, grid with boundary-fitted coordinates, or unstructured grid).
+In such cases, mapping (interpolation) is executed.</p>
+<p>Please refer to <a class="reference internal" href="03_mapping.html#sec-mapping-grid-attribute"><span class="std std-ref">Mapping grid attributes values</span></a> for detail.</p>
+</section>
+<section id="sending-data-to-models">
+<h5><a class="toc-backref" href="#id21" role="doc-backlink">Sending data to models</a><a class="headerlink" href="#sending-data-to-models" title="Permalink to this heading"></a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> checks the &lt;To/&gt; element in iricmi_project.xml, to know
+the values to send.</p>
+<p>For example, in case of <a class="reference internal" href="#iricmi-project-example"><span class="std std-numref">Listing 16</span></a>, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> needs to
+send “dischange” value to “global_receive_c++” model.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> communicates with model in the following steps:</p>
+<ul class="simple">
+<li><p>Sends the list of the data that model should receive.</p></li>
+<li><p>Sends the data to the model.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is important for good performance that <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models exchange data that
+they really needs.</p>
+<p>As explained above, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> recognize the data to exchange based on the definitions
+of connections. It means that it is no problem that the models define many inputs and outputs,
+that are not used in most cases. It doesn’t cost (cause <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> to use a lot of memory).</p>
+</div>
+</section>
+</section>
+</section>
+<section id="time-step-processing">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Time step processing</a><a class="headerlink" href="#time-step-processing" title="Permalink to this heading"></a></h3>
+<p>Tasks below are done in the “time step processing” step:</p>
+<ol class="arabic simple">
+<li><p>Deciding with which model to communicate</p></li>
+<li><p>Exchanging data with models</p></li>
+</ol>
+<section id="deciding-with-which-model-to-communicate">
+<h4><a class="toc-backref" href="#id23" role="doc-backlink">Deciding with which model to communicate</a><a class="headerlink" href="#deciding-with-which-model-to-communicate" title="Permalink to this heading"></a></h4>
+<p>Calculate <span class="math notranslate nohighlight">\(NT = T + DT\)</span> for each model (<span class="math notranslate nohighlight">\(NT\)</span> stands for “next T”),
+and calculates <span class="math notranslate nohighlight">\(NT_{min} = \min \{NT\}\)</span>.</p>
+<p>Then, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> decide to communicate with models with <span class="math notranslate nohighlight">\(NT\)</span> value smaller than
+<span class="math notranslate nohighlight">\(NT_{min} + T_{delta}\)</span>, considering truncation error.
+Currently, <span class="math notranslate nohighlight">\(T_{delta}\)</span> is hard coded to be 1.0E-6.</p>
+</section>
+<section id="id1">
+<h4><a class="toc-backref" href="#id24" role="doc-backlink">Exchanging data with models</a><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<p>This process consists of the steps below:</p>
+<ol class="arabic simple">
+<li><p>Receiving data from models</p></li>
+<li><p>Copying values from “output” to “input”</p></li>
+<li><p>Sending data to models</p></li>
+</ol>
+<section id="id2">
+<h5><a class="toc-backref" href="#id25" role="doc-backlink">Receiving data from models</a><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h5>
+<p>Receives <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(DT\)</span>, just like in the initialization step.</p>
+<p>If <span class="math notranslate nohighlight">\(DT = 0\)</span>, it means that the model entered finalization process.
+In that case, skip the following steps, and marks that the model is finished.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It can happen that the acutual <span class="math notranslate nohighlight">\(T\)</span> value of the model is different from
+<span class="math notranslate nohighlight">\(NT\)</span> calculated above. For example, with models that adopt variable <span class="math notranslate nohighlight">\(DT\)</span>.</p>
+<p>There is no problem with such cases.</p>
+</div>
+<p>Then, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> asks if the model created a new grid, or changed grid coordinates.
+If new grid is created, or grid coordinates are changed, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> receive the data first.</p>
+<p>Next, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> checks the &lt;From/&gt; element in iricmi_project.xml, to know
+the values to receive from the models.</p>
+<p>To achieve good performance, this step is different from that in initialization step.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> recognizes that the value of &lt;From/&gt; element should be received, if that
+satisfies one of the conditions below:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(NT_{from} &lt; NT_{to}\)</span> and <span class="math notranslate nohighlight">\(NT_{to} &lt; NT_{from} + DT_{from}\)</span>.
+<span class="math notranslate nohighlight">\(NT_{from}\)</span> is <span class="math notranslate nohighlight">\(NT\)</span> of the model in &lt;From/&gt;
+element, <span class="math notranslate nohighlight">\(NT_{to}\)</span> is <span class="math notranslate nohighlight">\(NT\)</span> of the model in &lt;To/&gt; element, and
+<span class="math notranslate nohighlight">\(DT_{from}\)</span> is <span class="math notranslate nohighlight">\(DT\)</span> of the model in &lt;From/&gt;.
+It means that the model in &lt;To/&gt; element will need the value of
+the model in &lt;From/&gt; element in the next step.</p></li>
+<li><p><span class="math notranslate nohighlight">\((T - T_{previous}) / DT_{previous} &gt; r_{overshoot}\)</span>. It means that actual
+<span class="math notranslate nohighlight">\(DT\)</span> for the model was much larger than declared in the last step,
+and model overshooted the other models.
+Currently <span class="math notranslate nohighlight">\(r_{overshoot}\)</span> is hard coded to be 1.5.</p></li>
+</ul>
+<p>After recognizing the values to received, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> recieve data just like in
+initialization step, with the following steps:</p>
+<ul class="simple">
+<li><p>Sends the list of the data that model should send.</p></li>
+<li><p>Receives the data from models.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h5><a class="toc-backref" href="#id26" role="doc-backlink">Copying values from “output” to “input”</a><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h5>
+<p>Copy value from “output” to “input” inside <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p>
+<p>This process is identical to that in the initialization step.</p>
+</section>
+<section id="id4">
+<h5><a class="toc-backref" href="#id27" role="doc-backlink">Sending data to models</a><a class="headerlink" href="#id4" title="Permalink to this heading"></a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> checks the &lt;To/&gt; element in iricmi_project.xml, to know
+the values to send to the models.</p>
+<p>To achieve good performance, this step is different from that in initialization step.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> recognizes the the value of &lt;To/&gt; element should be sent, if that
+satisfies the condition below:</p>
+<ul class="simple">
+<li><p>The value of <span class="math notranslate nohighlight">\(T_{to}\)</span> that the model passed to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> when
+it previously communicated, is smaller than the value of <span class="math notranslate nohighlight">\(T_{from}\)</span>
+when the model in &lt;From/&gt; element sent the value.</p></li>
+</ul>
+<p>After recognizing the values to send, <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> send data just like in initialization step,
+with the following steps:</p>
+<ul class="simple">
+<li><p>Sends the list of the data that model should receive.</p></li>
+<li><p>Sends the data to models.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> repeats this step, until all models are marked to be finished.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The logic above make it possible that <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> communicate with models
+that run with different exchange interval, stably.</p>
+<p>There is no problem to make connection in both way.</p>
+<p>Please refer to <a class="reference internal" href="02_timing.html#sec-examples-of-timings"><span class="std std-ref">Examples of sequences to exchange data</span></a>, to more deeply understand
+how <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> exchange data with models.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="finalization">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Finalization</a><a class="headerlink" href="#finalization" title="Permalink to this heading"></a></h3>
+<p>The tasks below are done in the finalization step:</p>
+<ol class="arabic simple">
+<li><p>Synchronize with all models by calling <code class="docutils literal notranslate"><span class="pre">MPI_Barrier()</span></code>.</p></li>
+<li><p>Finalize MPI, by calling <code class="docutils literal notranslate"><span class="pre">MPI_Finalize()</span></code>.</p></li>
+</ol>
+</section>
+</section>
+<section id="models">
+<h2><a class="toc-backref" href="#id29" role="doc-backlink">Models</a><a class="headerlink" href="#models" title="Permalink to this heading"></a></h2>
+<section id="id5">
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">Overview</a><a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>The workflow consists of the steps below:</p>
+<ul class="simple">
+<li><p>Initialization</p></li>
+<li><p>Time step processing</p></li>
+<li><p>Finalization</p></li>
+</ul>
+<p class="plantuml">
+<img src="../_images/plantuml-c390db1ad7eab0aca35be610ccfdf83486a54b78.png" alt="start
+:Initialization;
+repeat
+:Time step processing;
+repeat while (Satisfies finalization condition?)
+:Finalization;
+stop"/>
+</p>
+<p>In most solvers, “End time” is defined as calculation condition,
+and if “Time” exceeds “End time”, solver goes to finalization process.</p>
+</section>
+<section id="id6">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">Initialization</a><a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>The tasks below should be done in the initialization step:</p>
+<ol class="arabic simple">
+<li><p>Initializing iricmi library</p></li>
+<li><p>Registering memory address to iricmi library</p></li>
+<li><p>Exchanging data with other models through <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>, and outputting initial condition</p></li>
+</ol>
+<section id="initializing-iricmi-library">
+<h4><a class="toc-backref" href="#id32" role="doc-backlink">Initializing iricmi library</a><a class="headerlink" href="#initializing-iricmi-library" title="Permalink to this heading"></a></h4>
+<p>The model calls <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Init()</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Init()</span></code> internally do the followings:</p>
+<ol class="arabic simple">
+<li><p>Checking the mode</p></li>
+<li><p>Initializing MPI to communicate with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></p></li>
+<li><p>Copy Case1.cgn to Case1_input.cgn</p></li>
+<li><p>Loading information about the model</p></li>
+<li><p>Opening Case1.cgn for modifying</p></li>
+<li><p>Changing current directory when running in “coupled” mode</p></li>
+</ol>
+<section id="checking-the-mode">
+<h5><a class="toc-backref" href="#id33" role="doc-backlink">Checking the mode</a><a class="headerlink" href="#checking-the-mode" title="Permalink to this heading"></a></h5>
+<p>Check if the model is running in “standalone” mode or in “coupled” mode.</p>
+<p>Try to find iricmi_project.xml, and if it exists, iRIC-MI library recognize that the
+model is running in “coupled” mode. If not, “standalone” mode.</p>
+</section>
+<section id="initializing-mpi-to-communicate-with-iricmi-server">
+<h5><a class="toc-backref" href="#id34" role="doc-backlink">Initializing MPI to communicate with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a><a class="headerlink" href="#initializing-mpi-to-communicate-with-iricmi-server" title="Permalink to this heading"></a></h5>
+<p>It is similar to the step done in <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Init()</span></code> calls <code class="docutils literal notranslate"><span class="pre">MPI_Init()</span></code> to initialize MPI, and then set up communicator to
+communicate with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p>
+</section>
+<section id="copy-case1-cgn-to-case1-input-cgn">
+<h5><a class="toc-backref" href="#id35" role="doc-backlink">Copy Case1.cgn to Case1_input.cgn</a><a class="headerlink" href="#copy-case1-cgn-to-case1-input-cgn" title="Permalink to this heading"></a></h5>
+<p>Copy Case1.cgn to Case1_input.cgn.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The reason to copy is that <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and the models both needs to
+read the information in Case1.cgn.</p>
+<p>To safely access the information in Case1.cgn, the model copies Case1.cgn to
+Case1_input.cgn, and both <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and model
+open Case1_input.cgn in read only mode.</p>
+</div>
+</section>
+<section id="loading-information-about-the-model">
+<h5><a class="toc-backref" href="#id36" role="doc-backlink">Loading information about the model</a><a class="headerlink" href="#loading-information-about-the-model" title="Permalink to this heading"></a></h5>
+<p>It is similar to the step done in <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p>
+<p>It loads iricmi_project.xml (only in “coupled mode”), project.xml, definition.xml,
+and Case1_input.cgn, to prepare the container to regester the pointer of the memory
+that is allocated by the model.</p>
+</section>
+<section id="opening-case1-cgn-for-modifying">
+<h5><a class="toc-backref" href="#id37" role="doc-backlink">Opening Case1.cgn for modifying</a><a class="headerlink" href="#opening-case1-cgn-for-modifying" title="Permalink to this heading"></a></h5>
+<p>iRIC-MI output calculation results to Case1.cgn.</p>
+<p>For that purpose, <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Init()</span></code> opens Case1.cgn in modify mode.</p>
+</section>
+<section id="changing-current-directory-when-running-in-coupled-mode">
+<h5><a class="toc-backref" href="#id38" role="doc-backlink">Changing current directory when running in “coupled” mode</a><a class="headerlink" href="#changing-current-directory-when-running-in-coupled-mode" title="Permalink to this heading"></a></h5>
+<p>When running in “coupled” mode, change current directory to the project folder for the model.</p>
+<p>Please note that in “standalone” mode, when the model is launched, the current directory
+is the project folder, and in “coupled” mode, the current directory is the “root folder”.</p>
+<p>Because of the difference, without changing the current directory, if the model outputs files to
+the current directory, depending on the mode, the file will be saved to different directories.</p>
+<p>To avoid the confusing situation, iRIC-MI library automatically change the current directory,
+so that after calling <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Init()</span></code>, the current directory is the project folder.</p>
+</section>
+</section>
+<section id="registering-memory-address-to-iricmi-library">
+<h4><a class="toc-backref" href="#id39" role="doc-backlink">Registering memory address to iricmi library</a><a class="headerlink" href="#registering-memory-address-to-iricmi-library" title="Permalink to this heading"></a></h4>
+<p>The model should register the pointers of the memory that should be used to
+receive or send data  from / to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p>
+<p>Model developers can use <code class="docutils literal notranslate"><span class="pre">iRICMI_RIn_xxx</span></code> or <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_xxx</span></code> for this purpose. Please refer to
+<a class="reference internal" href="../07/03_registering_pointers.html#sec-functions-for-registering-pointers"><span class="std std-ref">Functions for registering pointers</span></a> for detail.</p>
+<p>At least, model developers should call the three functions below:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Time()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Exchange_Interval()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Dump_Interval()</span></code></p></li>
+</ul>
+<p>In the following sections, the values in the variables registered with the functions above
+are referred as <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(DT\)</span>, <span class="math notranslate nohighlight">\(DT_{dump}\)</span> for each.</p>
+</section>
+<section id="exchanging-data-with-other-models-through-iricmi-server-and-outputting-initial-condition">
+<h4><a class="toc-backref" href="#id40" role="doc-backlink">Exchanging data with other models through <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>, and outputting initial condition</a><a class="headerlink" href="#exchanging-data-with-other-models-through-iricmi-server-and-outputting-initial-condition" title="Permalink to this heading"></a></h4>
+<p>The model should call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code>. This function call will make the model
+exchange data with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> in the initialization step.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> internally do the followings:</p>
+<ol class="arabic simple">
+<li><p>Sends data to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></p></li>
+<li><p>Receives data from <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></p></li>
+<li><p>Stores information about the communication with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></p></li>
+<li><p>Outputs initial condition to Case1.cgn</p></li>
+<li><p>Stores information about outputting</p></li>
+</ol>
+<section id="sends-data-to-iricmi-server">
+<h5><a class="toc-backref" href="#id41" role="doc-backlink">Sends data to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a><a class="headerlink" href="#sends-data-to-iricmi-server" title="Permalink to this heading"></a></h5>
+<ol class="arabic simple">
+<li><p>The model sends <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(DT\)</span> to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>, from the memory address registered with
+<code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Time()</span></code> and <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Exchange_Interval()</span></code>.</p></li>
+<li><p>The model sends data to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>, with the following steps:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Receive the list of the data that model should send.</p></li>
+<li><p>Sends the data to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>When sending data, iRIC-MI library reads data from the memory address registered with <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_xxx()</span></code>.</p>
+</section>
+<section id="receives-data-from-iricmi-server">
+<h5><a class="toc-backref" href="#id42" role="doc-backlink">Receives data from <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a><a class="headerlink" href="#receives-data-from-iricmi-server" title="Permalink to this heading"></a></h5>
+<ol class="arabic simple">
+<li><p>The model receives data from <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>, with the following steps:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Receives the list of the data that model should receive.</p></li>
+<li><p>Receives the data from <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>When receiving data, iRIC-MI library writes data to the memory address registered with <code class="docutils literal notranslate"><span class="pre">iRICMI_RIn_xxx()</span></code>.</p>
+</section>
+<section id="stores-information-about-the-communication-with-iricmi-server">
+<h5><a class="toc-backref" href="#id43" role="doc-backlink">Stores information about the communication with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a><a class="headerlink" href="#stores-information-about-the-communication-with-iricmi-server" title="Permalink to this heading"></a></h5>
+<p>Stores the value of <span class="math notranslate nohighlight">\(T\)</span>, as <span class="math notranslate nohighlight">\(T_{last\_sync}\)</span>, that means
+“time that the model communicated with server last time”.</p>
+</section>
+<section id="outputs-initial-condition-to-case1-cgn">
+<h5><a class="toc-backref" href="#id44" role="doc-backlink">Outputs initial condition to Case1.cgn</a><a class="headerlink" href="#outputs-initial-condition-to-case1-cgn" title="Permalink to this heading"></a></h5>
+<p>Outputs the initial condition to Case1.cgn.</p>
+<p>When outputting data, iRIC-MI library reads data from the memory address registered with <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_xxx()</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the model developer want to control the timing to output calculation result to
+Case1.cgn, please do the followings:</p>
+<ul class="simple">
+<li><p>Register the variable to store dump interval using <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Dump_Interval()</span></code>,
+and stores negative value to the variable, for example, -1.</p></li>
+<li><p>At the timing to output calculation result, call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Dump()</span></code>.</p></li>
+</ul>
+</div>
+</section>
+<section id="stores-information-about-outputting">
+<h5><a class="toc-backref" href="#id45" role="doc-backlink">Stores information about outputting</a><a class="headerlink" href="#stores-information-about-outputting" title="Permalink to this heading"></a></h5>
+<p>Stores the value of <span class="math notranslate nohighlight">\(T\)</span> as <span class="math notranslate nohighlight">\(T_{last\_dump}\)</span>, that means
+“time that the model output the result last time”.</p>
+</section>
+</section>
+</section>
+<section id="id7">
+<h3><a class="toc-backref" href="#id46" role="doc-backlink">Time step processing</a><a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>In each time step in the loop, the model should do the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Calculating the values at the next time step</p></li>
+<li><p>Updating the value of time in the variable that the model registered with <code class="docutils literal notranslate"><span class="pre">iRICMI_ROut_Time()</span></code></p></li>
+<li><p>Calling <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code></p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync()</span></code> internally do the followings:</p>
+<ol class="arabic simple">
+<li><p>Checking condition if the model should communicate with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></p></li>
+<li><p>Sending data to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></p></li>
+<li><p>Receiving data from <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></p></li>
+<li><p>Stores information about the communication with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></p></li>
+<li><p>Checking condition if the model should output result to Case1.cgn</p></li>
+<li><p>Outputting initial condition to Case1.cgn</p></li>
+<li><p>Storing information about outputting</p></li>
+</ol>
+<p>The steps other than 1 and 5 are the same to those in the initialization step.</p>
+<p>The logic in step 1 and 5 are described below:</p>
+<section id="checking-condition-if-the-model-should-communicate-with-iricmi-server">
+<h4><a class="toc-backref" href="#id47" role="doc-backlink">Checking condition if the model should communicate with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code></a><a class="headerlink" href="#checking-condition-if-the-model-should-communicate-with-iricmi-server" title="Permalink to this heading"></a></h4>
+<p>Check if the condition below is satisfied.</p>
+<div class="math notranslate nohighlight">
+\[T \geq T_{last\_sync} + DT\]</div>
+<p>If not satisfied, iRIC-MI library decides that the model does not need to
+communicate with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>, and skips step 2 to 4.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For example, when the delta t of the model is very small, it is efficient that
+the model passes DT value larger than the delta t, to avoid communicating
+with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> too often.</p>
+</div>
+</section>
+<section id="checking-condition-if-the-model-should-output-result-to-case1-cgn">
+<h4><a class="toc-backref" href="#id48" role="doc-backlink">Checking condition if the model should output result to Case1.cgn</a><a class="headerlink" href="#checking-condition-if-the-model-should-output-result-to-case1-cgn" title="Permalink to this heading"></a></h4>
+<p>Check if the condition below is satisfied.</p>
+<div class="math notranslate nohighlight">
+\[T \geq T_{last\_dump} + DT_{dump}\]</div>
+<p>If not satisfied, iRIC-MI library decides that the model does not need to
+output calculation result, and skips step 6 and 7.</p>
+</section>
+</section>
+<section id="id8">
+<h3><a class="toc-backref" href="#id49" role="doc-backlink">Finalization</a><a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p>The model should call <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Terminate()</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Terminate()</span></code> internally do the followings:</p>
+<ol class="arabic simple">
+<li><p>Close Case1.cgn.</p></li>
+<li><p>Deletes Case1_input.cgn.</p></li>
+<li><p>Overwrite <span class="math notranslate nohighlight">\(DT\)</span> value to 0, and sends <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(DT\)</span> to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code>.</p></li>
+<li><p>Synchronize with <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and all other models by calling <code class="docutils literal notranslate"><span class="pre">MPI_Barrier</span></code>.</p></li>
+<li><p>Finalize MPI, by calling <code class="docutils literal notranslate"><span class="pre">MPI_Finalize()</span></code>.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../05_how_iricmi_works.html" class="btn btn-neutral float-left" title="How iRIC-MI works" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02_timing.html" class="btn btn-neutral float-right" title="Examples of sequences to exchange data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

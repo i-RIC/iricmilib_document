@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Types of input and output &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tips" href="05_tips.html" />
+    <link rel="prev" title="Developing calculator" href="03_developing_calculator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_creating_solver_def.html">Creating “definition.xml”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_developing_model.html">Developing models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_developing_calculator.html">Developing calculator</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Types of input and output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calculation-condition-global-output">Calculation condition / global output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grid-attribute">Grid attribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boundary-condition">Boundary condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#complex-type-grid-attribute">Complex type grid attribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05_tips.html">Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../04_how_to_develop_models.html">How to develop models</a></li>
+      <li class="breadcrumb-item active">Types of input and output</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/04/04_io_types.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="types-of-input-and-output">
+<span id="sec-types-of-io"></span><h1>Types of input and output<a class="headerlink" href="#types-of-input-and-output" title="Permalink to this heading"></a></h1>
+<p>This section describes about the types of input and output that iRIC-MI can handle.</p>
+<p>The list of types are shown below:</p>
+<ul class="simple">
+<li><p>Calculation condition / global output</p></li>
+<li><p>Grid attribute</p></li>
+<li><p>Boundary condition</p></li>
+<li><p>Complex type grid attribute</p></li>
+</ul>
+<p>iRIC-MI allows solver developers to define the types of input / output in
+<a class="reference internal" href="#table-types-of-io"><span class="std std-numref">Table 5</span></a> for all of the types above:</p>
+<span id="table-types-of-io"></span><table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Types of I/O</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Function of iRIC-MI library to handle data</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Input value</p></td>
+<td><p>iRICMI_Read_xxxx()</p></td>
+</tr>
+<tr class="row-odd"><td><p>Time dependent input value</p></td>
+<td><p>iRICMI_RIn_xxxx()</p></td>
+</tr>
+<tr class="row-even"><td><p>Time dependent output value</p></td>
+<td><p>iRICMI_ROut_xxxx()</p></td>
+</tr>
+</tbody>
+</table>
+<section id="calculation-condition-global-output">
+<h2>Calculation condition / global output<a class="headerlink" href="#calculation-condition-global-output" title="Permalink to this heading"></a></h2>
+<p>Calculation condition (for input) and global output (for output) is the type that
+only one value is defined globally.</p>
+<p>Examples of calculation condition and global output is listed below:</p>
+<ul class="simple">
+<li><p>Input value</p>
+<ul>
+<li><p>Delta t</p></li>
+<li><p>Calculation end time</p></li>
+</ul>
+</li>
+<li><p>Time dependent input value</p>
+<ul>
+<li><p>Discharge at the upstream</p></li>
+</ul>
+</li>
+<li><p>Time dependent output value</p>
+<ul>
+<li><p>Discharge at the downstream</p></li>
+</ul>
+</li>
+</ul>
+<p>Refer to <a class="reference internal" href="../07/02/01_calccond.html#sec-read-calculation-conditions"><span class="std std-ref">Calculation conditions</span></a> (input value) and
+<a class="reference internal" href="../07/03/02_global.html#sec-rio-calculation-conditions"><span class="std std-ref">Calculation condition / global output</span></a> (time dependent input and output value)
+for the iRIC-MI library functions to handle this type of data.</p>
+</section>
+<section id="grid-attribute">
+<h2>Grid attribute<a class="headerlink" href="#grid-attribute" title="Permalink to this heading"></a></h2>
+<p>Grid attribute is the type that defines values at grid nodes, cells, or edges.</p>
+<p>Examples of grid attribute is listed below:</p>
+<ul class="simple">
+<li><p>Input value</p>
+<ul>
+<li><p>Elevation</p></li>
+<li><p>Roughness</p></li>
+</ul>
+</li>
+<li><p>Time dependent input value</p>
+<ul>
+<li><p>Rainfall</p></li>
+</ul>
+</li>
+<li><p>Time dependent output value</p>
+<ul>
+<li><p>Depth</p></li>
+<li><p>Velocity</p></li>
+<li><p>Froude number</p></li>
+</ul>
+</li>
+</ul>
+<p>When the grid shapes are the different for each models, mapping is executed when the data is
+sent to another model. Please refer to <a class="reference internal" href="../05/03_mapping.html#sec-mapping-grid-attribute"><span class="std std-ref">Mapping grid attributes values</span></a> for detail.</p>
+<p>Refer to <a class="reference internal" href="../07/02/02_grid.html#sec-read-grid"><span class="std std-ref">Grid coordinates and attributes</span></a> (input value) and
+<a class="reference internal" href="../07/03/03_grid.html#sec-rio-grid-attributes"><span class="std std-ref">Grid coordinates and attributes</span></a> (time dependent input and output value)
+for the iRIC-MI library functions to handle this type of data.</p>
+</section>
+<section id="boundary-condition">
+<h2>Boundary condition<a class="headerlink" href="#boundary-condition" title="Permalink to this heading"></a></h2>
+<p>Boundary condition is the type that defines values at some nodes, cells, or edges of grid.</p>
+<p>The difference of boundary condition from grid attribute is as follows:</p>
+<ul class="simple">
+<li><p>Grid attribute: value is defined at all nodes or cells</p></li>
+<li><p>Boundary condition: value is defined only at one (or several) nodes, cells or edges</p></li>
+</ul>
+<p>Examples of boundary condition type are inflow, outflow, pump, culvart.</p>
+<p>Examples of values defined at boundary condition is listed below:</p>
+<ul class="simple">
+<li><p>Input value</p>
+<ul>
+<li><p>Radius of culvart</p></li>
+<li><p>The shape of culvart (box, circle, ellipse etc.)</p></li>
+</ul>
+</li>
+<li><p>Time dependent input value</p>
+<ul>
+<li><p>Discharge of inflow</p></li>
+</ul>
+</li>
+<li><p>Time dependent output value</p>
+<ul>
+<li><p>Discharge of outflow</p></li>
+<li><p>Water elevation at outlet</p></li>
+</ul>
+</li>
+</ul>
+<p>Refer to <a class="reference internal" href="../07/02/03_bc.html#sec-read-bc"><span class="std std-ref">Boundary conditions</span></a> (input value) and
+<a class="reference internal" href="../07/03/04_bc.html#sec-rio-bc"><span class="std std-ref">Boundary conditions</span></a> (time dependent input and output value)
+for the iRIC-MI library functions to handle this type of data.</p>
+<p>For boundary conditions, user needs to specify where the boundary condition is defined.
+You can use iRICMI_Read_BC_IndicesSize() and iRICMI_Read_BC_Indices().</p>
+</section>
+<section id="complex-type-grid-attribute">
+<h2>Complex type grid attribute<a class="headerlink" href="#complex-type-grid-attribute" title="Permalink to this heading"></a></h2>
+<p>Complex type grid attribute is the type that defines groups at nodes or cells, and for each
+group values are defined.</p>
+<p>The difference of this type from normal grid attribute is as follows:</p>
+<ul class="simple">
+<li><p>Grid attribute: value are individually set for each node or cells</p></li>
+<li><p>Complex type grid attribute: the value set for eacn node or cells are actually group ID (integer), and values
+are input for each group.</p></li>
+</ul>
+<p>Examples of complex type grid attribute are basin, river channel area, city blocks.</p>
+<p>Examples of values defined at complex type grid attribute is listed below:</p>
+<ul class="simple">
+<li><p>Input value</p>
+<ul>
+<li><p>Total number of people in city block</p></li>
+</ul>
+</li>
+<li><p>Time dependent input value</p>
+<ul>
+<li><p>(No example)</p></li>
+</ul>
+</li>
+<li><p>Time dependent output value</p>
+<ul>
+<li><p>Total rainfall of basin</p></li>
+</ul>
+</li>
+</ul>
+<p>Refer to <a class="reference internal" href="../07/02/04_complex.html#sec-read-complex-att"><span class="std std-ref">Complex type grid attributes</span></a> (input value) and
+<a class="reference internal" href="../07/03/05_complex.html#sec-rio-complex-att"><span class="std std-ref">Complex type grid attributes</span></a> (time dependent input and output value)
+for the iRIC-MI library functions to handle this type of data.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03_developing_calculator.html" class="btn btn-neutral float-left" title="Developing calculator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05_tips.html" class="btn btn-neutral float-right" title="Tips" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+.. _sec_sample_model_grid2d3d:
+
+``grid2d3d``
+=============================================
+
+``grid2d3d`` is a model that reads two dimensional grid, generate three dimensional grid inside,
+and send values defined at grid nodes, cells, and edges of two dimensional and three dimensional grids.
+It also receive values defined at grid nodes, cells, and edges.
+
+Also it is possible to change the grid coordinates at every time step, by giving dx and dy values other than zero.
+
+In the sample project, two regions are defined for model ``grid2d3d``, and the values are exchanged
+in both direction.
+
+``grid2d3d`` is implemented in FORTRAN, C++ and Python. On this page FORTRAN version is explained.
+
+``grid2d3d``
+--------------------------
+
+:numref:`grid2d3d_fortran_definition` shows "definition.xml" of ``grid2d3d``, and
+:numref:`grid2d3d_fortran_main_f90` shows the source code of ``grid2d3d``.
+
+The important points are as follows:
+
+* In :numref:`grid2d3d_fortran_definition`, two \<GridType\> element is defined. The first one with name"input" is for two dimensional grid, and the other one with name "output3d" is for three dimensional grid. It is important that the for \<GridType\> with name "output3d", attribute "post" is defined, and the value is "true". It means that the grid should not be created in Pre-processing window, but generated inside the model, and used only for post-processing.
+* Output data is defined for both two dimensional grid and three dimensional grid. For two dimensional grid, the names are "outputNode2d", "outputCell2d", etc. For three dimensional grid, the names are "outputNode3d", "outputCell3d", etc.
+* Time dependent input data is defined for both two dimensional grid and three dimensional grid. For two dimensional grid, the names are "inputNode2d", "inputCell2d", etc. For three dimensional grid, the names are "inputNode3d", "inputCell3d", etc.
+* Line 95 of :numref:`grid2d3d_fortran_main_f90` calls :ref:`sec_ref_iRICMI_RIn_Grid3d_Coords_WithGridId`, to output the grid. The three dimensional grid is saved to Case1.cgn, and also sent to ``iricmi_server``. It is important that the value of the first argument is "output3d", that matches the name of grid type defined in :numref:`grid2d3d_fortran_definition`.
+* Line 103 and 104 of :numref:`grid2d3d_fortran_main_f90` calls :ref:`sec_ref_iRICMI_ROut_Grid2d_Coords_WithGridId` and :ref:`sec_ref_iRICMI_ROut_Grid3d_Coords_WithGridId`. Calling these subroutines, the model passes the variables that stores the coordinates of the grid, and informs that the shape of the grids can change.
+
+.. literalinclude:: ../../../../testmodels/grid2d3d_fortran/definition.xml
+   :name: grid2d3d_fortran_definition
+   :language: xml
+   :linenos:
+   :caption: definition.xml of ``grid2d3d``
+
+.. literalinclude:: ../../../../testmodels/grid2d3d_fortran/main.f90
+   :name: grid2d3d_fortran_main_f90
+   :language: fortran
+   :linenos:
+   :caption: source code main.f90 of ``grid2d3d``
+
+Project data
+---------------
+
+The project data to run ``grid2d3d`` is stored in testdata/grid2d3d_fortran folder.
+
+:numref:`grid2d3d_fortran_iricmi_project` shows iricmi_project.xml. You can see that
+connections are defined to exchange data between two regions, for both two dimensional and three dimensional grids.
+
+:numref:`image_grid2d3d_region1_input` and :numref:`image_grid2d3d_region2_input` shows the shape of grids defined for "region1" and "region2".
+The gray area in :numref:`image_grid2d3d_region2_input` corresponds to the grid region of "region1", so the grid of "region2" is inside that of "region1".
+
+For "region2", dx = 0.01, dy = -0.02. It means that for "region2" the region of the grids slide every time step.
+
+As explained in :ref:`sec_how_to_run_coupled`, you can run the models for the project, by "chdir"ing to the
+project folder, and launch ``iricmi_run``.
+
+.. literalinclude:: ../../../../testdata/grid2d3d_fortran/iricmi_project.xml
+   :name: grid2d3d_fortran_iricmi_project
+   :language: xml
+   :linenos:
+   :caption: iricmi_project.xml for ``grid2d3d``
+
+.. _image_grid2d3d_region1_input:
+
+.. figure:: images/grid2d3d_region1_input.png
+
+   The grid defined for "region1"
+
+.. _image_grid2d3d_region2_input:
+
+.. figure:: images/grid2d3d_region2_input.png
+
+   The grid defined for "region2"
+
+
+Result
+-----------
+
+The screenshots to visualize the calculation result are shown from 
+:numref:`image_grid2d3d_region1_2d_output1` to :numref:`image_grid2d3d_region2_3d_received100`.
+
+From the screenshots, we can check the followings:
+* Mapping grid atribute values works for both two dimensional and three dimensional grids.
+* When the grid coordinates are changed for each time step, it is applied to mapping result for both two dimensional and three dimensional grids.
+
+.. _image_grid2d3d_region1_2d_output1:
+
+.. figure:: images/grid2d3d_region1_2d_output1.png
+
+   outputNode2d of region1 (t = 0)
+
+.. _image_grid2d3d_region1_2d_output100:
+
+.. figure:: images/grid2d3d_region1_2d_output100.png
+
+   outputNode2d of region1 (t = 100)
+
+.. _image_grid2d3d_region1_2d_received1:
+
+.. figure:: images/grid2d3d_region1_2d_received1.png
+
+   receivedNode2d of region1 (t = 0)
+
+.. _image_grid2d3d_region1_2d_received100:
+
+.. figure:: images/grid2d3d_region1_2d_received100.png
+
+   receivedNode2d of region1 (t = 100)
+
+.. _image_grid2d3d_region2_2d_output1:
+
+.. figure:: images/grid2d3d_region2_2d_output1.png
+
+   outputNode2d of region2 (t = 0)
+
+.. _image_grid2d3d_region2_2d_output100:
+
+.. figure:: images/grid2d3d_region2_2d_output100.png
+
+   outputNode2d of region2 (t = 100)
+
+.. _image_grid2d3d_region2_2d_received1:
+
+.. figure:: images/grid2d3d_region2_2d_received1.png
+
+   receivedNode2d of region2 (t = 0)
+
+.. _image_grid2d3d_region2_2d_received100:
+
+.. figure:: images/grid2d3d_region2_2d_received100.png
+
+   receivedNode2d of region2 (t = 100)
+
+.. _image_grid2d3d_region1_3d_output1:
+
+.. figure:: images/grid2d3d_region1_3d_output1.png
+
+   outputNode3d of region1 (t = 0)
+
+.. _image_grid2d3d_region1_3d_output100:
+
+.. figure:: images/grid2d3d_region1_3d_output100.png
+
+   outputNode3d of region1 (t = 100)
+
+.. _image_grid2d3d_region1_3d_received1:
+
+.. figure:: images/grid2d3d_region1_3d_received1.png
+
+   receivedNode3d of region1 (t = 0)
+
+.. _image_grid2d3d_region1_3d_received100:
+
+.. figure:: images/grid2d3d_region1_3d_received100.png
+
+   receivedNode3d of region1 (t = 100)
+
+.. _image_grid2d3d_region2_3d_output1:
+
+.. figure:: images/grid2d3d_region2_3d_output1.png
+
+   outputNode3d of region2 (t = 0)
+
+.. _image_grid2d3d_region2_3d_output100:
+
+.. figure:: images/grid2d3d_region2_3d_output100.png
+
+   outputNode3d of region2 (t = 100)
+
+.. _image_grid2d3d_region2_3d_received1:
+
+.. figure:: images/grid2d3d_region2_3d_received1.png
+
+   receivedNode3d of region2 (t = 0)
+
+.. _image_grid2d3d_region2_3d_received100:
+
+.. figure:: images/grid2d3d_region2_3d_received100.png
+
+   receivedNode3d of region2 (t = 100)

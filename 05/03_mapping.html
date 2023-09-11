@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapping grid attributes values &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mapping values between two dimensional and three dimensional grids" href="03_mapping_2d_3d.html" />
+    <link rel="prev" title="Examples of sequences to exchange data" href="02_timing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_workflow.html">The workflow of <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_timing.html">Examples of sequences to exchange data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mapping grid attributes values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#values-defined-at-nodes-or-cells">Values defined at nodes or cells</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mapping-from">Mapping from…</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mapping-to">Mapping to…</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#values-defined-at-edges">Values defined at edges</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03_mapping_2d_3d.html">Mapping values between two dimensional and three dimensional grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_iricmi_run.html">What <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> do</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+      <li class="breadcrumb-item active">Mapping grid attributes values</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/05/03_mapping.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mapping-grid-attributes-values">
+<span id="sec-mapping-grid-attribute"></span><h1>Mapping grid attributes values<a class="headerlink" href="#mapping-grid-attributes-values" title="Permalink to this heading"></a></h1>
+<p>As explained in <a class="reference internal" href="01_workflow.html#sec-copy-from-output-to-input"><span class="std std-ref">Copying values from “output” to “input”</span></a>,
+when making connection between grid attributes of models, it can happen that the coordinates of grids
+are different between input and output.</p>
+<p>In such cases, we can not just copy values, but need to map values.</p>
+<p>This section describes how the mapping is executed.</p>
+<section id="values-defined-at-nodes-or-cells">
+<h2>Values defined at nodes or cells<a class="headerlink" href="#values-defined-at-nodes-or-cells" title="Permalink to this heading"></a></h2>
+<p>The patterns are listed below:</p>
+<ul class="simple">
+<li><p>Map from node to node</p></li>
+<li><p>Map from node to cell</p></li>
+<li><p>Map from cell to node</p></li>
+<li><p>Map from cell to cell</p></li>
+</ul>
+<p>It is implemented as combinations of below:</p>
+<section id="mapping-from">
+<h3>Mapping from…<a class="headerlink" href="#mapping-from" title="Permalink to this heading"></a></h3>
+<section id="values-defined-at-nodes">
+<h4>Values defined at nodes<a class="headerlink" href="#values-defined-at-nodes" title="Permalink to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Find the cell that contains the “point” that we want to map to.</p></li>
+<li><p>Calculate the “weights” of the nodes of the cell. The node near to the point has heavier weight.</p></li>
+<li><p>Calculate the mapped value as weighted average of values defined at nodes.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For step 1., vtkPointSet::FindCell() is used.</p>
+<p>Please refer to <a class="reference external" href="https://vtk.org/doc/nightly/html/classvtkPointSet.html">https://vtk.org/doc/nightly/html/classvtkPointSet.html</a> for detail.</p>
+</div>
+<p><a class="reference internal" href="#image-mapping-node"><span class="std std-numref">Fig. 3</span></a> shows an image of mapping values defined at nodes.
+To calculate the value defined at the gray circle, the values defined at red circles are used.</p>
+<figure class="align-default" id="id3">
+<span id="image-mapping-node"></span><img alt="../_images/mapping_node.png" src="../_images/mapping_node.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Image of mapping values defined at nodes</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="values-defined-at-cells">
+<h4>Values defined at cells<a class="headerlink" href="#values-defined-at-cells" title="Permalink to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Find the cell that contains the “point” that we want to map to.</p></li>
+<li><p>Just use the value defined at that cell, as mapped value.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For step 1., vtkPointSet::FindCell() is used.</p>
+<p>Please refer to <a class="reference external" href="https://vtk.org/doc/nightly/html/classvtkPointSet.html">https://vtk.org/doc/nightly/html/classvtkPointSet.html</a> for detail.</p>
+</div>
+<p><a class="reference internal" href="#image-mapping-cell"><span class="std std-numref">Fig. 4</span></a> shows an image of mapping values defined at cells.
+For the value of the cell whose center is defined at the gray circle, the value defined the cell with bold border lines is used.</p>
+<figure class="align-default" id="id4">
+<span id="image-mapping-cell"></span><img alt="../_images/mapping_cell.png" src="../_images/mapping_cell.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Image of mapping values defined at cells</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="mapping-to">
+<h3>Mapping to…<a class="headerlink" href="#mapping-to" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h4>Values defined at nodes<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<p>As the “point” referred in “Mapping from…” section, use node position.</p>
+</section>
+<section id="id2">
+<h4>Values defined at cells<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<p>As the “point” referred in “Mapping from…” section, use cell center position.</p>
+</section>
+</section>
+</section>
+<section id="values-defined-at-edges">
+<h2>Values defined at edges<a class="headerlink" href="#values-defined-at-edges" title="Permalink to this heading"></a></h2>
+<p>Values defined at edges are mapped in a different way than nodes or cells,</p>
+<p>We expect that values defined at edges will be mapped to edges of a grid of another models, not nodes or cells.
+We also expect that the edges are defined at the same line. For nodes and cells, we expect that the grid shapes can be very different, in cases, but for edges we do not.</p>
+<p>Mapping values defined at edges is implemented like below:</p>
+<ol class="arabic simple">
+<li><p>Calculate the center of each edge.</p></li>
+<li><p>Find the edge whose center is the <strong>nearest</strong>.</p></li>
+<li><p>Just use the value defined at that edge, as mapped value.</p></li>
+</ol>
+<p>We expect that when mapping values defined at edges, usually you want to map values at partial areas (for example where grids touch each other), In such cases, please prepare the variable to temporary stores the values at all edges, exchange data, then copy the values you want to use.</p>
+<p><a class="reference internal" href="#image-mapping-edge"><span class="std std-numref">Fig. 5</span></a> shows an image of mapping values defined at edges.
+For the value of the edges whose center is defined at the gray circle, the value defined the edge with red circles are used.</p>
+<figure class="align-default" id="id5">
+<span id="image-mapping-edge"></span><img alt="../_images/mapping_edge.png" src="../_images/mapping_edge.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Image of mapping values defined at edges</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_timing.html" class="btn btn-neutral float-left" title="Examples of sequences to exchange data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_mapping_2d_3d.html" class="btn btn-neutral float-right" title="Mapping values between two dimensional and three dimensional grids" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

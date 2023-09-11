@@ -1,0 +1,184 @@
+.. _sec_ref_iRICMI_Geo_RiverSurvey_Read_FixedPointR:
+
+iRICMI_Geo_RiverSurvey_Read_FixedPointR
+=======================================
+
+Reads the data of right bank extension line of the crosssection.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Geo_RiverSurvey_Read_FixedPointR(id, pointid, set, directionX, directionY, index, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Geo_RiverSurvey_Read_FixedPointR(id, pointid, set, directionX, directionY, index)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   set, directionX, directionY, index = iRICMI_Geo_RiverSurvey_Read_FixedPointR(id, pointid)
+
+Arguments and returned value
+----------------------------
+
+id
+~~
+
+.. list-table:: Information about id
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - id
+   * - I/O
+     - Input
+
+   * - Description
+     - River Survey Data ID
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+pointid
+~~~~~~~
+
+.. list-table:: Information about pointid
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - pointid
+   * - I/O
+     - Input
+
+   * - Description
+     - Crosssection ID (starts from 1)
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+set
+~~~
+
+.. list-table:: Information about set
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - set
+   * - I/O
+     - Output
+
+   * - Description
+     - If defined, the value is 1
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+directionX
+~~~~~~~~~~
+
+.. list-table:: Information about directionX
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - directionX
+   * - I/O
+     - Output
+
+   * - Description
+     - X component of normalized direction vector
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+directionY
+~~~~~~~~~~
+
+.. list-table:: Information about directionY
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - directionY
+   * - I/O
+     - Output
+
+   * - Description
+     - Y component of normalized direction vector
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+index
+~~~~~
+
+.. list-table:: Information about index
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - index
+   * - I/O
+     - Output
+
+   * - Description
+     - The ID of the altitude data where the left bank extension line starts
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

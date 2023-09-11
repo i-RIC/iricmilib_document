@@ -1,0 +1,24 @@
+.. _sec_read_geo:
+
+Geographic data
+================================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ../refs/iRICMI_Read_Geo_Count
+   ../refs/iRICMI_Read_Geo_Filename
+   ../refs/iRICMI_Geo_RiverSurvey_Open
+   ../refs/iRICMI_Geo_RiverSurvey_Read_Count
+   ../refs/iRICMI_Geo_RiverSurvey_Read_Position
+   ../refs/iRICMI_Geo_RiverSurvey_Read_Direction
+   ../refs/iRICMI_Geo_RiverSurvey_Read_Name
+   ../refs/iRICMI_Geo_RiverSurvey_Read_RealName
+   ../refs/iRICMI_Geo_RiverSurvey_Read_LeftShift
+   ../refs/iRICMI_Geo_RiverSurvey_Read_AltitudeCount
+   ../refs/iRICMI_Geo_RiverSurvey_Read_Altitudes
+   ../refs/iRICMI_Geo_RiverSurvey_Read_FixedPointL
+   ../refs/iRICMI_Geo_RiverSurvey_Read_FixedPointR
+   ../refs/iRICMI_Geo_RiverSurvey_Read_WaterSurfaceElevation
+   ../refs/iRICMI_Geo_RiverSurvey_Close

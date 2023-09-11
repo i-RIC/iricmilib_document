@@ -1,0 +1,47 @@
+Overview
+================
+
+The workflow to develop a model consists of the steps below:
+
+1. Create "definition.xml"
+2. Develop a model using iricmi library.
+3. Deploy the files to "solvers" folder
+
+.. _sec_create_def_abst:
+
+Create "definition.xml"
+----------------------------------
+
+definition.xml is the file that defines the interface of the model.
+
+It is loaded by ``iricmi_run``, ``iricmi_server``, and iRIC-MI library.
+
+Please refer to :ref:`sec_creating_definition_xml` for detail about how to create it.
+
+
+.. _sec_develop_using_iricmi:
+
+Develop a model using iricmi library
+--------------------------------------
+
+Develop model using programming languages for which iRIC-MI library is prepared.
+
+Currently, iRIC-MI library is prepared for the following languages:
+
+* C/C++
+* FORTRAN
+* Python
+
+Please refer to :ref:`sec_developing_model` for detail.
+
+Deploy the files to "solvers" folder
+--------------------------------------
+
+Create a new subfolder under "private/solvers" folder in the path that
+"IRICMI_ROOT_PATH" environmental variable refers, and deploy
+definition.xml and the model executable to that folder.
+
+``iricmi_run`` etc. scans the subfolders in "solvers" and "private/solvers" folder to
+find models to run. "solvers" forlder is for official solvers, and we recommend you
+use "private/solvers" folder to store the private solvers you've developed, to avoid confusion.
+

@@ -1,0 +1,25 @@
+.. iRIC-MI Documentation documentation master file
+
+iRIC-MI Documentation
+=========================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   01_intro
+   02_install
+   03_how_to_run
+   04_how_to_develop_models
+   05_how_iricmi_works
+   07_iricmilib_ref
+   08_sample_models
+   09_iricmi_pymt_util
+   10_future_works
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

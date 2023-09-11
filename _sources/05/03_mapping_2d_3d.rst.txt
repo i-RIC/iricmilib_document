@@ -1,0 +1,22 @@
+.. _sec_mapping_values_2d_3d:
+
+Mapping values between two dimensional and three dimensional grids
+=========================================================================
+
+When the grid dimensions (2D or 3D) are the same, iRIC-MI automatically map values between grid attributes (Please refer to :ref:`sec_mapping_grid_attribute` for detail).
+
+In case grid dimensions are different, solver developers needs to calculate the values defined at three dimensional grid from those defined at two dimensional grid, or vice versa.
+
+iRIC-MI allows solver developers to read two dimensional grid created using iRIC GUI, then divide it vertically to generate three dimensional grid, and save it to file. Then, solver developer can use both two dimensional grid and three dimensional grid for exchanging data with other models.
+
+Example are explained below:
+
+Two dimensional grid to three dimensinal grid
+-------------------------------------------------
+
+Recieve two dimensional data like rainfall, use that data for three dimensional calculation, and output result like velocity, pressure to three dimensional grids.
+
+Three dimensional grid to two dimensional grid
+---------------------------------------------------
+
+Calculate two dimensional data from three dimensional data, like velocity at ground, water surface, and send those data to other models that use two dimensional grids.

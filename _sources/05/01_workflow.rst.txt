@@ -1,0 +1,640 @@
+.. _sec_sequence:
+
+The workflow of ``iricmi_server`` and models
+==============================================
+
+.. contents:: Contents
+   :depth: 5
+
+This section explains the workflow how ``iricmi_server`` and models that implement iRIC-MI library works, to synchronize each other, and send or receive data.
+
+How they communicate
+---------------------------
+
+The feature is that the models do not communicate each other directly, but it always communicate through ``iricmi_server``.
+
+.. uml::
+
+   object "iricmi_server" as S
+   object "Model A" as A
+   object "Model B" as B
+   object "Model C" as C
+
+   S <|--|> A
+   S <|--|> B
+   S <|--|> C
+
+This architecture is the key of the flexibility of iRIC-MI framework. It realize mutual communication between models
+without dead lock, and handling models running with different delta t values.
+
+``iricmi_server``
+--------------------
+
+Overview
+~~~~~~~~~~~~
+
+The workflow consists of the steps below:
+
+* Initialization
+* Time step processing
+* Finalization
+
+.. uml::
+
+   start
+   :Initialization;
+   repeat
+   :Time step processing;
+   repeat while (all models finished?)
+   :Finalization;
+   stop
+
+
+Initialization
+~~~~~~~~~~~~~~~~~~~
+
+The tasks below are done in the initialization step:
+
+1. Loading information about models
+2. Initializing MPI to communicate with models
+3. Exchanging data with models
+
+Loading information about models
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``iricmi_server`` loads information about models in the steps below:
+
+1. Loading iricmi_project.xml
+2. Loading project.xml, definition.xml, and Case1_input.cgn
+
+Loading iricmi_project.xml
++++++++++++++++++++++++++++++
+
+Loads iricmi_project.xml to reads information about models and connections.
+:numref:`iricmi_project_example` shows an example of iricmi_project.xml.
+
+The "name" attribute of \<Model/\> elements (in this case "global_send_c++" and "global_receive_c++")
+are the name of subfolders in the project folder.
+
+The subfolders are expected to be iRIC project folders, that contains information that each model
+needs for running.
+
+.. code-block:: xml
+   :caption: Example of iricmi_project.xml
+   :name: iricmi_project_example
+   :linenos:
+
+   <iRICMIProject>
+     <Models>
+       <Model name="global_send_c++" nodes="1" />
+       <Model name="global_receive_c++" nodes="1" />
+     </Models>
+     <Connections>
+       <Connection>
+         <From model="global_send_c++" type="global" name="discharge" />
+         <To model="global_receive_c++" type="calculationCondition" name="discharge" />
+       </Connection>
+     </Connections>
+   </iRICMIProject>
+
+Please refer to :ref:`sec_preparing_iricmi_project` about the information defined in iricmi_project.xml.
+
+For each subfolders referred in \<Model/\> element in iricmi_project.xml, do the next step.
+
+Loading project.xml, definition.xml, and Case1_input.cgn
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+As written above, subfolders referred in iricmi_project.xml are expected to be iRIC project folders, and
+project.xml and Case1.cgn to be there.
+
+When ``iricmi_server`` and models are launched,
+the models copy Case1.cgn to Case1_input.cgn, and ``iricmi_server`` opens Case1_input.cgn in read only mode.
+
+``iricmi_server`` reads project.xml, definition.xml, and Case1_input.cgn in the steps below:
+
+Loads project.xml in the subfolder. :numref:`project_example` shows an example of project.xml.
+It actually contains much more information than shown below, and the information
+ignored by ``iricmi_server`` is omitted.
+
+.. code-block:: xml
+   :caption: Example of project.xml
+   :name: project_example
+   :linenos:
+
+   <?xml version="1.0" encoding="UTF-8"?>
+   <iRICProject solverName="global_send_c++" solverVersion="1.0">
+     (omitted)
+   </iRICProject>
+
+``iricmi_server`` reads "solverName" and "solverVersion" attribute of \<iRICProject/\> element, to know
+which model the data in the subfolder is prepared for.
+
+Then, ``iricmi_server`` scans the "solvers" and "private/solvers" subfolder in the path referred by "IRICMI_ROOT_PATH" environmental variable.
+
+Each subfolder in "solvers" is expected to contains "definition.xml", model executable, and DLLs needed to run the model.
+
+``iricmi_server`` reads "definition.xml" in each subfolder, and tries to find the file that coinsides with the project.xml.
+
+:numref:`definition_example` shows an example of definition.xml (some information ignored by ``iricmi_server`` is omitted).
+
+``iricmi_server`` reads "name" and "version" attributes of \<SolverDefinition/\> element. If they are equal to the values of 
+"solverName" and "solverVersion" in project.xml, it is recognized to be the model for the project.
+
+.. code-block:: xml
+   :caption: Example of definition.xml
+   :name: definition_example
+   :linenos:
+
+   <?xml version="1.0" encoding="UTF-8"?>
+   <SolverDefinition
+     name="global_send_c++"
+     version="1.0"
+   >
+     <CalculationCondition>
+     </CalculationCondition>
+     <GlobalOutput>
+       <Output name="discharge" caption="Discharge">
+         <Definition valueType="real" />
+       </Output>
+     </GlobalOutput>
+   </SolverDefinition>
+
+Then, ``iricmi_server`` allocates memory to store data exchanged between models.
+
+The data to be exchanged is the data referred in
+\<Connection/\> element in iricmi_project.xml, shown in numref:`iricmi_project_example`.
+
+If it is a global value, the memory to allocate is very small (it actually is a single scalar value).
+
+If it a grid attributes, ``iricmi_server`` reads Case1.cgn, to know the size of grids, and
+allocate memory to store the values of grid attribute (or output) defined at nodes, cells, or edges.
+
+Initializing MPI to communicate with models
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``iricmi_server`` calls ``MPI_Init()`` to initialize MPI, and then set up communicators.
+
+This makes it possible to communicate with each models running in the project individually
+in the following steps.
+
+.. _sec_exchanging_data_with_models:
+
+Exchanging data with models
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Exchange data with all models, so that all models are initialized appropriately.
+
+This process consists of the steps below:
+
+1. Receiving data from models
+2. Copying values from "output" to "input"
+3. Sending data to models
+
+.. _sec_init_recieving_data_from_models:
+
+Receiving data from models
++++++++++++++++++++++++++++++++
+
+Receives the values below from the model:
+
+* :math:`T` (Time)
+* :math:`DT` (Exchange interval)
+
+In most cases, :math:`T = 0`, and :math:`DT` is equal to the delta t
+of the model.
+
+Then, ``iricmi_server`` asks if the model created a new grid, or changed grid coordinates.
+If new grid is created, or grid coordinates are changed, ``iricmi_server`` receive the data first.
+
+Then, ``iricmi_server`` checks the \<From/\> element in iricmi_project.xml, to know
+the values to receive.
+
+For example, in case of :numref:`iricmi_project_example`, ``iricmi_server`` needs to
+receive "dischange" value from "global_send_c++" model.
+
+``iricmi_server`` communicates with the model in the following steps:
+
+* Sends the list of the data that model should send.
+* Receives the data from models.
+
+.. _sec_copy_from_output_to_input:
+
+Copying values from "output" to "input"
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+Copy value from "output" to "input" inside ``iricmi_server``.
+
+Copying is done based on information in \<Connection/\> element in iricmi_project.xml, to copy
+data from \<From/\> to \<To/\>.
+
+For data with single value (calculation condition, global output, etc.),
+actually the memory to store the data is shared, so no copying is needed.
+
+For data defined at grid nodes, cells or edges, the data is copied.
+
+It can happen that data is copyed between
+grids with different coordinates (for example data can be copyed between 
+grid with cartesian coordinates, grid with boundary-fitted coordinates, or unstructured grid).
+In such cases, mapping (interpolation) is executed.
+
+Please refer to :ref:`sec_mapping_grid_attribute` for detail.
+
+Sending data to models
+++++++++++++++++++++++++++++++++
+
+``iricmi_server`` checks the \<To/\> element in iricmi_project.xml, to know
+the values to send.
+
+For example, in case of :numref:`iricmi_project_example`, ``iricmi_server`` needs to
+send "dischange" value to "global_receive_c++" model.
+
+``iricmi_server`` communicates with model in the following steps:
+
+* Sends the list of the data that model should receive.
+* Sends the data to the model.
+
+.. note::
+
+   It is important for good performance that ``iricmi_server`` and models exchange data that
+   they really needs.
+
+   As explained above, ``iricmi_server`` recognize the data to exchange based on the definitions
+   of connections. It means that it is no problem that the models define many inputs and outputs,
+   that are not used in most cases. It doesn't cost (cause ``iricmi_server`` to use a lot of memory).
+
+Time step processing
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Tasks below are done in the "time step processing" step:
+
+1. Deciding with which model to communicate
+2. Exchanging data with models
+
+Deciding with which model to communicate
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Calculate :math:`NT = T + DT` for each model (:math:`NT` stands for "next T"),
+and calculates :math:`NT_{min} = \min \{NT\}`.
+
+Then, ``iricmi_server`` decide to communicate with models with :math:`NT` value smaller than
+:math:`NT_{min} + T_{delta}`, considering truncation error.
+Currently, :math:`T_{delta}` is hard coded to be 1.0E-6.
+
+Exchanging data with models
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This process consists of the steps below:
+
+1. Receiving data from models
+2. Copying values from "output" to "input"
+3. Sending data to models
+
+Receiving data from models
++++++++++++++++++++++++++++++++
+
+Receives :math:`T` and :math:`DT`, just like in the initialization step.
+
+If :math:`DT = 0`, it means that the model entered finalization process.
+In that case, skip the following steps, and marks that the model is finished.
+
+.. note::
+
+   It can happen that the acutual :math:`T` value of the model is different from
+   :math:`NT` calculated above. For example, with models that adopt variable :math:`DT`.
+
+   There is no problem with such cases.
+
+Then, ``iricmi_server`` asks if the model created a new grid, or changed grid coordinates.
+If new grid is created, or grid coordinates are changed, ``iricmi_server`` receive the data first.
+
+Next, ``iricmi_server`` checks the \<From/\> element in iricmi_project.xml, to know
+the values to receive from the models.
+
+To achieve good performance, this step is different from that in initialization step.
+
+``iricmi_server`` recognizes that the value of \<From/\> element should be received, if that
+satisfies one of the conditions below:
+
+* :math:`NT_{from} < NT_{to}` and :math:`NT_{to} < NT_{from} + DT_{from}`. 
+  :math:`NT_{from}` is :math:`NT` of the model in \<From/\>
+  element, :math:`NT_{to}` is :math:`NT` of the model in \<To/\> element, and
+  :math:`DT_{from}` is :math:`DT` of the model in \<From/\>.
+  It means that the model in \<To/\> element will need the value of
+  the model in \<From/\> element in the next step. 
+
+* :math:`(T - T_{previous}) / DT_{previous} > r_{overshoot}`. It means that actual
+  :math:`DT` for the model was much larger than declared in the last step,
+  and model overshooted the other models.
+  Currently :math:`r_{overshoot}` is hard coded to be 1.5.
+
+After recognizing the values to received, ``iricmi_server`` recieve data just like in
+initialization step, with the following steps:
+
+* Sends the list of the data that model should send.
+* Receives the data from models.
+
+Copying values from "output" to "input"
++++++++++++++++++++++++++++++++++++++++++++
+
+Copy value from "output" to "input" inside ``iricmi_server``.
+
+This process is identical to that in the initialization step.
+
+Sending data to models
+++++++++++++++++++++++++
+
+``iricmi_server`` checks the \<To/\> element in iricmi_project.xml, to know
+the values to send to the models.
+
+To achieve good performance, this step is different from that in initialization step.
+
+``iricmi_server`` recognizes the the value of \<To/\> element should be sent, if that
+satisfies the condition below:
+
+* The value of :math:`T_{to}` that the model passed to ``iricmi_server`` when 
+  it previously communicated, is smaller than the value of :math:`T_{from}`
+  when the model in \<From/\> element sent the value. 
+
+After recognizing the values to send, ``iricmi_server`` send data just like in initialization step,
+with the following steps:
+
+* Sends the list of the data that model should receive.
+* Sends the data to models.
+
+``iricmi_server`` repeats this step, until all models are marked to be finished.
+
+.. note::
+
+   The logic above make it possible that ``iricmi_server`` communicate with models
+   that run with different exchange interval, stably.
+
+   There is no problem to make connection in both way.
+
+   Please refer to :ref:`sec_examples_of_timings`, to more deeply understand
+   how ``iricmi_server`` exchange data with models.
+
+Finalization
+~~~~~~~~~~~~~~
+
+The tasks below are done in the finalization step:
+
+1. Synchronize with all models by calling ``MPI_Barrier()``.
+2. Finalize MPI, by calling ``MPI_Finalize()``.
+
+Models
+--------
+
+Overview
+~~~~~~~~~~~~
+
+The workflow consists of the steps below:
+
+* Initialization
+* Time step processing
+* Finalization
+
+.. uml::
+
+   start
+   :Initialization;
+   repeat
+   :Time step processing;
+   repeat while (Satisfies finalization condition?)
+   :Finalization;
+   stop
+
+In most solvers, "End time" is defined as calculation condition,
+and if "Time" exceeds "End time", solver goes to finalization process.
+
+Initialization
+~~~~~~~~~~~~~~~~~~~
+
+The tasks below should be done in the initialization step:
+
+1. Initializing iricmi library
+2. Registering memory address to iricmi library
+3. Exchanging data with other models through ``iricmi_server``, and outputting initial condition
+
+Initializing iricmi library
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The model calls ``iRICMI_Model_Init()``.
+
+``iRICMI_Model_Init()`` internally do the followings:
+
+1. Checking the mode
+2. Initializing MPI to communicate with ``iricmi_server``
+3. Copy Case1.cgn to Case1_input.cgn
+4. Loading information about the model
+5. Opening Case1.cgn for modifying
+6. Changing current directory when running in "coupled" mode
+
+Checking the mode
++++++++++++++++++++
+
+Check if the model is running in "standalone" mode or in "coupled" mode.
+
+Try to find iricmi_project.xml, and if it exists, iRIC-MI library recognize that the 
+model is running in "coupled" mode. If not, "standalone" mode.
+
+Initializing MPI to communicate with ``iricmi_server``
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+It is similar to the step done in ``iricmi_server``.
+
+``iRICMI_Model_Init()`` calls ``MPI_Init()`` to initialize MPI, and then set up communicator to
+communicate with ``iricmi_server``.
+
+Copy Case1.cgn to Case1_input.cgn
+++++++++++++++++++++++++++++++++++++
+
+Copy Case1.cgn to Case1_input.cgn.
+
+.. note::
+
+   The reason to copy is that ``iricmi_server`` and the models both needs to 
+   read the information in Case1.cgn.
+   
+   To safely access the information in Case1.cgn, the model copies Case1.cgn to
+   Case1_input.cgn, and both ``iricmi_server`` and model
+   open Case1_input.cgn in read only mode.
+
+Loading information about the model
++++++++++++++++++++++++++++++++++++++
+
+It is similar to the step done in ``iricmi_server``.
+
+It loads iricmi_project.xml (only in "coupled mode"), project.xml, definition.xml,
+and Case1_input.cgn, to prepare the container to regester the pointer of the memory
+that is allocated by the model.
+
+Opening Case1.cgn for modifying
++++++++++++++++++++++++++++++++++
+
+iRIC-MI output calculation results to Case1.cgn.
+
+For that purpose, ``iRICMI_Model_Init()`` opens Case1.cgn in modify mode.
+
+Changing current directory when running in "coupled" mode
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+When running in "coupled" mode, change current directory to the project folder for the model.
+
+Please note that in "standalone" mode, when the model is launched, the current directory
+is the project folder, and in "coupled" mode, the current directory is the "root folder".
+
+Because of the difference, without changing the current directory, if the model outputs files to
+the current directory, depending on the mode, the file will be saved to different directories.
+
+To avoid the confusing situation, iRIC-MI library automatically change the current directory,
+so that after calling ``iRICMI_Model_Init()``, the current directory is the project folder.
+
+Registering memory address to iricmi library
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The model should register the pointers of the memory that should be used to
+receive or send data  from / to ``iricmi_server``.
+
+Model developers can use ``iRICMI_RIn_xxx`` or ``iRICMI_ROut_xxx`` for this purpose. Please refer to
+:ref:`sec_functions_for_registering_pointers` for detail.
+
+At least, model developers should call the three functions below:
+
+* ``iRICMI_ROut_Time()``
+* ``iRICMI_ROut_Exchange_Interval()``
+* ``iRICMI_ROut_Dump_Interval()``
+
+In the following sections, the values in the variables registered with the functions above
+are referred as :math:`T`, :math:`DT`, :math:`DT_{dump}` for each.
+
+Exchanging data with other models through ``iricmi_server``, and outputting initial condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The model should call ``iRICMI_Model_Sync()``. This function call will make the model 
+exchange data with ``iricmi_server`` in the initialization step.
+
+``iRICMI_Model_Sync()`` internally do the followings:
+
+1. Sends data to ``iricmi_server``
+2. Receives data from ``iricmi_server``
+3. Stores information about the communication with ``iricmi_server``
+4. Outputs initial condition to Case1.cgn
+5. Stores information about outputting
+
+Sends data to ``iricmi_server``
+++++++++++++++++++++++++++++++++++++
+
+1. The model sends :math:`T` and :math:`DT` to ``iricmi_server``, from the memory address registered with
+   ``iRICMI_ROut_Time()`` and ``iRICMI_ROut_Exchange_Interval()``.
+
+2. The model sends data to ``iricmi_server``, with the following steps:
+
+  * Receive the list of the data that model should send.
+  * Sends the data to ``iricmi_server``.
+
+When sending data, iRIC-MI library reads data from the memory address registered with ``iRICMI_ROut_xxx()``.
+
+Receives data from ``iricmi_server``
++++++++++++++++++++++++++++++++++++++
+
+1. The model receives data from ``iricmi_server``, with the following steps:
+
+  * Receives the list of the data that model should receive.
+  * Receives the data from ``iricmi_server``.
+
+When receiving data, iRIC-MI library writes data to the memory address registered with ``iRICMI_RIn_xxx()``.
+
+Stores information about the communication with ``iricmi_server``
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Stores the value of :math:`T`, as :math:`T_{last\_sync}`, that means
+"time that the model communicated with server last time".
+
+Outputs initial condition to Case1.cgn
+++++++++++++++++++++++++++++++++++++++++++++++
+
+Outputs the initial condition to Case1.cgn.
+
+When outputting data, iRIC-MI library reads data from the memory address registered with ``iRICMI_ROut_xxx()``.
+
+.. note::
+
+   When the model developer want to control the timing to output calculation result to 
+   Case1.cgn, please do the followings:
+
+   * Register the variable to store dump interval using ``iRICMI_ROut_Dump_Interval()``,
+     and stores negative value to the variable, for example, -1.
+
+   * At the timing to output calculation result, call ``iRICMI_Model_Dump()``.
+
+Stores information about outputting
+++++++++++++++++++++++++++++++++++++++
+
+Stores the value of :math:`T` as :math:`T_{last\_dump}`, that means
+"time that the model output the result last time".
+
+Time step processing
+~~~~~~~~~~~~~~~~~~~~~~~
+
+In each time step in the loop, the model should do the following tasks:
+
+1. Calculating the values at the next time step
+2. Updating the value of time in the variable that the model registered with ``iRICMI_ROut_Time()``
+3. Calling ``iRICMI_Model_Sync()``
+
+``iRICMI_Model_Sync()`` internally do the followings:
+
+1. Checking condition if the model should communicate with ``iricmi_server``
+2. Sending data to ``iricmi_server``
+3. Receiving data from ``iricmi_server``
+4. Stores information about the communication with ``iricmi_server``
+5. Checking condition if the model should output result to Case1.cgn
+6. Outputting initial condition to Case1.cgn
+7. Storing information about outputting
+
+The steps other than 1 and 5 are the same to those in the initialization step.
+
+The logic in step 1 and 5 are described below:
+
+Checking condition if the model should communicate with ``iricmi_server``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check if the condition below is satisfied.
+
+.. math::
+
+   T \geq T_{last\_sync} + DT
+
+If not satisfied, iRIC-MI library decides that the model does not need to
+communicate with ``iricmi_server``, and skips step 2 to 4.
+
+.. note::
+
+   For example, when the delta t of the model is very small, it is efficient that
+   the model passes DT value larger than the delta t, to avoid communicating
+   with ``iricmi_server`` too often.
+
+Checking condition if the model should output result to Case1.cgn
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check if the condition below is satisfied.
+
+.. math::
+
+   T \geq T_{last\_dump} + DT_{dump}
+
+If not satisfied, iRIC-MI library decides that the model does not need to
+output calculation result, and skips step 6 and 7.
+
+Finalization
+~~~~~~~~~~~~~~
+
+The model should call ``iRICMI_Model_Terminate()``.
+
+``iRICMI_Model_Terminate()`` internally do the followings:
+
+1. Close Case1.cgn.
+2. Deletes Case1_input.cgn.
+3. Overwrite :math:`DT` value to 0, and sends :math:`T` and :math:`DT` to ``iricmi_server``.
+4. Synchronize with ``iricmi_server`` and all other models by calling ``MPI_Barrier``.
+5. Finalize MPI, by calling ``MPI_Finalize()``.

@@ -1,0 +1,184 @@
+.. _sec_ref_iRICMI_Write_NamedGrid2d_Coords_WithGridId:
+
+iRICMI_Write_NamedGrid2d_Coords_WithGridId
+==========================================
+
+Writes the Grid coordinates to the CGNS file.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Write_NamedGrid2d_Coords_WithGridId(name, isize, jsize, x_arr, y_arr, gid, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Write_NamedGrid2d_Coords_WithGridId(name, isize, jsize, x_arr, y_arr, gid)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   x_arr, y_arr, gid = iRICMI_Write_NamedGrid2d_Coords_WithGridId(name, isize, jsize)
+
+Arguments and returned value
+----------------------------
+
+name
+~~~~
+
+.. list-table:: Information about name
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - name
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the grid
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+isize
+~~~~~
+
+.. list-table:: Information about isize
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - isize
+   * - I/O
+     - Input
+
+   * - Description
+     - The size (number of nodes) of the grid in I direction
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+jsize
+~~~~~
+
+.. list-table:: Information about jsize
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - jsize
+   * - I/O
+     - Input
+
+   * - Description
+     - The size (number of nodes) of the grid in J direction
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+x_arr
+~~~~~
+
+.. list-table:: Information about x_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - x_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - The values of the x coordinates
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+y_arr
+~~~~~
+
+.. list-table:: Information about y_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - y_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - The values of the y coordinates
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+gid
+~~~
+
+.. list-table:: Information about gid
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - gid
+   * - I/O
+     - Output
+
+   * - Description
+     - The id (starts from 1) of the grid
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

@@ -1,0 +1,8 @@
+How to Install iRIC-MI
+=======================
+
+.. toctree::
+   :maxdepth: 2
+
+   02/01_windows
+   02/02_linux

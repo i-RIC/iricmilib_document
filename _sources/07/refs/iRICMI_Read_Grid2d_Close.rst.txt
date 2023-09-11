@@ -1,0 +1,74 @@
+.. _sec_ref_iRICMI_Read_Grid2d_Close:
+
+iRICMI_Read_Grid2d_Close
+========================
+
+Closes the grid opened with iRICMI_Read_Grid2d_Open
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid2d_Close(grid_handle, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid2d_Close(grid_handle)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   iRICMI_Read_Grid2d_Close(grid_handle)
+
+Arguments and returned value
+----------------------------
+
+grid_handle
+~~~~~~~~~~~
+
+.. list-table:: Information about grid_handle
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - grid_handle
+   * - I/O
+     - Input
+
+   * - Description
+     - Grid handle
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

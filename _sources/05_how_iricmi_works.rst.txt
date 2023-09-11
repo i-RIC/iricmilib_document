@@ -1,0 +1,11 @@
+How iRIC-MI works
+======================
+
+.. toctree::
+   :maxdepth: 2
+
+   05/01_workflow
+   05/02_timing
+   05/03_mapping
+   05/03_mapping_2d_3d
+   05/04_iricmi_run

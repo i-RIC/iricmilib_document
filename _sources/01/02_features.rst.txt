@@ -1,0 +1,135 @@
+Features
+===============
+
+.. contents:: Contents
+   :depth: 3
+
+This section describes the features of iRIC-MI.
+
+The models are executable programs
+------------------------------------
+
+There are several frameworks for making models communicate each other, like below:
+
+* OpenMI
+* BMI
+* CommonMP
+
+In these frameworks, the models are components, that are not executable programs. It means that
+to run models, the functions like ``init()``, ``update()``, ``finalize()``, should be called from driver program.
+
+On the other hand, the models in iRIC-MI are executable programs.
+
+Because of this, iRIC-MI has advantages below:
+
+Easy to debug
+~~~~~~~~~~~~~~~
+
+After implementing iRIC-MI to the model, it still is a executable program,
+so it is possible to launch and debug program using Visual Studio (on Windows) or gdb (on Linux),
+just like a normal program.
+
+Easy to fit models to iRIC-MI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is easier to implement iRIC-MI library to a model, than other frameworks, because 
+developer do not need to change the structure of the model, but just add iRIC-MI library functions
+to the existing code.
+
+With other framekworks, developers often needs to change the scopes of many variables.
+With iRIC-MI, the number of variables to change the scopes is smaller. With iRIC-MI, solver developer need to to change the scopes of 
+variables that they pass to functions in :ref:`sec_functions_for_registering_pointers`.  I mean, the variables passed to those functions should exist when ``iRICMI_Model_Sync``, ``iRICMI_Calc_Sync_Receive``, ``iRICMI_Calc_Sync_Send`` are called.
+
+Flexible communication between models
+--------------------------------------
+
+iRIC-MI realize flexible comunication between models, like below:
+
+* Mutal communication
+* Different delta t supported
+
+Refer to :ref:`sec_sequence` about how these features are realized.
+
+Mutual communication
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Not only one-way, but also mutual communication is supported.
+
+This make it possible to exchange data between models that give feedback each other,
+like river channel model and groundwater model.
+
+Different delta t supported
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There is no problem that models run with different delta t values. Even when delta t are very different (like 1.0 vs. 1000.),
+that will not cause a severe performance loss.
+
+MPI is used for communication
+-------------------------------
+
+MPI (Message Passing Interface) is used for the communication between models.
+
+Currently, iRIC-MI is built with Microsoft MPI 
+(https://docs.microsoft.com/en-us/message-passing-interface/microsoft-mpi),
+and MPICH (https://www.mpich.org/).
+
+Because of this, iRIC-MI has advantages below.
+
+Models run in parallel
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With iRIC-MI, the models run in parallel. It cause models run with less time for waiting.
+
+:numref:`image_model_run_image1` and :numref:`image_model_run_image2` shows the example images of models run in other frameworks, and in iRIC-MI.
+
+With the example, Model 1, 2, and 3 run with the same delta T, and the CPU time need to execute the calculation for each delta T are different for each model (longer for Model 1, smaller for Model 3).
+The overheads for data exchange etc. are not expressed in these figures.
+
+As shown in :numref:`image_model_run_image1`, in other frameworks, only one model do the simulation at a time, and other models wait. As shown in :numref:`image_model_run_image2`, in iRIC-MI, models run in parallel, so it is much faster. 
+
+.. _image_model_run_image1:
+
+.. figure:: images/model_run_image1.png
+   
+   Image of models run in other frameworks
+
+.. _image_model_run_image2:
+
+.. figure:: images/model_run_image2.png
+   
+   Image of models run in iRIC-MI
+
+.. note::
+   
+   In :numref:`image_model_run_image1` and :numref:`image_model_run_image2`, it is assumed that
+   the time to do the simulation for each model are the same for serial and parallel.
+
+   Actually, when the machine to run iRIC-MI has many cores, the assumption is satisfied. When the
+   machine has only one (or just a few) cores, the assumption is not satisfied, each model takes more time when running in parallel than in serial, and the difference of total execution time becomes less.
+
+Running models using HPC will be supported
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Not tested yet, but it must be possible to run models using HPC (multiple machines), because MPI is the standard specification for that purpose.
+
+Multiple language supported
+-----------------------------
+
+Currently, iRIC-MI library is prepared for the languages below:
+
+* C/C++
+* FORTRAN
+* Python
+
+It means that the model implemented in FORTRAN can exchange data with model implemented in Python, for example.
+
+With other frameworks, developers need to write wrapper for each model, so that they can be handled from the driver program. With iRIC-MI, they do not need to.
+
+iRIC-MI library is written in C++, and SWIG (http://www.swig.org/) is used to implement the wrapper for Python.
+It means that potentially it is possible to implement wrappers for the other languages supported by SWIG,
+like C#, Java, Ruby, etc.
+
+It runs on both Windows and Linux
+-----------------------------------------
+
+iRIC-MI library can be built on both Windows and Linux.

@@ -1,0 +1,32 @@
+Generates CGNS file
+========================================
+
+Generates CGNS file, that iRIC-MI library will load to get information of grid and calculation condition.
+
+:numref:`gen_cgns_cem` shows the code to generates CGNS file for CEM.
+
+.. code-block:: python
+   :caption: Code to generate CGNS file for CEM
+   :name: gen_cgns_cem
+   :linenos:
+
+   import iricmi_pymt_util
+   import pymt.models
+
+   cem = pymt.models.Cem()
+   args = cem.setup(number_of_rows=100, number_of_cols=200, grid_spacing=200.0)
+   cem.initialize(*args)
+
+   iricmi_pymt_util.runModel(cem)
+
+Source code of run.py is shown in :numref:`iricmi_pymt_util_run`.
+
+.. note::
+
+   For CEM, it was not possible to get output data defined at grid nodes.
+
+.. literalinclude:: ../../../../iricmi_pymt_util/iricmi_pymt_util/run.py
+   :name: iricmi_pymt_util_run
+   :language: python
+   :linenos:
+   :caption: source code of run.py

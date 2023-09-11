@@ -1,0 +1,96 @@
+.. _sec_ref_iRICMI_ROut_Grid_KFace_Real:
+
+iRICMI_ROut_Grid_KFace_Real
+===========================
+
+Register the memory address to send the values of real number type grid attribute defined at KFaces.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_ROut_Grid_KFace_Real(name, v_arr, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_ROut_Grid_KFace_Real(name, v_arr)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   v_arr = iRICMI_ROut_Grid_KFace_Real(name)
+
+Arguments and returned value
+----------------------------
+
+name
+~~~~
+
+.. list-table:: Information about name
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - name
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the variable
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+v_arr
+~~~~~
+
+.. list-table:: Information about v_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - v_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - The variable to register the memory address, to send values
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

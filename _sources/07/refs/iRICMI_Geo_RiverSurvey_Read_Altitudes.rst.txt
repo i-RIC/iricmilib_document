@@ -1,0 +1,162 @@
+.. _sec_ref_iRICMI_Geo_RiverSurvey_Read_Altitudes:
+
+iRICMI_Geo_RiverSurvey_Read_Altitudes
+=====================================
+
+Reads the altitude data of the crosssection.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Geo_RiverSurvey_Read_Altitudes(id, pointid, position_arr, height_arr, active_arr, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Geo_RiverSurvey_Read_Altitudes(id, pointid, position_arr, height_arr, active_arr)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   position_arr, height_arr, active_arr = iRICMI_Geo_RiverSurvey_Read_Altitudes(id, pointid)
+
+Arguments and returned value
+----------------------------
+
+id
+~~
+
+.. list-table:: Information about id
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - id
+   * - I/O
+     - Input
+
+   * - Description
+     - River Survey Data ID
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+pointid
+~~~~~~~
+
+.. list-table:: Information about pointid
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - pointid
+   * - I/O
+     - Input
+
+   * - Description
+     - Crosssection ID (starts from 1)
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+position_arr
+~~~~~~~~~~~~
+
+.. list-table:: Information about position_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - position_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - Values of altitude position (less than 0 means left bank side, grater than 0 means right bank side)
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+height_arr
+~~~~~~~~~~
+
+.. list-table:: Information about height_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - height_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - Values of altitude height (elevation)
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+active_arr
+~~~~~~~~~~
+
+.. list-table:: Information about active_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - active_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - Values of altitude data active/inactive (1 means active)
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

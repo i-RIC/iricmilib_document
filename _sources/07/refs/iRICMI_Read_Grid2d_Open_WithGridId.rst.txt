@@ -1,0 +1,98 @@
+.. _sec_ref_iRICMI_Read_Grid2d_Open_WithGridId:
+
+iRICMI_Read_Grid2d_Open_WithGridId
+==================================
+
+Opens the grid
+
+The grid opened with this subroutine can be closed with iRICMI_Read_Grid2d_Close.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid2d_Open_WithGridId(gid, grid_handle, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid2d_Open_WithGridId(gid, grid_handle)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   grid_handle = iRICMI_Read_Grid2d_Open_WithGridId(gid)
+
+Arguments and returned value
+----------------------------
+
+gid
+~~~
+
+.. list-table:: Information about gid
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - gid
+   * - I/O
+     - Input
+
+   * - Description
+     - The id (starts from 1) of the grid
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+grid_handle
+~~~~~~~~~~~
+
+.. list-table:: Information about grid_handle
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - grid_handle
+   * - I/O
+     - Output
+
+   * - Description
+     - Grid handle
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

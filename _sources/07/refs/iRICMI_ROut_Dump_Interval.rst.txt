@@ -1,0 +1,74 @@
+.. _sec_ref_iRICMI_ROut_Dump_Interval:
+
+iRICMI_ROut_Dump_Interval
+=========================
+
+Register the memory address to send the value of interval to dump the calculation results to CGNS file.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_ROut_Dump_Interval(interval, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_ROut_Dump_Interval(interval)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   interval = iRICMI_ROut_Dump_Interval()
+
+Arguments and returned value
+----------------------------
+
+interval
+~~~~~~~~
+
+.. list-table:: Information about interval
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - interval
+   * - I/O
+     - Output
+
+   * - Description
+     - The variable to register the memory address, to send value of interval
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

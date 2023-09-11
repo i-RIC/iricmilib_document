@@ -1,0 +1,87 @@
+.. _sec_developing_calculator:
+
+Developing calculator
+========================
+
+This page describes how to develop calculators.
+
+What is a calculator?
+------------------------
+
+Calculators are something similar to models, but differ in the following ways:
+
+* It receives input data from models, performs some calculations and sends output data to models.
+* It does not have its own T and delta T, but uses the T of models.
+
+The different stages in the development of calculators from models are shown below:
+
+* Use ``iRICMI_Calc_Init()``, ``iRICMI_Calc_Terminate()`` instead of ``iRICMI_Model_Init()``, ``iRICMI_Model_Terminate()``.
+* Use ``iRICMI_RIn_Time()`` to register the variable to receive the value of T in the model that is connected to the calculator, instead of using ``iRICMI_ROut_Time()`` to register the variable to send the value of T.
+* Use ``iRICMI_Calc_Sync_Receive()``, ``iRICMI_Calc_Sync_Send()`` instead of ``iRICMI_Model_Sync()``.
+* Add "modeltype" attribute with value "calculator" to \<SolverDefinition\> element in definition.xml. :numref:`def_ex_calculator` shows an example of definition.xml for a calculator.
+
+Apart from the above differences, the steps for developing a calculator are similar to those for developing a model. Please refer to :ref:`sec_developing_model`.
+
+.. code-block:: xml
+   :caption: Example of definition.xml for a calculator
+   :name: def_ex_calculator
+   :linenos:
+   :emphasize-lines: 12
+
+   <SolverDefinition
+     xmlns="www.iric.net/SolverDefinition/1.0"
+     name="calculator_c++"
+     caption="Calculator Model (C++)"
+     version="1.0"
+     copyright="iRIC organization"
+     release="2020.7.4"
+     homepage="http://i-ric.org"
+     executable="calculator_c++.exe"
+     iterationtype="time"
+     gridtype="nogrid"
+     modeltype="calculator"
+   >
+     <CalculationCondition>
+       <Tab name="basic" caption="Basic">
+         <Item name="discharge" caption="Discharge">
+           <Definition conditionType="functional">
+             <Parameter name="time" valueType="real" caption="Time"/>
+             <Value name="discharge" valueType="real" caption="Discharge(m3/s)"/>
+           </Definition>
+         </Item>
+       </Tab>
+     </CalculationCondition>
+     <GridRelatedCondition>
+       <Item name="Elevation" caption="Elevation (m)">
+         <Definition position="node" valueType="real" default="max" />
+       </Item>
+     </GridRelatedCondition>
+     <GlobalOutput>
+       <Output name="discharge_square" caption="Discharge_Square">
+         <Definition valueType="real" />
+       </Output>
+     </GlobalOutput>
+   </SolverDefinition>
+
+The flowchart of the calculator
+--------------------------------------
+
+The flowchart of the calculator is shown below. Please compare it with the one in :ref:`workflow_of_model`.
+
+.. uml::
+
+   start
+   :Call iRICMI_Calc_Init();
+   :Reads calculation condition and grids using iRICMI_Read_xxx();
+   :Setup variables to be used for calculation;
+   :Register variables using iRICMI_RIn_xxx(), iRICMI_ROut_xxx();
+   repeat
+   :Call iRICMI_Check_Cancel(), and if cancel = 1, exit the time loop;
+   :Call iRICMI_Calc_Sync_Receive() to receive data from models; 
+   :Calculate the output data from data recieved;
+   :Call iRICMI_Calc_Sync_Send() to send data to models, and output calculation result; 
+   repeat while (true)
+   :Call iRICMI_Calc_Terminate();
+   stop
+
+In the case of the calculator, when ``iRICMI_Check_Cancel()`` is called, cancel = 1 when the models using the calculator have finished.

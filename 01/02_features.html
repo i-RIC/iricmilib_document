@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to Install iRIC-MI" href="../02_install.html" />
+    <link rel="prev" title="What is iRIC-MI?" href="01_what_is.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../01_intro.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_what_is.html">What is iRIC-MI?</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-models-are-executable-programs">The models are executable programs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#easy-to-debug">Easy to debug</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#easy-to-fit-models-to-iric-mi">Easy to fit models to iRIC-MI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#flexible-communication-between-models">Flexible communication between models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mutual-communication">Mutual communication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#different-delta-t-supported">Different delta t supported</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mpi-is-used-for-communication">MPI is used for communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models-run-in-parallel">Models run in parallel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-models-using-hpc-will-be-supported">Running models using HPC will be supported</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-language-supported">Multiple language supported</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#it-runs-on-both-windows-and-linux">It runs on both Windows and Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../01_intro.html">Introduction</a></li>
+      <li class="breadcrumb-item active">Features</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/01/02_features.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="features">
+<h1><a class="toc-backref" href="#id3" role="doc-backlink">Features</a><a class="headerlink" href="#features" title="Permalink to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#features" id="id3">Features</a></p>
+<ul>
+<li><p><a class="reference internal" href="#the-models-are-executable-programs" id="id4">The models are executable programs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#easy-to-debug" id="id5">Easy to debug</a></p></li>
+<li><p><a class="reference internal" href="#easy-to-fit-models-to-iric-mi" id="id6">Easy to fit models to iRIC-MI</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#flexible-communication-between-models" id="id7">Flexible communication between models</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mutual-communication" id="id8">Mutual communication</a></p></li>
+<li><p><a class="reference internal" href="#different-delta-t-supported" id="id9">Different delta t supported</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#mpi-is-used-for-communication" id="id10">MPI is used for communication</a></p>
+<ul>
+<li><p><a class="reference internal" href="#models-run-in-parallel" id="id11">Models run in parallel</a></p></li>
+<li><p><a class="reference internal" href="#running-models-using-hpc-will-be-supported" id="id12">Running models using HPC will be supported</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#multiple-language-supported" id="id13">Multiple language supported</a></p></li>
+<li><p><a class="reference internal" href="#it-runs-on-both-windows-and-linux" id="id14">It runs on both Windows and Linux</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>This section describes the features of iRIC-MI.</p>
+<section id="the-models-are-executable-programs">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">The models are executable programs</a><a class="headerlink" href="#the-models-are-executable-programs" title="Permalink to this heading"></a></h2>
+<p>There are several frameworks for making models communicate each other, like below:</p>
+<ul class="simple">
+<li><p>OpenMI</p></li>
+<li><p>BMI</p></li>
+<li><p>CommonMP</p></li>
+</ul>
+<p>In these frameworks, the models are components, that are not executable programs. It means that
+to run models, the functions like <code class="docutils literal notranslate"><span class="pre">init()</span></code>, <code class="docutils literal notranslate"><span class="pre">update()</span></code>, <code class="docutils literal notranslate"><span class="pre">finalize()</span></code>, should be called from driver program.</p>
+<p>On the other hand, the models in iRIC-MI are executable programs.</p>
+<p>Because of this, iRIC-MI has advantages below:</p>
+<section id="easy-to-debug">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Easy to debug</a><a class="headerlink" href="#easy-to-debug" title="Permalink to this heading"></a></h3>
+<p>After implementing iRIC-MI to the model, it still is a executable program,
+so it is possible to launch and debug program using Visual Studio (on Windows) or gdb (on Linux),
+just like a normal program.</p>
+</section>
+<section id="easy-to-fit-models-to-iric-mi">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Easy to fit models to iRIC-MI</a><a class="headerlink" href="#easy-to-fit-models-to-iric-mi" title="Permalink to this heading"></a></h3>
+<p>It is easier to implement iRIC-MI library to a model, than other frameworks, because
+developer do not need to change the structure of the model, but just add iRIC-MI library functions
+to the existing code.</p>
+<p>With other framekworks, developers often needs to change the scopes of many variables.
+With iRIC-MI, the number of variables to change the scopes is smaller. With iRIC-MI, solver developer need to to change the scopes of
+variables that they pass to functions in <a class="reference internal" href="../07/03_registering_pointers.html#sec-functions-for-registering-pointers"><span class="std std-ref">Functions for registering pointers</span></a>.  I mean, the variables passed to those functions should exist when <code class="docutils literal notranslate"><span class="pre">iRICMI_Model_Sync</span></code>, <code class="docutils literal notranslate"><span class="pre">iRICMI_Calc_Sync_Receive</span></code>, <code class="docutils literal notranslate"><span class="pre">iRICMI_Calc_Sync_Send</span></code> are called.</p>
+</section>
+</section>
+<section id="flexible-communication-between-models">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Flexible communication between models</a><a class="headerlink" href="#flexible-communication-between-models" title="Permalink to this heading"></a></h2>
+<p>iRIC-MI realize flexible comunication between models, like below:</p>
+<ul class="simple">
+<li><p>Mutal communication</p></li>
+<li><p>Different delta t supported</p></li>
+</ul>
+<p>Refer to <a class="reference internal" href="../05/01_workflow.html#sec-sequence"><span class="std std-ref">The workflow of iricmi_server and models</span></a> about how these features are realized.</p>
+<section id="mutual-communication">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Mutual communication</a><a class="headerlink" href="#mutual-communication" title="Permalink to this heading"></a></h3>
+<p>Not only one-way, but also mutual communication is supported.</p>
+<p>This make it possible to exchange data between models that give feedback each other,
+like river channel model and groundwater model.</p>
+</section>
+<section id="different-delta-t-supported">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Different delta t supported</a><a class="headerlink" href="#different-delta-t-supported" title="Permalink to this heading"></a></h3>
+<p>There is no problem that models run with different delta t values. Even when delta t are very different (like 1.0 vs. 1000.),
+that will not cause a severe performance loss.</p>
+</section>
+</section>
+<section id="mpi-is-used-for-communication">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">MPI is used for communication</a><a class="headerlink" href="#mpi-is-used-for-communication" title="Permalink to this heading"></a></h2>
+<p>MPI (Message Passing Interface) is used for the communication between models.</p>
+<p>Currently, iRIC-MI is built with Microsoft MPI
+(<a class="reference external" href="https://docs.microsoft.com/en-us/message-passing-interface/microsoft-mpi">https://docs.microsoft.com/en-us/message-passing-interface/microsoft-mpi</a>),
+and MPICH (<a class="reference external" href="https://www.mpich.org/">https://www.mpich.org/</a>).</p>
+<p>Because of this, iRIC-MI has advantages below.</p>
+<section id="models-run-in-parallel">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Models run in parallel</a><a class="headerlink" href="#models-run-in-parallel" title="Permalink to this heading"></a></h3>
+<p>With iRIC-MI, the models run in parallel. It cause models run with less time for waiting.</p>
+<p><a class="reference internal" href="#image-model-run-image1"><span class="std std-numref">Fig. 1</span></a> and <a class="reference internal" href="#image-model-run-image2"><span class="std std-numref">Fig. 2</span></a> shows the example images of models run in other frameworks, and in iRIC-MI.</p>
+<p>With the example, Model 1, 2, and 3 run with the same delta T, and the CPU time need to execute the calculation for each delta T are different for each model (longer for Model 1, smaller for Model 3).
+The overheads for data exchange etc. are not expressed in these figures.</p>
+<p>As shown in <a class="reference internal" href="#image-model-run-image1"><span class="std std-numref">Fig. 1</span></a>, in other frameworks, only one model do the simulation at a time, and other models wait. As shown in <a class="reference internal" href="#image-model-run-image2"><span class="std std-numref">Fig. 2</span></a>, in iRIC-MI, models run in parallel, so it is much faster.</p>
+<figure class="align-default" id="id1">
+<span id="image-model-run-image1"></span><img alt="../_images/model_run_image1.png" src="../_images/model_run_image1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Image of models run in other frameworks</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2">
+<span id="image-model-run-image2"></span><img alt="../_images/model_run_image2.png" src="../_images/model_run_image2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Image of models run in iRIC-MI</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In <a class="reference internal" href="#image-model-run-image1"><span class="std std-numref">Fig. 1</span></a> and <a class="reference internal" href="#image-model-run-image2"><span class="std std-numref">Fig. 2</span></a>, it is assumed that
+the time to do the simulation for each model are the same for serial and parallel.</p>
+<p>Actually, when the machine to run iRIC-MI has many cores, the assumption is satisfied. When the
+machine has only one (or just a few) cores, the assumption is not satisfied, each model takes more time when running in parallel than in serial, and the difference of total execution time becomes less.</p>
+</div>
+</section>
+<section id="running-models-using-hpc-will-be-supported">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Running models using HPC will be supported</a><a class="headerlink" href="#running-models-using-hpc-will-be-supported" title="Permalink to this heading"></a></h3>
+<p>Not tested yet, but it must be possible to run models using HPC (multiple machines), because MPI is the standard specification for that purpose.</p>
+</section>
+</section>
+<section id="multiple-language-supported">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Multiple language supported</a><a class="headerlink" href="#multiple-language-supported" title="Permalink to this heading"></a></h2>
+<p>Currently, iRIC-MI library is prepared for the languages below:</p>
+<ul class="simple">
+<li><p>C/C++</p></li>
+<li><p>FORTRAN</p></li>
+<li><p>Python</p></li>
+</ul>
+<p>It means that the model implemented in FORTRAN can exchange data with model implemented in Python, for example.</p>
+<p>With other frameworks, developers need to write wrapper for each model, so that they can be handled from the driver program. With iRIC-MI, they do not need to.</p>
+<p>iRIC-MI library is written in C++, and SWIG (<a class="reference external" href="http://www.swig.org/">http://www.swig.org/</a>) is used to implement the wrapper for Python.
+It means that potentially it is possible to implement wrappers for the other languages supported by SWIG,
+like C#, Java, Ruby, etc.</p>
+</section>
+<section id="it-runs-on-both-windows-and-linux">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">It runs on both Windows and Linux</a><a class="headerlink" href="#it-runs-on-both-windows-and-linux" title="Permalink to this heading"></a></h2>
+<p>iRIC-MI library can be built on both Windows and Linux.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_what_is.html" class="btn btn-neutral float-left" title="What is iRIC-MI?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../02_install.html" class="btn btn-neutral float-right" title="How to Install iRIC-MI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

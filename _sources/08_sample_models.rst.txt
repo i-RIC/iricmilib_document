@@ -1,0 +1,15 @@
+.. _sec_sample_models:
+
+Sample models
+===========================
+
+This chapter describes sample models bundled to iricmi library.
+
+.. toctree::
+   :maxdepth: 2
+
+   08/01_global_send_receive
+   08/02_grid_att_send_receive
+   08/03_grid_2d3d
+   08/04_grid2d_unst
+   08/05_grid2d_edge

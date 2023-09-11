@@ -1,0 +1,96 @@
+.. _sec_ref_iRICMI_Read_Grid_FunctionalTime:
+
+iRICMI_Read_Grid_FunctionalTime
+===============================
+
+@TODO write description
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid_FunctionalTime(name, time_arr, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid_FunctionalTime(name, time_arr)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   time_arr = iRICMI_Read_Grid_FunctionalTime(name)
+
+Arguments and returned value
+----------------------------
+
+name
+~~~~
+
+.. list-table:: Information about name
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - name
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the grid attribute
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+time_arr
+~~~~~~~~
+
+.. list-table:: Information about time_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - time_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - @TODO write description
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

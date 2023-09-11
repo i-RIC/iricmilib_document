@@ -1,0 +1,74 @@
+.. _sec_ref_iRICMI_Read_Grid_TriangleElementsSize2:
+
+iRICMI_Read_Grid_TriangleElementsSize2
+======================================
+
+@TODO write description
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid_TriangleElementsSize2(size, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid_TriangleElementsSize2(size)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   size = iRICMI_Read_Grid_TriangleElementsSize2()
+
+Arguments and returned value
+----------------------------
+
+size
+~~~~
+
+.. list-table:: Information about size
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - size
+   * - I/O
+     - Output
+
+   * - Description
+     - The number of triangle cells
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

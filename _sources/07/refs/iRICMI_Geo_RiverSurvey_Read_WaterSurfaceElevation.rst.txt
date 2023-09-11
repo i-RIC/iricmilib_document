@@ -1,0 +1,140 @@
+.. _sec_ref_iRICMI_Geo_RiverSurvey_Read_WaterSurfaceElevation:
+
+iRICMI_Geo_RiverSurvey_Read_WaterSurfaceElevation
+=================================================
+
+Reads the water elevation at the crosssection.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Geo_RiverSurvey_Read_WaterSurfaceElevation(id, pointid, set, value, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Geo_RiverSurvey_Read_WaterSurfaceElevation(id, pointid, set, value)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   set, value = iRICMI_Geo_RiverSurvey_Read_WaterSurfaceElevation(id, pointid)
+
+Arguments and returned value
+----------------------------
+
+id
+~~
+
+.. list-table:: Information about id
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - id
+   * - I/O
+     - Input
+
+   * - Description
+     - River Survey Data ID
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+pointid
+~~~~~~~
+
+.. list-table:: Information about pointid
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - pointid
+   * - I/O
+     - Input
+
+   * - Description
+     - Crosssection ID (starts from 1)
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - int
+
+set
+~~~
+
+.. list-table:: Information about set
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - set
+   * - I/O
+     - Output
+
+   * - Description
+     - If defined the value is 1
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+value
+~~~~~
+
+.. list-table:: Information about value
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - value
+   * - I/O
+     - Output
+
+   * - Description
+     - Water surface elevation
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

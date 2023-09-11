@@ -1,0 +1,52 @@
+.. _sec_ref_iRICMI_Calc_Init:
+
+iRICMI_Calc_Init
+================
+
+Initializes iricmi library.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Calc_Init(ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Calc_Init()
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   iRICMI_Calc_Init()
+
+Arguments and returned value
+----------------------------
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

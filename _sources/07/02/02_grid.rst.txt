@@ -1,0 +1,44 @@
+.. _sec_Read_grid:
+
+Grid coordinates and attributes
+================================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ../refs/iRICMI_Read_Grid_NodeCount
+   ../refs/iRICMI_Read_Grid_CellCount
+   ../refs/iRICMI_Read_Grid_IFaceCount
+   ../refs/iRICMI_Read_Grid_JFaceCount
+   ../refs/iRICMI_Read_Grid_KFaceCount
+   ../refs/iRICMI_Read_Grid2d_Str_Size
+   ../refs/iRICMI_Read_Grid2d_Coords
+   ../refs/iRICMI_Read_Grid_TriangleElementsSize
+   ../refs/iRICMI_Read_Grid_TriangleElements
+   ../refs/iRICMI_Read_Grid_Integer_Node
+   ../refs/iRICMI_Read_Grid_Real_Node
+   ../refs/iRICMI_Read_Grid_Complex_Node
+   ../refs/iRICMI_Read_Grid_Integer_Cell
+   ../refs/iRICMI_Read_Grid_Real_Cell
+   ../refs/iRICMI_Read_Grid_Complex_Cell
+   ../refs/iRICMI_Read_Grid_FunctionalDimensionSize
+   ../refs/iRICMI_Read_Grid_FunctionalDimension_Integer
+   ../refs/iRICMI_Read_Grid_FunctionalDimension_Real
+   ../refs/iRICMI_Read_Grid_Functional_Integer_Node
+   ../refs/iRICMI_Read_Grid_Functional_Real_Node
+   ../refs/iRICMI_Read_Grid_Functional_Integer_Cell
+   ../refs/iRICMI_Read_Grid_Functional_Real_Cell
+   ../refs/iRICMI_Read_Grid2d_Open
+   ../refs/iRICMI_Read_Grid2d_Close
+   ../refs/iRICMI_Read_Grid2d_CellArea
+   ../refs/iRICMI_Read_Grid2d_CellNodeCount
+   ../refs/iRICMI_Read_Grid2d_FindCell
+   ../refs/iRICMI_Read_Grid2d_Interpolate
+   ../refs/iRICMI_Read_Grid2d_InterpolateWithCell
+   ../refs/iRICMI_Write_Grid1d_Coords
+   ../refs/iRICMI_Write_Grid2d_Coords
+   ../refs/iRICMI_Write_Grid3d_Coords
+   ../refs/iRICMI_Write_NamedGrid1d_Coords
+   ../refs/iRICMI_Write_NamedGrid2d_Coords
+   ../refs/iRICMI_Write_NamedGrid3d_Coords

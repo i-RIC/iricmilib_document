@@ -1,0 +1,20 @@
+Basic functions
+=================
+
+This section lists the basic functions, that are used to initialize, finalize, synchronize, dump output, and communicate with GUI.
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   refs/iRICMI_Model_Init
+   refs/iRICMI_Model_Terminate
+   refs/iRICMI_Model_Sync
+   refs/iRICMI_Model_Dump
+   refs/iRICMI_Calc_Init
+   refs/iRICMI_Calc_Terminate
+   refs/iRICMI_Calc_Sync_Receive
+   refs/iRICMI_Calc_Sync_Send
+   refs/iRICMI_Calc_Dump
+   refs/iRICMI_Check_Cancel
+   refs/iRICMI_Check_Update

@@ -1,0 +1,16 @@
+iricmi_pymt_util
+========================
+
+``iricmi_pymt_util`` is the tool that you can use to run mobels that implements BMI within iRIC-MI framework.
+
+Please refer to the URL below, for the detail of BMI.
+
+https://bmi.readthedocs.io/en/stable/
+
+
+.. toctree::
+   :maxdepth: 2
+
+   09/01_definition
+   09/02_gen_cgns
+   09/03_run

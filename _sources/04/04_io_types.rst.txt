@@ -1,0 +1,154 @@
+.. _sec_types_of_io:
+
+Types of input and output
+=============================
+
+This section describes about the types of input and output that iRIC-MI can handle.
+
+The list of types are shown below:
+
+* Calculation condition / global output
+* Grid attribute
+* Boundary condition
+* Complex type grid attribute
+
+iRIC-MI allows solver developers to define the types of input / output in
+:numref:`table_types_of_io` for all of the types above:
+
+.. _table_types_of_io:
+
+.. list-table:: Types of I/O
+   :header-rows: 1
+
+   * - Item
+     - Function of iRIC-MI library to handle data
+
+   * - Input value
+     - iRICMI_Read_xxxx()
+
+   * - Time dependent input value
+     - iRICMI_RIn_xxxx()
+
+   * - Time dependent output value
+     - iRICMI_ROut_xxxx()
+
+Calculation condition / global output
+---------------------------------------
+
+Calculation condition (for input) and global output (for output) is the type that
+only one value is defined globally.
+
+Examples of calculation condition and global output is listed below:
+
+* Input value
+
+  * Delta t
+  * Calculation end time
+
+* Time dependent input value
+
+  * Discharge at the upstream
+
+* Time dependent output value
+
+  * Discharge at the downstream
+
+Refer to :ref:`sec_read_calculation_conditions` (input value) and 
+:ref:`sec_rio_calculation_conditions` (time dependent input and output value)
+for the iRIC-MI library functions to handle this type of data.
+
+Grid attribute
+---------------------
+
+Grid attribute is the type that defines values at grid nodes, cells, or edges.
+
+Examples of grid attribute is listed below:
+
+* Input value
+
+  * Elevation
+  * Roughness
+
+* Time dependent input value
+
+  * Rainfall
+
+* Time dependent output value
+
+  * Depth
+  * Velocity
+  * Froude number
+
+When the grid shapes are the different for each models, mapping is executed when the data is 
+sent to another model. Please refer to :ref:`sec_mapping_grid_attribute` for detail.
+
+Refer to :ref:`sec_read_grid` (input value) and 
+:ref:`sec_rio_grid_attributes` (time dependent input and output value) 
+for the iRIC-MI library functions to handle this type of data.
+
+Boundary condition
+---------------------
+
+Boundary condition is the type that defines values at some nodes, cells, or edges of grid.
+
+The difference of boundary condition from grid attribute is as follows:
+
+* Grid attribute: value is defined at all nodes or cells
+* Boundary condition: value is defined only at one (or several) nodes, cells or edges
+
+Examples of boundary condition type are inflow, outflow, pump, culvart.
+
+Examples of values defined at boundary condition is listed below:
+
+* Input value
+
+  * Radius of culvart
+  * The shape of culvart (box, circle, ellipse etc.)
+
+* Time dependent input value
+
+  * Discharge of inflow
+
+* Time dependent output value
+
+  * Discharge of outflow
+  * Water elevation at outlet
+
+Refer to :ref:`sec_read_bc` (input value) and 
+:ref:`sec_rio_bc` (time dependent input and output value)
+for the iRIC-MI library functions to handle this type of data.
+
+For boundary conditions, user needs to specify where the boundary condition is defined.
+You can use iRICMI_Read_BC_IndicesSize() and iRICMI_Read_BC_Indices().
+
+Complex type grid attribute
+-----------------------------
+
+Complex type grid attribute is the type that defines groups at nodes or cells, and for each
+group values are defined.
+
+The difference of this type from normal grid attribute is as follows:
+
+* Grid attribute: value are individually set for each node or cells
+* Complex type grid attribute: the value set for eacn node or cells are actually group ID (integer), and values
+  are input for each group.
+
+Examples of complex type grid attribute are basin, river channel area, city blocks.
+
+Examples of values defined at complex type grid attribute is listed below:
+
+* Input value
+
+  * Total number of people in city block
+
+* Time dependent input value
+
+  * (No example)
+
+* Time dependent output value
+
+  * Total rainfall of basin
+
+Refer to :ref:`sec_read_complex_att` (input value) and 
+:ref:`sec_rio_complex_att` (time dependent input and output value)
+for the iRIC-MI library functions to handle this type of data.

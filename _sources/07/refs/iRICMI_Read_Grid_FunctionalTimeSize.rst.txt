@@ -1,0 +1,96 @@
+.. _sec_ref_iRICMI_Read_Grid_FunctionalTimeSize:
+
+iRICMI_Read_Grid_FunctionalTimeSize
+===================================
+
+@TODO write description
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid_FunctionalTimeSize(name, count, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid_FunctionalTimeSize(name, count)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   count = iRICMI_Read_Grid_FunctionalTimeSize(name)
+
+Arguments and returned value
+----------------------------
+
+name
+~~~~
+
+.. list-table:: Information about name
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - name
+   * - I/O
+     - Input
+
+   * - Description
+     - The name of the grid attribute
+   * - Type (FORTRAN)
+     - character(*)
+   * - Type (C/C++)
+     - const char*
+   * - Type (Python)
+     - string
+
+count
+~~~~~
+
+.. list-table:: Information about count
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - count
+   * - I/O
+     - Output
+
+   * - Description
+     - @TODO write description
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

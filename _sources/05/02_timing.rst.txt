@@ -1,0 +1,381 @@
+.. _sec_examples_of_timings:
+
+Examples of sequences to exchange data
+=======================================
+
+:ref:`sec_sequence` explains the logic how ``iricmi_server`` and models exchange data.
+
+This section shows several examples, so that you can understand how it works more easily and clearly.
+
+Case 1. One-way coupling with same exchange interval
+------------------------------------------------------
+
+This is the most simple case.
+
+* Models:
+
+  * Model A: DT = 10
+  * Model B: DT = 10
+
+* Connections:
+
+  * X of Model A is sent to Y of Model B
+
+To draw the every communication between ``iricmi_server`` and models, the diagram becomes like below:
+
+.. uml::
+
+   participant "iricmi_server" as S
+   participant "Model A" as A
+   participant "Model B" as B
+
+   group Step 1 (T<sub>A</sub> = 0, T<sub>B</sub> = 0)
+
+     group Receiving data from models
+
+       A -> S : T = 0, DT = 10
+       B -> S : T = 0, DT = 10
+
+       S -> A : Asks to send X
+       A -> S : X
+
+       S -> B : Asks to send nothing
+       B -> S : (nothing sent)
+
+     end
+
+     group Copying values from "output" to "input"
+
+       note over S: Copy X to Y
+
+     end
+
+     group Sending data to models
+
+       S -> A : Asks to receive nothing
+       S -> A : (nothing sent)
+
+       S -> B : Asks to receive Y
+       S -> B : Y
+
+     end
+
+   end
+
+   note across: It continues in the same way...
+
+To make it looks simple, we draw the diagram above, with the simplified version like below:
+
+.. uml::
+
+   participant "iricmi_server" as S
+   participant "Model A" as A
+   participant "Model B" as B
+
+   group Step 1 (T<sub>A</sub> = 0, T<sub>B</sub> = 0)
+
+
+       A -> S : X
+
+
+       note over S: Copy X to Y
+
+
+       S -> B : Y
+
+
+   end
+
+   note across: It continues in the same way...
+
+In the following cases, the simplified version is used.
+
+Case 2. Two-way coupling with same exchange interval
+------------------------------------------------------
+
+The difference of Case 2 from Case 1 is that the value is exchanged two-way.
+
+With iRIC-MI, two-way coupling does not cause dead lock.
+
+* Models:
+
+  * Model A: DT = 10
+  * Model B: DT = 10
+
+* Connections:
+
+  * X of Model A is sent to Y of Model B
+  * P of Model B is sent to Q of Model A
+
+.. uml::
+
+   participant "iricmi_server" as S
+   participant "Model A" as A
+   participant "Model B" as B
+
+   group Step 1 (T<sub>A</sub> = 0, T<sub>B</sub> = 0)
+
+     A -> S : X
+     B -> S : P
+
+     note over S: Copy X to Y\nCopy P to Q
+
+     S -> A : Q
+     S -> B : Y
+
+   end
+
+   note across: It continues in the same way...
+
+Case 3. One-way coupling with different exchange interval
+-----------------------------------------------------------
+
+The difference of Case 3 from Case 1 is that the value is exchanged with different exchange interval.
+
+* Models:
+
+  * Model A: DT = 10
+  * Model B: DT = 15
+
+* Connections:
+
+  * X of Model A is sent to Y of Model B
+
+The logic for deciding with which model to communicate is described in detail
+in the diagram below, because it is the key point.
+
+.. uml::
+
+   participant "iricmi_server" as S
+   participant "Model A" as A
+   participant "Model B" as B
+
+   group Step 1 (T<sub>A</sub> = 0, T<sub>B</sub> = 0)
+
+     A -> S : X
+
+     note over S: Copy X to Y
+
+     S -> B : Y
+
+   end group
+
+   group Step 2 (T<sub>A</sub> = 10)
+     group Deciding with which model to communicate
+
+       note across
+         Decide to communicate with Model A because:
+         Model A: NT = 10
+         Model B: NT = 15
+       end note
+     end
+
+     A -> S : X
+
+     note over S: Copy X to Y
+
+   end group
+
+   group Step 3 (T<sub>B</sub> = 15)
+     group Deciding with which model to communicate
+
+       note across
+         Decide to communicate with Model B because:
+         Model A: NT = 20
+         Model B: NT = 15
+       end note
+
+     end
+
+       S -> B : Y
+       note right
+         Value recieved from Model A at T = 10 is sent
+       end note
+
+   end group
+
+   group Step 4 (T<sub>A</sub> = 20)
+     group Deciding with which model to communicate
+
+       note across
+         Decide to communicate with Model A because:
+         Model A: NT = 20
+         Model B: NT = 30
+       end note
+
+     end
+
+   end group
+
+   group Step 5 (T<sub>A</sub> = 30, T<sub>B</sub> = 30)
+     group Deciding with which model to communicate
+
+       note across
+         Decide to communicate with Model A and B because:
+         Model A: NT = 30
+         Model B: NT = 30
+       end note
+     end
+
+     A -> S : X
+
+     note over S: Copy X to Y
+
+     S -> B : Y
+
+   end group
+
+   note across: It continues in the same way...
+
+As you've seen in the example above, there is no problem in case 
+the models run with different exchange interval.
+
+To make it looks more simple, we draw the diagram above, with the 
+simplified version like below:
+
+.. uml::
+
+   participant "iricmi_server" as S
+   participant "Model A" as A
+   participant "Model B" as B
+
+   group Step 1 (T<sub>A</sub> = 0, T<sub>B</sub> = 0)
+
+     A -> S : X
+
+     note over S: Copy X to Y
+
+     S -> B : Y
+
+   end group
+
+   group Step 2 (T<sub>A</sub> = 10)
+     note across
+       NT<sub>A</sub> = 10, NT<sub>B</sub> = 15
+     end note
+
+     A -> S : X
+
+     note over S: Copy X to Y
+
+   end group
+
+   group Step 3 (T<sub>B</sub> = 15)
+     note across
+       NT<sub>A</sub> = 20, NT<sub>B</sub> = 15
+     end note
+
+     S -> B : Y (T<sub>A</sub> = 10)
+
+   end group
+
+   group Step 4 (T<sub>A</sub> = 20)
+     note across
+       NT<sub>A</sub> = 20, NT<sub>B</sub> = 30
+     end note
+   end group
+
+   group Step 5 (T<sub>A</sub> = 30, T<sub>B</sub> = 30)
+     note across
+       NT<sub>A</sub> = 30, NT<sub>B</sub> = 30
+     end note
+
+     A -> S : X
+
+     note over S: Copy X to Y
+
+     S -> B : Y
+
+   end group
+
+   note across: It continues in the same way...
+
+Case 4. Two-way coupling with different exchange interval
+-----------------------------------------------------------
+
+This is the most complex version.
+
+With the simplified version used in Case 3, the diagram becomes like below:
+
+* Models:
+
+  * Model A: DT = 10
+  * Model B: DT = 15
+
+* Connections:
+
+  * X of Model A is sent to Y of Model B
+  * P of Model B is sent to Q of Model A
+
+.. uml::
+
+   participant "iricmi_server" as S
+   participant "Model A" as A
+   participant "Model B" as B
+
+   group Step 1 (T<sub>A</sub> = 0, T<sub>B</sub> = 0)
+
+     A -> S : X
+     B -> S : P
+
+     note over S: Copy X to Y\nCopy P to Q
+
+     S -> A : Q
+     S -> B : Y
+
+   end group
+
+   group Step 2 (T<sub>A</sub> = 10)
+     note across
+       NT<sub>A</sub> = 10, NT<sub>B</sub> = 15
+     end note
+
+     A -> S : X
+
+     note over S: Copy X to Y
+
+   end group
+
+   group Step 3 (T<sub>B</sub> = 15)
+     note across
+       NT<sub>A</sub> = 20, NT<sub>B</sub> = 15
+     end note
+
+     B -> S : P
+
+     note over S: Copy P to Q
+
+     S -> B : Y (T<sub>A</sub> = 10)
+
+   end group
+
+   group Step 4 (T<sub>B</sub> = 20)
+
+     note across
+       NT<sub>A</sub> = 20, NT<sub>B</sub> = 30
+     end note
+
+     A -> S : X
+
+     note over S: Copy X to Y
+
+     S -> A : Q (T<sub>B</sub> = 15)
+
+   end group
+
+   group Step 5 (T<sub>A</sub> = 30, T<sub>B</sub> = 30)
+     note across
+       NT<sub>A</sub> = 30, NT<sub>B</sub> = 30
+     end note
+
+     A -> S : X
+     B -> S : P
+
+     note over S: Copy X to Y\nCopy P to Q
+
+     S -> A : Q
+     S -> B : Y
+
+   end group
+
+   note across: It continues in the same way...

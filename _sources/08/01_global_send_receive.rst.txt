@@ -1,0 +1,111 @@
+.. _sec_sample_model_global_send_receive:
+
+``global_send`` and ``global_receive``
+===========================================
+
+``global_send`` and ``global_receive`` are the most basic sample models.
+They just send and receive time dependent scalar value "discharge".
+
+``global_send`` and ``global_receive`` are implemented in FORTRAN, C++ and Python.
+On this page FORTRAN version is explained.
+
+``global_send``
+--------------------------
+
+:numref:`global_send_fortran_definition` shows "definition.xml" of ``global_send``, and
+:numref:`global_send_fortran_main_f90` shows the source code of ``global_send``.
+
+The important points are as follows:
+
+* Line 16 to 18 of :numref:`global_send_fortran_definition` defines the global output value "discharge".
+* :numref:`global_send_fortran_main_f90` follows the flow chart in :ref:`workflow_of_model`.
+* On line 27 of :numref:`global_send_fortran_main_f90`, :ref:`sec_ref_iRICMI_ROut_Real` is called, to register the variable ``discharge``, that stores the value of output "discharge" defined in definition.xml. The value of discharge is sent to ``iricmi_server`` when :ref:`sec_ref_iRICMI_Model_Sync` is called.
+
+.. literalinclude:: ../../../../testmodels/global_send_fortran/definition.xml
+   :name: global_send_fortran_definition
+   :language: xml
+   :linenos:
+   :caption: definition.xml of ``global_send``
+
+.. literalinclude:: ../../../../testmodels/global_send_fortran/main.f90
+   :name: global_send_fortran_main_f90
+   :language: fortran
+   :linenos:
+   :caption: source code main.f90 of ``global_send``
+
+
+``global_recieve``
+--------------------------
+
+:numref:`global_receive_fortran_definition` shows "definition.xml" of ``global_receive``, and
+:numref:`global_receive_fortran_main_f90` shows the source code of ``global_receive``.
+
+The important points are as follows:
+
+* Line 15 to 20 of :numref:`global_receive_fortran_definition` defines the calculation condition "discharge" as time dependent value (Refer to :ref:`sec_defining_scalar_value`).
+* :numref:`global_receive_fortran_main_f90` follows the flow chart in :ref:`workflow_of_model`.
+* On line 25 of :numref:`global_receive_fortran_main_f90`, :ref:`sec_ref_iRICMI_RIn_Real` is called, to register the variable ``discharge``, that stores the value of time dependent input "discharge" defined in definition.xml. The value of discharge is received from ``iricmi_server`` when :ref:`sec_ref_iRICMI_Model_Sync` is called.
+
+.. literalinclude:: ../../../../testmodels/global_receive_fortran/definition.xml
+   :name: global_receive_fortran_definition
+   :language: xml
+   :linenos:
+   :caption: definition.xml of ``global_receive``
+
+.. literalinclude:: ../../../../testmodels/global_receive_fortran/main.f90
+   :name: global_receive_fortran_main_f90
+   :language: fortran
+   :linenos:
+   :caption: source code main.f90 of ``global_receive``
+
+Project data
+---------------
+
+The project data to run ``global_send`` and ``global_receive`` connected is stored 
+in testdata/global_send_receive_fortran folder.
+
+:numref:`global_send_receive_fortran_iricmi_project` shows iricmi_project.xml. You can see that
+a connection is defined to exchange data of "discharge".
+
+As explained in :ref:`sec_how_to_run_coupled`, you can run the models for the project, by "chdir"ing to the
+project folder, and launch ``iricmi_run``.
+
+.. literalinclude:: ../../../../testdata/global_send_receive_fortran/iricmi_project.xml
+   :name: global_send_receive_fortran_iricmi_project
+   :language: xml
+   :linenos:
+   :caption: iricmi_project.xml for ``global_send`` and ``global_receive``
+
+Result
+-----------
+
+The output of ``global_send`` and ``global_receive`` are shown in 
+:numref:`global_send_output` and :numref:`global_receive_output`.
+From the output, you can make sure that the value of discharge is exchanged between
+``global_send`` and ``global_receive``.
+
+.. code-block:: text
+   :caption: Output of ``global_send``
+   :name: global_send_output
+   :linenos:
+
+   In global_send t =   0.0, discharge =      0.0
+   In global_send t =   1.0, discharge =      0.1
+   In global_send t =   2.0, discharge =      0.2
+   In global_send t =   3.0, discharge =      0.3
+   In global_send t =   4.0, discharge =      0.4
+   In global_send t =   5.0, discharge =      0.5
+   (abbr.)
+
+.. code-block:: text
+   :caption: Output of ``global_receive``
+   :name: global_receive_output
+   :linenos:
+
+   In global_receieve t =   0.0, discharge =      0.0
+   In global_receieve t =   1.0, discharge =      0.1
+   In global_receieve t =   2.0, discharge =      0.2
+   In global_receieve t =   3.0, discharge =      0.3
+   In global_receieve t =   4.0, discharge =      0.4
+   In global_receieve t =   5.0, discharge =      0.5
+   (abbr.)

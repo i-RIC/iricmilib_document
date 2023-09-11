@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples of sequences to exchange data &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mapping grid attributes values" href="03_mapping.html" />
+    <link rel="prev" title="The workflow of iricmi_server and models" href="01_workflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_workflow.html">The workflow of <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Examples of sequences to exchange data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#case-1-one-way-coupling-with-same-exchange-interval">Case 1. One-way coupling with same exchange interval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#case-2-two-way-coupling-with-same-exchange-interval">Case 2. Two-way coupling with same exchange interval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#case-3-one-way-coupling-with-different-exchange-interval">Case 3. One-way coupling with different exchange interval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#case-4-two-way-coupling-with-different-exchange-interval">Case 4. Two-way coupling with different exchange interval</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03_mapping.html">Mapping grid attributes values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_mapping_2d_3d.html">Mapping values between two dimensional and three dimensional grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_iricmi_run.html">What <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code> do</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+      <li class="breadcrumb-item active">Examples of sequences to exchange data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/05/02_timing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples-of-sequences-to-exchange-data">
+<span id="sec-examples-of-timings"></span><h1>Examples of sequences to exchange data<a class="headerlink" href="#examples-of-sequences-to-exchange-data" title="Permalink to this heading"></a></h1>
+<p><a class="reference internal" href="01_workflow.html#sec-sequence"><span class="std std-ref">The workflow of iricmi_server and models</span></a> explains the logic how <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models exchange data.</p>
+<p>This section shows several examples, so that you can understand how it works more easily and clearly.</p>
+<section id="case-1-one-way-coupling-with-same-exchange-interval">
+<h2>Case 1. One-way coupling with same exchange interval<a class="headerlink" href="#case-1-one-way-coupling-with-same-exchange-interval" title="Permalink to this heading"></a></h2>
+<p>This is the most simple case.</p>
+<ul class="simple">
+<li><p>Models:</p>
+<ul>
+<li><p>Model A: DT = 10</p></li>
+<li><p>Model B: DT = 10</p></li>
+</ul>
+</li>
+<li><p>Connections:</p>
+<ul>
+<li><p>X of Model A is sent to Y of Model B</p></li>
+</ul>
+</li>
+</ul>
+<p>To draw the every communication between <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> and models, the diagram becomes like below:</p>
+<p class="plantuml">
+<img src="../_images/plantuml-0929c324521497b38e76c78eac830f092884b097.png" alt="participant &quot;iricmi_server&quot; as S
+participant &quot;Model A&quot; as A
+participant &quot;Model B&quot; as B
+
+group Step 1 (T&lt;sub&gt;A&lt;/sub&gt; = 0, T&lt;sub&gt;B&lt;/sub&gt; = 0)
+
+  group Receiving data from models
+
+    A -&gt; S : T = 0, DT = 10
+    B -&gt; S : T = 0, DT = 10
+
+    S -&gt; A : Asks to send X
+    A -&gt; S : X
+
+    S -&gt; B : Asks to send nothing
+    B -&gt; S : (nothing sent)
+
+  end
+
+  group Copying values from &quot;output&quot; to &quot;input&quot;
+
+    note over S: Copy X to Y
+
+  end
+
+  group Sending data to models
+
+    S -&gt; A : Asks to receive nothing
+    S -&gt; A : (nothing sent)
+
+    S -&gt; B : Asks to receive Y
+    S -&gt; B : Y
+
+  end
+
+end
+
+note across: It continues in the same way..."/>
+</p>
+<p>To make it looks simple, we draw the diagram above, with the simplified version like below:</p>
+<p class="plantuml">
+<img src="../_images/plantuml-f6a11a03ce32cda85dd6d99461a6a380f9f5e9a2.png" alt="participant &quot;iricmi_server&quot; as S
+participant &quot;Model A&quot; as A
+participant &quot;Model B&quot; as B
+
+group Step 1 (T&lt;sub&gt;A&lt;/sub&gt; = 0, T&lt;sub&gt;B&lt;/sub&gt; = 0)
+
+
+    A -&gt; S : X
+
+
+    note over S: Copy X to Y
+
+
+    S -&gt; B : Y
+
+
+end
+
+note across: It continues in the same way..."/>
+</p>
+<p>In the following cases, the simplified version is used.</p>
+</section>
+<section id="case-2-two-way-coupling-with-same-exchange-interval">
+<h2>Case 2. Two-way coupling with same exchange interval<a class="headerlink" href="#case-2-two-way-coupling-with-same-exchange-interval" title="Permalink to this heading"></a></h2>
+<p>The difference of Case 2 from Case 1 is that the value is exchanged two-way.</p>
+<p>With iRIC-MI, two-way coupling does not cause dead lock.</p>
+<ul class="simple">
+<li><p>Models:</p>
+<ul>
+<li><p>Model A: DT = 10</p></li>
+<li><p>Model B: DT = 10</p></li>
+</ul>
+</li>
+<li><p>Connections:</p>
+<ul>
+<li><p>X of Model A is sent to Y of Model B</p></li>
+<li><p>P of Model B is sent to Q of Model A</p></li>
+</ul>
+</li>
+</ul>
+<p class="plantuml">
+<img src="../_images/plantuml-753b1fe1f64a92ce42d7833acb6cd19c1d1e3d52.png" alt="participant &quot;iricmi_server&quot; as S
+participant &quot;Model A&quot; as A
+participant &quot;Model B&quot; as B
+
+group Step 1 (T&lt;sub&gt;A&lt;/sub&gt; = 0, T&lt;sub&gt;B&lt;/sub&gt; = 0)
+
+  A -&gt; S : X
+  B -&gt; S : P
+
+  note over S: Copy X to Y\nCopy P to Q
+
+  S -&gt; A : Q
+  S -&gt; B : Y
+
+end
+
+note across: It continues in the same way..."/>
+</p>
+</section>
+<section id="case-3-one-way-coupling-with-different-exchange-interval">
+<h2>Case 3. One-way coupling with different exchange interval<a class="headerlink" href="#case-3-one-way-coupling-with-different-exchange-interval" title="Permalink to this heading"></a></h2>
+<p>The difference of Case 3 from Case 1 is that the value is exchanged with different exchange interval.</p>
+<ul class="simple">
+<li><p>Models:</p>
+<ul>
+<li><p>Model A: DT = 10</p></li>
+<li><p>Model B: DT = 15</p></li>
+</ul>
+</li>
+<li><p>Connections:</p>
+<ul>
+<li><p>X of Model A is sent to Y of Model B</p></li>
+</ul>
+</li>
+</ul>
+<p>The logic for deciding with which model to communicate is described in detail
+in the diagram below, because it is the key point.</p>
+<p class="plantuml">
+<img src="../_images/plantuml-0e599f7523cff2eaf90673c88c3a1ca9c5830fba.png" alt="participant &quot;iricmi_server&quot; as S
+participant &quot;Model A&quot; as A
+participant &quot;Model B&quot; as B
+
+group Step 1 (T&lt;sub&gt;A&lt;/sub&gt; = 0, T&lt;sub&gt;B&lt;/sub&gt; = 0)
+
+  A -&gt; S : X
+
+  note over S: Copy X to Y
+
+  S -&gt; B : Y
+
+end group
+
+group Step 2 (T&lt;sub&gt;A&lt;/sub&gt; = 10)
+  group Deciding with which model to communicate
+
+    note across
+      Decide to communicate with Model A because:
+      Model A: NT = 10
+      Model B: NT = 15
+    end note
+  end
+
+  A -&gt; S : X
+
+  note over S: Copy X to Y
+
+end group
+
+group Step 3 (T&lt;sub&gt;B&lt;/sub&gt; = 15)
+  group Deciding with which model to communicate
+
+    note across
+      Decide to communicate with Model B because:
+      Model A: NT = 20
+      Model B: NT = 15
+    end note
+
+  end
+
+    S -&gt; B : Y
+    note right
+      Value recieved from Model A at T = 10 is sent
+    end note
+
+end group
+
+group Step 4 (T&lt;sub&gt;A&lt;/sub&gt; = 20)
+  group Deciding with which model to communicate
+
+    note across
+      Decide to communicate with Model A because:
+      Model A: NT = 20
+      Model B: NT = 30
+    end note
+
+  end
+
+end group
+
+group Step 5 (T&lt;sub&gt;A&lt;/sub&gt; = 30, T&lt;sub&gt;B&lt;/sub&gt; = 30)
+  group Deciding with which model to communicate
+
+    note across
+      Decide to communicate with Model A and B because:
+      Model A: NT = 30
+      Model B: NT = 30
+    end note
+  end
+
+  A -&gt; S : X
+
+  note over S: Copy X to Y
+
+  S -&gt; B : Y
+
+end group
+
+note across: It continues in the same way..."/>
+</p>
+<p>As you’ve seen in the example above, there is no problem in case
+the models run with different exchange interval.</p>
+<p>To make it looks more simple, we draw the diagram above, with the
+simplified version like below:</p>
+<p class="plantuml">
+<img src="../_images/plantuml-059166123fe51df982e4957803265b6d8818b05a.png" alt="participant &quot;iricmi_server&quot; as S
+participant &quot;Model A&quot; as A
+participant &quot;Model B&quot; as B
+
+group Step 1 (T&lt;sub&gt;A&lt;/sub&gt; = 0, T&lt;sub&gt;B&lt;/sub&gt; = 0)
+
+  A -&gt; S : X
+
+  note over S: Copy X to Y
+
+  S -&gt; B : Y
+
+end group
+
+group Step 2 (T&lt;sub&gt;A&lt;/sub&gt; = 10)
+  note across
+    NT&lt;sub&gt;A&lt;/sub&gt; = 10, NT&lt;sub&gt;B&lt;/sub&gt; = 15
+  end note
+
+  A -&gt; S : X
+
+  note over S: Copy X to Y
+
+end group
+
+group Step 3 (T&lt;sub&gt;B&lt;/sub&gt; = 15)
+  note across
+    NT&lt;sub&gt;A&lt;/sub&gt; = 20, NT&lt;sub&gt;B&lt;/sub&gt; = 15
+  end note
+
+  S -&gt; B : Y (T&lt;sub&gt;A&lt;/sub&gt; = 10)
+
+end group
+
+group Step 4 (T&lt;sub&gt;A&lt;/sub&gt; = 20)
+  note across
+    NT&lt;sub&gt;A&lt;/sub&gt; = 20, NT&lt;sub&gt;B&lt;/sub&gt; = 30
+  end note
+end group
+
+group Step 5 (T&lt;sub&gt;A&lt;/sub&gt; = 30, T&lt;sub&gt;B&lt;/sub&gt; = 30)
+  note across
+    NT&lt;sub&gt;A&lt;/sub&gt; = 30, NT&lt;sub&gt;B&lt;/sub&gt; = 30
+  end note
+
+  A -&gt; S : X
+
+  note over S: Copy X to Y
+
+  S -&gt; B : Y
+
+end group
+
+note across: It continues in the same way..."/>
+</p>
+</section>
+<section id="case-4-two-way-coupling-with-different-exchange-interval">
+<h2>Case 4. Two-way coupling with different exchange interval<a class="headerlink" href="#case-4-two-way-coupling-with-different-exchange-interval" title="Permalink to this heading"></a></h2>
+<p>This is the most complex version.</p>
+<p>With the simplified version used in Case 3, the diagram becomes like below:</p>
+<ul class="simple">
+<li><p>Models:</p>
+<ul>
+<li><p>Model A: DT = 10</p></li>
+<li><p>Model B: DT = 15</p></li>
+</ul>
+</li>
+<li><p>Connections:</p>
+<ul>
+<li><p>X of Model A is sent to Y of Model B</p></li>
+<li><p>P of Model B is sent to Q of Model A</p></li>
+</ul>
+</li>
+</ul>
+<p class="plantuml">
+<img src="../_images/plantuml-fa82b457cc5d2ea2a1f8eb88dc81cc3b0684a2ba.png" alt="participant &quot;iricmi_server&quot; as S
+participant &quot;Model A&quot; as A
+participant &quot;Model B&quot; as B
+
+group Step 1 (T&lt;sub&gt;A&lt;/sub&gt; = 0, T&lt;sub&gt;B&lt;/sub&gt; = 0)
+
+  A -&gt; S : X
+  B -&gt; S : P
+
+  note over S: Copy X to Y\nCopy P to Q
+
+  S -&gt; A : Q
+  S -&gt; B : Y
+
+end group
+
+group Step 2 (T&lt;sub&gt;A&lt;/sub&gt; = 10)
+  note across
+    NT&lt;sub&gt;A&lt;/sub&gt; = 10, NT&lt;sub&gt;B&lt;/sub&gt; = 15
+  end note
+
+  A -&gt; S : X
+
+  note over S: Copy X to Y
+
+end group
+
+group Step 3 (T&lt;sub&gt;B&lt;/sub&gt; = 15)
+  note across
+    NT&lt;sub&gt;A&lt;/sub&gt; = 20, NT&lt;sub&gt;B&lt;/sub&gt; = 15
+  end note
+
+  B -&gt; S : P
+
+  note over S: Copy P to Q
+
+  S -&gt; B : Y (T&lt;sub&gt;A&lt;/sub&gt; = 10)
+
+end group
+
+group Step 4 (T&lt;sub&gt;B&lt;/sub&gt; = 20)
+
+  note across
+    NT&lt;sub&gt;A&lt;/sub&gt; = 20, NT&lt;sub&gt;B&lt;/sub&gt; = 30
+  end note
+
+  A -&gt; S : X
+
+  note over S: Copy X to Y
+
+  S -&gt; A : Q (T&lt;sub&gt;B&lt;/sub&gt; = 15)
+
+end group
+
+group Step 5 (T&lt;sub&gt;A&lt;/sub&gt; = 30, T&lt;sub&gt;B&lt;/sub&gt; = 30)
+  note across
+    NT&lt;sub&gt;A&lt;/sub&gt; = 30, NT&lt;sub&gt;B&lt;/sub&gt; = 30
+  end note
+
+  A -&gt; S : X
+  B -&gt; S : P
+
+  note over S: Copy X to Y\nCopy P to Q
+
+  S -&gt; A : Q
+  S -&gt; B : Y
+
+end group
+
+note across: It continues in the same way..."/>
+</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_workflow.html" class="btn btn-neutral float-left" title="The workflow of iricmi_server and models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_mapping.html" class="btn btn-neutral float-right" title="Mapping grid attributes values" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

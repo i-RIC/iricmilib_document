@@ -1,0 +1,113 @@
+.. _sec_sample_model_grid_att_send_receive:
+
+``grid_att_send`` and ``grid_att_receive``
+=============================================
+
+``grid_att_send`` and ``grid_att_receive`` are the models that 
+send and receive time dependent grid attribute value "rain".
+
+``grid_att_send`` and ``grid_att_receive`` are implemented in FORTRAN, C++ and Python.
+On this page FORTRAN version is explained.
+
+``grid_att_send``
+--------------------------
+
+:numref:`grid_att_send_fortran_definition` shows "definition.xml" of ``grid_att_send``, and
+:numref:`grid_att_send_fortran_main_f90` shows the source code of ``grid_att_send``.
+
+The important points are as follows:
+
+* Line 19 to 21 of :numref:`grid_att_send_fortran_definition` defines the output data defined at grid cells named "rain".
+* :numref:`grid_att_send_fortran_main_f90` follows the flow chart in :ref:`workflow_of_model`.
+* On line 41 of :numref:`grid_att_send_fortran_main_f90`, :ref:`sec_ref_iRICMI_ROut_Grid_Cell_Real` is called, to register the variable ``rain``, that stores the value of output "rain" defined in definition.xml. The value of rain is sent to ``iricmi_server`` when :ref:`sec_ref_iRICMI_Model_Sync` is called.
+
+.. literalinclude:: ../../../../testmodels/grid_att_send_fortran/definition.xml
+   :name: grid_att_send_fortran_definition
+   :language: xml
+   :linenos:
+   :caption: definition.xml of ``grid_att_send``
+
+.. literalinclude:: ../../../../testmodels/grid_att_send_fortran/main.f90
+   :name: grid_att_send_fortran_main_f90
+   :language: fortran
+   :linenos:
+   :caption: source code main.f90 of ``grid_att_send``
+
+
+``grid_att_recieve``
+--------------------------
+
+:numref:`grid_att_receive_fortran_definition` shows "definition.xml" of ``grid_att_receive``, and
+:numref:`grid_att_receive_fortran_main_f90` shows the source code of ``grid_att_receive``.
+
+The important points are as follows:
+
+* Line 19 to 23 of :numref:`grid_att_receive_fortran_definition` defines the grid attribute "rain" as time dependent value (Refer to :ref:`sec_defining_grid_att_value`).
+* :numref:`grid_att_receive_fortran_main_f90` follows the flow chart in :ref:`workflow_of_model`.
+* On line 36 of :numref:`grid_att_receive_fortran_main_f90`, :ref:`sec_ref_iRICMI_RIn_Grid_Cell_Real` is called, to register the variable ``rain``, that stores the value of time dependent input "rain" defined in definition.xml. The value of rain is received from ``iricmi_server`` when :ref:`sec_ref_iRICMI_Model_Sync` is called.
+
+.. literalinclude:: ../../../../testmodels/grid_att_receive_fortran/definition.xml
+   :name: grid_att_receive_fortran_definition
+   :language: xml
+   :linenos:
+   :caption: definition.xml of ``grid_att_receive``
+
+.. literalinclude:: ../../../../testmodels/grid_att_receive_fortran/main.f90
+   :name: grid_att_receive_fortran_main_f90
+   :language: fortran
+   :linenos:
+   :caption: source code main.f90 of ``grid_att_receive``
+
+Project data
+---------------
+
+The project data to run ``grid_att_send`` and ``grid_att_receive`` connected is stored 
+in testdata/grid_att_send_receive_fortran folder.
+
+:numref:`grid_att_send_receive_fortran_iricmi_project` shows iricmi_project.xml. You can see that
+a connection is defined to exchange data of "rain".
+
+As explained in :ref:`sec_how_to_run_coupled`, you can run the models for the project, by "chdir"ing to the
+project folder, and launch ``iricmi_run``.
+
+.. literalinclude:: ../../../../testdata/grid_att_send_receive_fortran/iricmi_project.xml
+   :name: grid_att_send_receive_fortran_iricmi_project
+   :language: xml
+   :linenos:
+   :caption: iricmi_project.xml for ``grid_att_send`` and ``grid_att_receive``
+
+Result
+-----------
+
+The output of ``grid_att_send`` and ``grid_att_receive`` are shown in 
+:numref:`grid_att_send_output` and :numref:`grid_att_receive_output`.
+From the output, you can make sure that the value of rain is exchanged between
+``grid_att_send`` and ``grid_att_receive``.
+
+.. code-block:: text
+   :caption: Output of ``grid_att_send``
+   :name: grid_att_send_output
+   :linenos:
+
+   In grid_att_send t =   0.0, rain =      0.1
+   In grid_att_send t =   1.0, rain =      0.2
+   In grid_att_send t =   2.0, rain =      0.3
+   In grid_att_send t =   3.0, rain =      0.4
+   In grid_att_send t =   4.0, rain =      0.5
+   In grid_att_send t =   5.0, rain =      0.6
+
+
+   (abbr.)
+
+.. code-block:: text
+   :caption: Output of ``grid_att_receive``
+   :name: grid_att_receive_output
+   :linenos:
+
+   In grid_att_receive t =   0.0, rain =      0.1
+   In grid_att_receive t =   1.0, rain =      0.2
+   In grid_att_receive t =   2.0, rain =      0.3
+   In grid_att_receive t =   3.0, rain =      0.4
+   In grid_att_receive t =   4.0, rain =      0.5
+   In grid_att_receive t =   5.0, rain =      0.6
+   (abbr.)

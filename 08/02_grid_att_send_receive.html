@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>grid_att_send and grid_att_receive &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="grid2d3d" href="03_grid_2d3d.html" />
+    <link rel="prev" title="global_send and global_receive" href="01_global_send_receive.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../08_sample_models.html">Sample models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_global_send_receive.html"><code class="docutils literal notranslate"><span class="pre">global_send</span></code> and <code class="docutils literal notranslate"><span class="pre">global_receive</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grid-att-send"><code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grid-att-recieve"><code class="docutils literal notranslate"><span class="pre">grid_att_recieve</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-data">Project data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#result">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03_grid_2d3d.html"><code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_grid2d_unst.html"><code class="docutils literal notranslate"><span class="pre">grid2d_unst</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_grid2d_edge.html"><code class="docutils literal notranslate"><span class="pre">grid2d_edge</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../08_sample_models.html">Sample models</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/08/02_grid_att_send_receive.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="grid-att-send-and-grid-att-receive">
+<span id="sec-sample-model-grid-att-send-receive"></span><h1><code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code><a class="headerlink" href="#grid-att-send-and-grid-att-receive" title="Permalink to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code> are the models that
+send and receive time dependent grid attribute value “rain”.</p>
+<p><code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code> are implemented in FORTRAN, C++ and Python.
+On this page FORTRAN version is explained.</p>
+<section id="grid-att-send">
+<h2><code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code><a class="headerlink" href="#grid-att-send" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="#grid-att-send-fortran-definition"><span class="std std-numref">Listing 29</span></a> shows “definition.xml” of <code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code>, and
+<a class="reference internal" href="#grid-att-send-fortran-main-f90"><span class="std std-numref">Listing 30</span></a> shows the source code of <code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code>.</p>
+<p>The important points are as follows:</p>
+<ul class="simple">
+<li><p>Line 19 to 21 of <a class="reference internal" href="#grid-att-send-fortran-definition"><span class="std std-numref">Listing 29</span></a> defines the output data defined at grid cells named “rain”.</p></li>
+<li><p><a class="reference internal" href="#grid-att-send-fortran-main-f90"><span class="std std-numref">Listing 30</span></a> follows the flow chart in <a class="reference internal" href="../04/03_developing_model.html#workflow-of-model"><span class="std std-ref">The flowchart of the model</span></a>.</p></li>
+<li><p>On line 41 of <a class="reference internal" href="#grid-att-send-fortran-main-f90"><span class="std std-numref">Listing 30</span></a>, <a class="reference internal" href="../07/refs/iRICMI_ROut_Grid_Cell_Real.html#sec-ref-iricmi-rout-grid-cell-real"><span class="std std-ref">iRICMI_ROut_Grid_Cell_Real</span></a> is called, to register the variable <code class="docutils literal notranslate"><span class="pre">rain</span></code>, that stores the value of output “rain” defined in definition.xml. The value of rain is sent to <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> when <a class="reference internal" href="../07/refs/iRICMI_Model_Sync.html#sec-ref-iricmi-model-sync"><span class="std std-ref">iRICMI_Model_Sync</span></a> is called.</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="grid-att-send-fortran-definition">
+<div class="code-block-caption"><span class="caption-number">Listing 29 </span><span class="caption-text">definition.xml of <code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code></span><a class="headerlink" href="#grid-att-send-fortran-definition" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">&lt;SolverDefinition</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="na">xmlns=</span><span class="s">&quot;www.iric.net/SolverDefinition/1.0&quot;</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="na">name=</span><span class="s">&quot;grid_att_send_fortran&quot;</span>
+<span class="linenos"> 4</span><span class="w">	</span><span class="na">caption=</span><span class="s">&quot;Model for testing sending grid attribute value (FORTRAN)&quot;</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="na">version=</span><span class="s">&quot;1.0&quot;</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="na">copyright=</span><span class="s">&quot;iRIC organization&quot;</span>
+<span class="linenos"> 7</span><span class="w">	</span><span class="na">release=</span><span class="s">&quot;2020.6.20&quot;</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="na">homepage=</span><span class="s">&quot;http://i-ric.org&quot;</span>
+<span class="linenos"> 9</span><span class="w">	</span><span class="na">executable=</span><span class="s">&quot;grid_att_send_fortran.exe&quot;</span>
+<span class="linenos">10</span><span class="w">	</span><span class="na">iterationtype=</span><span class="s">&quot;time&quot;</span>
+<span class="linenos">11</span><span class="w">	</span><span class="na">gridtype=</span><span class="s">&quot;structured2d&quot;</span>
+<span class="linenos">12</span><span class="nt">&gt;</span>
+<span class="linenos">13</span><span class="w">	</span><span class="nt">&lt;CalculationCondition&gt;</span>
+<span class="linenos">14</span><span class="w">	</span><span class="nt">&lt;/CalculationCondition&gt;</span>
+<span class="linenos">15</span><span class="w">	</span><span class="nt">&lt;GridRelatedCondition&gt;</span>
+<span class="linenos">16</span><span class="w">		</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Elevation&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Elevation (m)&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">17</span><span class="w">			</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;node&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;max&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">18</span><span class="w">		</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos">19</span><span class="w">		</span><span class="nt">&lt;Output</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rain&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Rainfall&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">20</span><span class="w">			</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;cell&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">21</span><span class="w">		</span><span class="nt">&lt;/Output&gt;</span>
+<span class="linenos">22</span><span class="w">	</span><span class="nt">&lt;/GridRelatedCondition&gt;</span>
+<span class="linenos">23</span><span class="nt">&lt;/SolverDefinition&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="grid-att-send-fortran-main-f90">
+<div class="code-block-caption"><span class="caption-number">Listing 30 </span><span class="caption-text">source code main.f90 of <code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code></span><a class="headerlink" href="#grid-att-send-fortran-main-f90" title="Permalink to this code"></a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">program </span><span class="n">grid_att_send</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="k">use </span><span class="n">iricmi</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="k">implicit none</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">ier</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">canceled</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
+<span class="linenos"> 9</span><span class="nb">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="n">dt</span>
+<span class="linenos">10</span><span class="w">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="n">endtime</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">nodeCount</span><span class="p">,</span><span class="w"> </span><span class="n">cellCount</span>
+<span class="linenos">13</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">gridX</span><span class="p">,</span><span class="w"> </span><span class="n">gridY</span>
+<span class="linenos">14</span><span class="w">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="n">rain_val</span>
+<span class="linenos">15</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">rain</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Model_Init</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">	</span><span class="nb">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos">20</span><span class="w">	</span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">21</span><span class="w">	</span><span class="n">endtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">	</span><span class="c">! read grid</span>
+<span class="linenos">24</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Read_Grid2d_Str_Size</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">25</span><span class="w">	</span><span class="n">nodeCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">jsize</span>
+<span class="linenos">26</span><span class="w">	</span><span class="n">cellCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">27</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">gridX</span><span class="p">(</span><span class="n">nodeCount</span><span class="p">))</span>
+<span class="linenos">28</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">gridY</span><span class="p">(</span><span class="n">nodeCount</span><span class="p">))</span>
+<span class="linenos">29</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">rain</span><span class="p">(</span><span class="n">cellCount</span><span class="p">))</span>
+<span class="linenos">30</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Read_Grid2d_Coords</span><span class="p">(</span><span class="n">gridX</span><span class="p">,</span><span class="w"> </span><span class="n">gridY</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="w">	</span><span class="c">! set rain value</span>
+<span class="linenos">33</span><span class="w">	</span><span class="n">rain_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="linenos">34</span><span class="w">	</span><span class="n">rain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rain_val</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="w">	</span><span class="c">! register time</span>
+<span class="linenos">37</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Time</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">38</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Exchange_Interval</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">39</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Dump_Interval</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="w">	</span><span class="c">! register grid attribute to output</span>
+<span class="linenos">42</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Grid_Cell_Real</span><span class="p">(</span><span class="s2">&quot;rain&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rain</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="w">	</span><span class="c">! first sync before entering time loop</span>
+<span class="linenos">45</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Model_Sync</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span><span class="w">	</span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(&#39;In grid_att_send t = &#39;, f5.1, &#39;, rain = &#39;, f8.1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">rain_val</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span><span class="w">	</span><span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">50</span><span class="w">		</span><span class="nb">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span><span class="w">		</span><span class="c">! set rain value</span>
+<span class="linenos">53</span><span class="w">		</span><span class="n">rain_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rain_val</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="linenos">54</span><span class="w">		</span><span class="n">rain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rain_val</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">endtime</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">57</span><span class="k">			exit</span>
+<span class="linenos">58</span><span class="k">		end if</span>
+<span class="linenos">59</span><span class="k">		</span>
+<span class="linenos">60</span><span class="k">		call </span><span class="n">iRICMI_Check_Cancel</span><span class="p">(</span><span class="n">canceled</span><span class="p">)</span>
+<span class="linenos">61</span><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">canceled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">62</span><span class="k">			exit</span>
+<span class="linenos">63</span><span class="k">		end if</span>
+<span class="linenos">64</span>
+<span class="linenos">65</span><span class="k">		call </span><span class="n">iRICMI_Model_Sync</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="w">		</span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(&#39;In grid_att_send t = &#39;, f5.1, &#39;, rain = &#39;, f8.1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">rain_val</span>
+<span class="linenos">68</span><span class="w">	</span><span class="k">end do</span>
+<span class="linenos">69</span>
+<span class="linenos">70</span><span class="k">	call </span><span class="n">iRICMI_Model_Terminate</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">71</span><span class="w">	</span><span class="k">stop</span>
+<span class="linenos">72</span>
+<span class="linenos">73</span><span class="k">end program </span><span class="n">grid_att_send</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="grid-att-recieve">
+<h2><code class="docutils literal notranslate"><span class="pre">grid_att_recieve</span></code><a class="headerlink" href="#grid-att-recieve" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="#grid-att-receive-fortran-definition"><span class="std std-numref">Listing 31</span></a> shows “definition.xml” of <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code>, and
+<a class="reference internal" href="#grid-att-receive-fortran-main-f90"><span class="std std-numref">Listing 32</span></a> shows the source code of <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code>.</p>
+<p>The important points are as follows:</p>
+<ul class="simple">
+<li><p>Line 19 to 23 of <a class="reference internal" href="#grid-att-receive-fortran-definition"><span class="std std-numref">Listing 31</span></a> defines the grid attribute “rain” as time dependent value (Refer to <a class="reference internal" href="../04/02_creating_solver_def.html#sec-defining-grid-att-value"><span class="std std-ref">Defnining a grid attribute</span></a>).</p></li>
+<li><p><a class="reference internal" href="#grid-att-receive-fortran-main-f90"><span class="std std-numref">Listing 32</span></a> follows the flow chart in <a class="reference internal" href="../04/03_developing_model.html#workflow-of-model"><span class="std std-ref">The flowchart of the model</span></a>.</p></li>
+<li><p>On line 36 of <a class="reference internal" href="#grid-att-receive-fortran-main-f90"><span class="std std-numref">Listing 32</span></a>, <a class="reference internal" href="../07/refs/iRICMI_RIn_Grid_Cell_Real.html#sec-ref-iricmi-rin-grid-cell-real"><span class="std std-ref">iRICMI_RIn_Grid_Cell_Real</span></a> is called, to register the variable <code class="docutils literal notranslate"><span class="pre">rain</span></code>, that stores the value of time dependent input “rain” defined in definition.xml. The value of rain is received from <code class="docutils literal notranslate"><span class="pre">iricmi_server</span></code> when <a class="reference internal" href="../07/refs/iRICMI_Model_Sync.html#sec-ref-iricmi-model-sync"><span class="std std-ref">iRICMI_Model_Sync</span></a> is called.</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="grid-att-receive-fortran-definition">
+<div class="code-block-caption"><span class="caption-number">Listing 31 </span><span class="caption-text">definition.xml of <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code></span><a class="headerlink" href="#grid-att-receive-fortran-definition" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">&lt;SolverDefinition</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="na">xmlns=</span><span class="s">&quot;www.iric.net/SolverDefinition/1.0&quot;</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="na">name=</span><span class="s">&quot;grid_att_receive_fortran&quot;</span>
+<span class="linenos"> 4</span><span class="w">	</span><span class="na">caption=</span><span class="s">&quot;Model for testing receiving grid attribute value (FORTRAN)&quot;</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="na">version=</span><span class="s">&quot;1.0&quot;</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="na">copyright=</span><span class="s">&quot;iRIC organization&quot;</span>
+<span class="linenos"> 7</span><span class="w">	</span><span class="na">release=</span><span class="s">&quot;2020.6.20&quot;</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="na">homepage=</span><span class="s">&quot;http://i-ric.org&quot;</span>
+<span class="linenos"> 9</span><span class="w">	</span><span class="na">executable=</span><span class="s">&quot;grid_att_receive_fortran.exe&quot;</span>
+<span class="linenos">10</span><span class="w">	</span><span class="na">iterationtype=</span><span class="s">&quot;time&quot;</span>
+<span class="linenos">11</span><span class="w">	</span><span class="na">gridtype=</span><span class="s">&quot;structured2d&quot;</span>
+<span class="linenos">12</span><span class="nt">&gt;</span>
+<span class="linenos">13</span><span class="w">	</span><span class="nt">&lt;CalculationCondition&gt;</span>
+<span class="linenos">14</span><span class="w">	</span><span class="nt">&lt;/CalculationCondition&gt;</span>
+<span class="linenos">15</span><span class="w">	</span><span class="nt">&lt;GridRelatedCondition&gt;</span>
+<span class="linenos">16</span><span class="w">		</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Elevation&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Elevation (m)&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">17</span><span class="w">			</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;node&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;max&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">18</span><span class="w">		</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos">19</span><span class="w">		</span><span class="nt">&lt;Item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rain&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Rainfall&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">20</span><span class="w">			</span><span class="nt">&lt;Definition</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;cell&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">21</span><span class="w">				</span><span class="nt">&lt;Dimension</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">caption=</span><span class="s">&quot;Time&quot;</span><span class="w"> </span><span class="na">valueType=</span><span class="s">&quot;real&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">22</span><span class="w">			</span><span class="nt">&lt;/Definition&gt;</span>
+<span class="linenos">23</span><span class="w">		</span><span class="nt">&lt;/Item&gt;</span>
+<span class="linenos">24</span><span class="w">	</span><span class="nt">&lt;/GridRelatedCondition&gt;</span>
+<span class="linenos">25</span><span class="nt">&lt;/SolverDefinition&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="grid-att-receive-fortran-main-f90">
+<div class="code-block-caption"><span class="caption-number">Listing 32 </span><span class="caption-text">source code main.f90 of <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code></span><a class="headerlink" href="#grid-att-receive-fortran-main-f90" title="Permalink to this code"></a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">program </span><span class="n">grid_att_receive</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="k">use </span><span class="n">iricmi</span>
+<span class="linenos"> 3</span><span class="w">	</span><span class="k">implicit none</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">ier</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">canceled</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="w">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
+<span class="linenos"> 9</span><span class="nb">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="n">dt</span>
+<span class="linenos">10</span><span class="w">	</span><span class="kt">double precision</span><span class="kd">::</span><span class="w"> </span><span class="n">endtime</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">	</span><span class="kt">integer</span><span class="kd">::</span><span class="w"> </span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">nodeCount</span><span class="p">,</span><span class="w"> </span><span class="n">cellCount</span>
+<span class="linenos">13</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">gridX</span><span class="p">,</span><span class="w"> </span><span class="n">gridY</span>
+<span class="linenos">14</span><span class="w">	</span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="kd">::</span><span class="w"> </span><span class="n">rain</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Model_Init</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">	</span><span class="nb">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos">19</span><span class="w">	</span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">20</span><span class="w">	</span><span class="n">endtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">	</span><span class="c">! read grid</span>
+<span class="linenos">23</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Read_Grid2d_Str_Size</span><span class="p">(</span><span class="n">isize</span><span class="p">,</span><span class="w"> </span><span class="n">jsize</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">24</span><span class="w">	</span><span class="n">nodeCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isize</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">jsize</span>
+<span class="linenos">25</span><span class="w">	</span><span class="n">cellCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">isize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">jsize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">26</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">gridX</span><span class="p">(</span><span class="n">nodeCount</span><span class="p">))</span>
+<span class="linenos">27</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">gridY</span><span class="p">(</span><span class="n">nodeCount</span><span class="p">))</span>
+<span class="linenos">28</span><span class="w">	</span><span class="k">allocate</span><span class="p">(</span><span class="n">rain</span><span class="p">(</span><span class="n">cellCount</span><span class="p">))</span>
+<span class="linenos">29</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Read_Grid2d_Coords</span><span class="p">(</span><span class="n">gridX</span><span class="p">,</span><span class="w"> </span><span class="n">gridY</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="w">	</span><span class="c">! register time</span>
+<span class="linenos">32</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Time</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">33</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Exchange_Interval</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">34</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_ROut_Dump_Interval</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="w">	</span><span class="c">! register grid attribute for input</span>
+<span class="linenos">37</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_RIn_Grid_Cell_Real</span><span class="p">(</span><span class="s2">&quot;rain&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rain</span><span class="p">,</span><span class="w"> </span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="w">	</span><span class="c">! first sync before entering time loop</span>
+<span class="linenos">40</span><span class="w">	</span><span class="k">call </span><span class="n">iRICMI_Model_Sync</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="w">	</span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(&#39;In grid_att_receive t = &#39;, f5.1, &#39;, rain = &#39;, f8.1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">rain</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">43</span><span class="w">	</span>
+<span class="linenos">44</span><span class="w">	</span><span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">45</span><span class="w">		</span><span class="nb">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">endtime</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">48</span><span class="k">			exit</span>
+<span class="linenos">49</span><span class="k">		end if</span>
+<span class="linenos">50</span><span class="k">		</span>
+<span class="linenos">51</span><span class="k">		call </span><span class="n">iRICMI_Check_Cancel</span><span class="p">(</span><span class="n">canceled</span><span class="p">)</span>
+<span class="linenos">52</span><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">canceled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">53</span><span class="k">			exit</span>
+<span class="linenos">54</span><span class="k">		end if</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="k">		call </span><span class="n">iRICMI_Model_Sync</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">57</span>
+<span class="linenos">58</span><span class="w">		</span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(&#39;In grid_att_receive t = &#39;, f5.1, &#39;, rain = &#39;, f8.1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">rain</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">59</span><span class="w">	</span><span class="k">end do</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="k">	call </span><span class="n">iRICMI_Model_Terminate</span><span class="p">(</span><span class="n">ier</span><span class="p">)</span>
+<span class="linenos">62</span><span class="w">	</span><span class="k">stop</span>
+<span class="linenos">63</span><span class="k">end program</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="project-data">
+<h2>Project data<a class="headerlink" href="#project-data" title="Permalink to this heading"></a></h2>
+<p>The project data to run <code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code> connected is stored
+in testdata/grid_att_send_receive_fortran folder.</p>
+<p><a class="reference internal" href="#grid-att-send-receive-fortran-iricmi-project"><span class="std std-numref">Listing 33</span></a> shows iricmi_project.xml. You can see that
+a connection is defined to exchange data of “rain”.</p>
+<p>As explained in <a class="reference internal" href="../03/01_overview.html#sec-how-to-run-coupled"><span class="std std-ref">Running models in “coupled” mode</span></a>, you can run the models for the project, by “chdir”ing to the
+project folder, and launch <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="grid-att-send-receive-fortran-iricmi-project">
+<div class="code-block-caption"><span class="caption-number">Listing 33 </span><span class="caption-text">iricmi_project.xml for <code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code></span><a class="headerlink" href="#grid-att-send-receive-fortran-iricmi-project" title="Permalink to this code"></a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">&lt;iRICMIProject&gt;</span>
+<span class="linenos"> 2</span><span class="w">	</span><span class="nt">&lt;Models&gt;</span>
+<span class="linenos"> 3</span><span class="w">		</span><span class="nt">&lt;Model</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;grid_att_send&quot;</span><span class="w"> </span><span class="na">nodes=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 4</span><span class="w">		</span><span class="nt">&lt;Model</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;grid_att_receive&quot;</span><span class="w"> </span><span class="na">nodes=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 5</span><span class="w">	</span><span class="nt">&lt;/Models&gt;</span>
+<span class="linenos"> 6</span><span class="w">	</span><span class="nt">&lt;Connections&gt;</span>
+<span class="linenos"> 7</span><span class="w">		</span><span class="nt">&lt;Connection&gt;</span>
+<span class="linenos"> 8</span><span class="w">			</span><span class="nt">&lt;From</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;grid_att_send&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rain&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos"> 9</span><span class="w">			</span><span class="nt">&lt;To</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;grid_att_receive&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;gridAttribute&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rain&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">10</span><span class="w">		</span><span class="nt">&lt;/Connection&gt;</span>
+<span class="linenos">11</span><span class="w">	</span><span class="nt">&lt;/Connections&gt;</span>
+<span class="linenos">12</span><span class="nt">&lt;/iRICMIProject&gt;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="result">
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this heading"></a></h2>
+<p>The output of <code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code> are shown in
+<a class="reference internal" href="#grid-att-send-output"><span class="std std-numref">Listing 34</span></a> and <a class="reference internal" href="#grid-att-receive-output"><span class="std std-numref">Listing 35</span></a>.
+From the output, you can make sure that the value of rain is exchanged between
+<code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="grid-att-send-output">
+<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">Output of <code class="docutils literal notranslate"><span class="pre">grid_att_send</span></code></span><a class="headerlink" href="#grid-att-send-output" title="Permalink to this code"></a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>In grid_att_send t =   0.0, rain =      0.1
+<span class="linenos">2</span>In grid_att_send t =   1.0, rain =      0.2
+<span class="linenos">3</span>In grid_att_send t =   2.0, rain =      0.3
+<span class="linenos">4</span>In grid_att_send t =   3.0, rain =      0.4
+<span class="linenos">5</span>In grid_att_send t =   4.0, rain =      0.5
+<span class="linenos">6</span>In grid_att_send t =   5.0, rain =      0.6
+<span class="linenos">7</span>
+<span class="linenos">8</span>
+<span class="linenos">9</span>(abbr.)
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="grid-att-receive-output">
+<div class="code-block-caption"><span class="caption-number">Listing 35 </span><span class="caption-text">Output of <code class="docutils literal notranslate"><span class="pre">grid_att_receive</span></code></span><a class="headerlink" href="#grid-att-receive-output" title="Permalink to this code"></a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>In grid_att_receive t =   0.0, rain =      0.1
+<span class="linenos">2</span>In grid_att_receive t =   1.0, rain =      0.2
+<span class="linenos">3</span>In grid_att_receive t =   2.0, rain =      0.3
+<span class="linenos">4</span>In grid_att_receive t =   3.0, rain =      0.4
+<span class="linenos">5</span>In grid_att_receive t =   4.0, rain =      0.5
+<span class="linenos">6</span>In grid_att_receive t =   5.0, rain =      0.6
+<span class="linenos">7</span>(abbr.)
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_global_send_receive.html" class="btn btn-neutral float-left" title="global_send and global_receive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_grid_2d3d.html" class="btn btn-neutral float-right" title="grid2d3d" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

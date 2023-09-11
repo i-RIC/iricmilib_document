@@ -1,0 +1,13 @@
+.. _sec_rio_calculation_conditions:
+
+Calculation condition / global output
+=======================================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ../refs/iRICMI_RIn_Integer
+   ../refs/iRICMI_RIn_Real
+   ../refs/iRICMI_ROut_Integer
+   ../refs/iRICMI_ROut_Real

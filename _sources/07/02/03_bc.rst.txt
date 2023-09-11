@@ -1,0 +1,24 @@
+.. _sec_read_bc:
+
+Boundary conditions
+================================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ../refs/iRICMI_Read_BC_Count
+   ../refs/iRICMI_Read_BC_IndicesSize
+   ../refs/iRICMI_Read_BC_Indices
+   ../refs/iRICMI_Read_BC_Integer
+   ../refs/iRICMI_Read_BC_Real
+   ../refs/iRICMI_Read_BC_RealSingle
+   ../refs/iRICMI_Read_BC_StringLen
+   ../refs/iRICMI_Read_BC_String
+   ../refs/iRICMI_Read_BC_FunctionalSize
+   ../refs/iRICMI_Read_BC_Functional
+   ../refs/iRICMI_Read_BC_FunctionalWithName
+   ../refs/iRICMI_Read_BC_FunctionalWithName_StringLen
+   ../refs/iRICMI_Read_BC_FunctionalWithName_String
+   ../refs/iRICMI_Read_BC_Functional_RealSingle
+   ../refs/iRICMI_Read_BC_FunctionalWithName_RealSingle

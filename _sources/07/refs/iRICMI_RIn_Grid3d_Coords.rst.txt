@@ -1,0 +1,118 @@
+.. _sec_ref_iRICMI_RIn_Grid3d_Coords:
+
+iRICMI_RIn_Grid3d_Coords
+========================
+
+Register the memory address to receive the values of grid coordinates.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_RIn_Grid3d_Coords(x_arr, y_arr, z_arr, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_RIn_Grid3d_Coords(x_arr, y_arr, z_arr)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   x_arr, y_arr, z_arr = iRICMI_RIn_Grid3d_Coords()
+
+Arguments and returned value
+----------------------------
+
+x_arr
+~~~~~
+
+.. list-table:: Information about x_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - x_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - The variable to register the memory address for x coordinates, to receive value
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+y_arr
+~~~~~
+
+.. list-table:: Information about y_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - y_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - The variable to register the memory address for x coordinates, to receive value
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+z_arr
+~~~~~
+
+.. list-table:: Information about z_arr
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - z_arr
+   * - I/O
+     - Output
+
+   * - Description
+     - The variable to register the memory address for x coordinates, to receive value
+   * - Type (FORTRAN)
+     - double precision
+   * - Type (C/C++)
+     - double*
+   * - Type (Python)
+     - float
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

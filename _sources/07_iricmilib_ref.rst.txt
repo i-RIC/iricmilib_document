@@ -1,0 +1,15 @@
+iRIC-MI library Reference
+===========================
+
+As explained in :ref:`sec_develop_using_iricmi`, solver developer needs to use iRIC-MI library
+to implement I/O.
+
+This chapter provides information about the list of functions implemented in iRIC-MI library, and how to use them.
+
+.. toctree::
+   :maxdepth: 2
+
+   07/01_basic
+   07/02_reading
+   07/03_registering_pointers
+   07/04_functions_withgridid

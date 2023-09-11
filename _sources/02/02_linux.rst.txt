@@ -1,0 +1,290 @@
+Linux
+=========
+
+Introduction
+---------------
+
+iRIC-MI can be built on Linux. When you want to use iRIC-MI on public cloud like AWS, Azure, Google Cloud Platform, or HPC whose OS is Linux, please refer to this section.
+
+As an example, the procedure to install iRIC-MI on Ubuntu 22.04 is introduced.
+
+You can download Ubuntu from the URL below:
+
+https://ubuntu.com/download
+
+In this section, pymt is also installed, so that BMI models can be executed connected with iRIC models.
+
+Please refer to the URL below for the information of pymt and BMI.
+
+* https://pymt.readthedocs.io/en/latest/
+* https://bmi.readthedocs.io/en/stable/
+
+Install libraries
+---------------------
+
+Install the libraries needed to build iriclib and iRIC-MI library. Input the commands in :numref:`install_libraries_commands`.
+
+.. code-block:: shell
+   :caption: Commands for installing libraries
+   :name: install_libraries_commands
+   :linenos:
+
+   sudo apt-get update
+   sudo apt-get install -y libvtk9-dev
+   sudo apt-get install -y libpoco-dev
+   sudo apt-get install -y libmpich-dev mpich
+   sudo apt-get install -y swig
+   sudo apt-get install -y cmake
+   sudo apt-get install -y qtbase5-dev
+
+Install pymt using mambaforge
+---------------------------------
+
+Install pymt using mambaforge.
+
+mambaforge is a package for installing mamba quickly. mamba is a fast cross-platform package manager, that can be used instead of conda.
+
+Please refer to the following URL for detail about mamba.
+
+https://mamba.readthedocs.io/en/latest/index.html
+
+Input the commands in :numref:`install_mambaforge_commands`
+
+.. code-block:: shell
+   :caption: Commands for installing mambaforge
+   :name: install_mambaforge_commands
+   :linenos:
+
+   curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+   bash Mambaforge-$(uname)-$(uname -m).sh
+
+When commands in :numref:`install_mambaforge_commands` is executed, prompts to select prefix is shown. Please input ``/opt/mambaforge``.
+
+Input the commands in :numref:`install_pymt_commands`
+
+.. code-block:: shell
+   :caption: Commands for installing pymt
+   :name: install_pymt_commands
+   :linenos:
+
+   /opt/mambaforge/bin/mamba install -c conda-forge pymt
+
+Add the line in :numref:`path_mambaforge` to ~/.bashrc.
+
+.. code-block:: shell
+   :caption: The line to be added to .bashrc
+   :name: path_mambaforge
+   :linenos:
+
+   export PATH=/opt/mambaforge/bin:$PATH
+
+Logout then login again, to apply the change to PATH.
+
+Install iriclib
+-------------------
+
+Install iriclib with the steps below:
+
+1. Clone iriclib repository with git
+2. Edit CMakeLists.txt
+3. Build and install iriclib
+
+Clone iriclib repository with git
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: shell
+   :linenos:
+
+   git clone https://github.com/i-RIC/iriclib_v4.git
+   git checkout iricmi
+
+Edit CMakeLists.txt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Change the ``find_package`` section at line 43, to the following.
+
+.. code-block:: text
+   :linenos:
+
+   find_package(Python 3.10 EXACT REQUIRED COMPONENTS Interpreter Development)
+
+Change the ``target_include_directories`` section at line 277 to 283, to the following.
+
+.. code-block:: text
+   :linenos:
+
+   # iriclib include directories
+   target_include_directories(iriclib
+     PUBLIC
+       "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>"
+       "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/private>"
+       "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+       ${HDF5_INCLUDE_DIRS}
+   )
+
+Change the ``target_link_libraries`` section at line 285 to 290, to the following.
+
+.. code-block:: text
+   :linenos:
+
+   # iriclib link libraries
+   target_link_libraries(iriclib
+     PRIVATE
+       ${HDF5_LIBRARIES}
+       Poco::Foundation
+   )
+
+.. note::
+
+   It will be easier to install, by improving CMakeList.txt. When improved, we will not need to edit CMakeList.txt.
+
+Build and install iriclib
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Install iriclib with the commands in :numref:`install_iriclib_commands`
+
+.. code-block:: shell
+   :caption: The commands to install iriclib
+   :name: install_iriclib_commands
+   :linenos:
+
+   cd iriclib_v4
+   cmake \
+     -D PocoFoundation_DIR:STRING=/usr/lib/x86_64-linux-gnu/cmake/Poco/ \
+     -D HDF5_INCLUDE_DIRS:STRING=/usr/include/hdf5/serial \
+     -D HDF5_LIBRARIES:STRING=/usr/lib/x86_64-linux-gnu/hdf5/serial/lib/libhdf5.so \
+   .
+   make
+   sudo make install
+   sudo ldconfig
+   sudo cp /usr/local/bin/Lib/site-packages/* /opt/mambaforge/lib/python3.10/site-packages
+
+Build and install iRIC-MI
+-------------------------------
+
+Install iRIC-MI with the steps below:
+
+1. Clone iricmilib repository with git
+2. Build and install iRIC-MI library
+3. Build and install iricmi_server
+4. Install iricmi_run
+5. Install sample solvers
+6. Add environmental variables
+
+Clone iricmilib repository with git
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: shell
+   :linenos:
+
+   git clone https://github.com/kskinoue0612/iricmilib.git
+
+Build and install iRIC-MI library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: shell
+   :linenos:
+
+   cd iricmilib/iricmilib/src
+   cmake \
+     -D PocoFoundation_DIR:STRING=/usr/lib/x86_64-linux-gnu/cmake/Poco/ \
+     -D PocoXML_DIR:STRING=/usr/lib/x86_64-linux-gnu/cmake/Poco/ \
+     -D HDF5_INCLUDE_DIRS:STRING=/usr/include/hdf5/serial \
+     -D HDF5_LIBRARIES:STRING=/usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5.so \
+   .
+   make
+   sudo make install
+   sudo ldconfig
+   sudo cp iricmi.f90 /usr/local/src
+   cd ../bindings/python
+   swig -c++ -python -cppext cpp iricmi.i
+   g++ -fPIC -shared -o _iricmi.so iricmi_wrap.cpp -I/opt/mambaforge/include/python3.10 -I../../src -liricmi /opt/mambaforge/lib/libpython3.10.so
+   sudo cp _iricmi.so /opt/mambaforge/lib/python3.10/site-packages
+   sudo cp iricmi_custom.py /opt/mambaforge/lib/python3.10/site-packages/iricmi.py
+
+Build and install iricmi_server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: shell
+   :linenos:
+
+   cd ../../iricmi_server
+   g++ -c main.cpp
+   g++ -c server.cpp
+   g++ -o iricmi_server *.o -liricmi
+
+   sudo mkdir -p /opt/iric/bin
+   sudo copy iricmi_server /opt/iric/bin
+
+Install iricmi_run
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: shell
+   :linenos:
+
+   cd ../tools
+   mv iricmi_run.ubuntu.py iricmi_run
+   chmod a+x iricmi_run
+   sudo cp iricmi_run /opt/iric/bin
+
+Install sample solvers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: shell
+   :linenos:
+
+   cd ../testmodels
+   sudo mkdir /opt/iric/solvers
+   sudo cp -R global_receive_python /opt/iric/solvers
+   sudo cp -R global_send_python /opt/iric/solvers
+   sudo cp -R grid_att_receive_python /opt/iric/solvers
+   sudo cp -R grid_att_send_python /opt/iric/solvers
+   sudo cp -R grid2d_edge_python /opt/iric/solvers
+   sudo cp -R grid2d3d_python /opt/iric/solvers
+
+.. note::
+
+   In the example above, only the sample models developed with python are installed.
+
+   You can also install sample models developed with C++ and FORTRAN. Before installing, you need to build the source code.
+
+   You can build C++ models with g++, with ``-liricmi``. The command below builds global_receive_c++. 
+
+   .. code-block:: shell
+      :linenos:
+
+      g++ -o global_receive_c++ main.cpp -liricmi
+
+   You can build FORTRAN models with gfortran, with ``-iricmi``, after compiling iricmi.f90. The command below builds global_receive_fortran.
+
+   .. code-block:: shell
+      :linenos:
+
+      gfortran -c /usr/local/src/iricmi.f90
+      gfortran -o global_receive_fortran main.f90 iricmi.o -liricmi
+
+Add environmental variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Add the line in :numref:`env_bashrc` to ~/.bashrc.
+
+.. code-block:: shell
+   :caption: The line to be added to .bashrc
+   :name: env_bashrc
+   :linenos:
+
+   export PATH=/opt/iric/bin:opt/mambaforge/bin:$PATH
+   export IRICMI_ROOT_PATH=/opt/iric
+   export IRICMI_LOG_LEVEL=WARNING
+
+Test run
+-------------
+
+Run model to check that iRIC-MI and sample models are installed successfully.
+
+cd to testdata/grid2d_edge_python, and input the command below:
+
+.. code-block:: shell
+   :linenos:
+
+   iricmi_run

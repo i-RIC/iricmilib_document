@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grid coordinates and attributes &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="iRICMI_Read_Grid_NodeCount" href="../refs/iRICMI_Read_Grid_NodeCount.html" />
+    <link rel="prev" title="iRICMI_Read_FunctionalWithName_RealSingle" href="../refs/iRICMI_Read_FunctionalWithName_RealSingle.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../07_iricmilib_ref.html">iRIC-MI library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_basic.html">Basic functions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../02_reading.html">Functions for reading and writing values</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01_calccond.html">Calculation conditions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Grid coordinates and attributes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_NodeCount.html">iRICMI_Read_Grid_NodeCount</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_CellCount.html">iRICMI_Read_Grid_CellCount</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_IFaceCount.html">iRICMI_Read_Grid_IFaceCount</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_JFaceCount.html">iRICMI_Read_Grid_JFaceCount</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_KFaceCount.html">iRICMI_Read_Grid_KFaceCount</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Str_Size.html">iRICMI_Read_Grid2d_Str_Size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Coords.html">iRICMI_Read_Grid2d_Coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_TriangleElementsSize.html">iRICMI_Read_Grid_TriangleElementsSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_TriangleElements.html">iRICMI_Read_Grid_TriangleElements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Integer_Node.html">iRICMI_Read_Grid_Integer_Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Real_Node.html">iRICMI_Read_Grid_Real_Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Complex_Node.html">iRICMI_Read_Grid_Complex_Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Integer_Cell.html">iRICMI_Read_Grid_Integer_Cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Real_Cell.html">iRICMI_Read_Grid_Real_Cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Complex_Cell.html">iRICMI_Read_Grid_Complex_Cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_FunctionalDimensionSize.html">iRICMI_Read_Grid_FunctionalDimensionSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_FunctionalDimension_Integer.html">iRICMI_Read_Grid_FunctionalDimension_Integer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_FunctionalDimension_Real.html">iRICMI_Read_Grid_FunctionalDimension_Real</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Functional_Integer_Node.html">iRICMI_Read_Grid_Functional_Integer_Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Functional_Real_Node.html">iRICMI_Read_Grid_Functional_Real_Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Functional_Integer_Cell.html">iRICMI_Read_Grid_Functional_Integer_Cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Functional_Real_Cell.html">iRICMI_Read_Grid_Functional_Real_Cell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Open.html">iRICMI_Read_Grid2d_Open</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Close.html">iRICMI_Read_Grid2d_Close</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_CellArea.html">iRICMI_Read_Grid2d_CellArea</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_CellNodeCount.html">iRICMI_Read_Grid2d_CellNodeCount</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_FindCell.html">iRICMI_Read_Grid2d_FindCell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Interpolate.html">iRICMI_Read_Grid2d_Interpolate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_InterpolateWithCell.html">iRICMI_Read_Grid2d_InterpolateWithCell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Write_Grid1d_Coords.html">iRICMI_Write_Grid1d_Coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Write_Grid2d_Coords.html">iRICMI_Write_Grid2d_Coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Write_Grid3d_Coords.html">iRICMI_Write_Grid3d_Coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Write_NamedGrid1d_Coords.html">iRICMI_Write_NamedGrid1d_Coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Write_NamedGrid2d_Coords.html">iRICMI_Write_NamedGrid2d_Coords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../refs/iRICMI_Write_NamedGrid3d_Coords.html">iRICMI_Write_NamedGrid3d_Coords</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="03_bc.html">Boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04_complex.html">Complex type grid attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05_geo.html">Geographic data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03_registering_pointers.html">Functions for registering pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_functions_withgridid.html">Functions with <code class="docutils literal notranslate"><span class="pre">_WithGridId</span></code> suffix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+          <li class="breadcrumb-item"><a href="../02_reading.html">Functions for reading and writing values</a></li>
+      <li class="breadcrumb-item active">Grid coordinates and attributes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/07/02/02_grid.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="grid-coordinates-and-attributes">
+<span id="sec-read-grid"></span><h1>Grid coordinates and attributes<a class="headerlink" href="#grid-coordinates-and-attributes" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_NodeCount.html">iRICMI_Read_Grid_NodeCount</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_CellCount.html">iRICMI_Read_Grid_CellCount</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_IFaceCount.html">iRICMI_Read_Grid_IFaceCount</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_JFaceCount.html">iRICMI_Read_Grid_JFaceCount</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_KFaceCount.html">iRICMI_Read_Grid_KFaceCount</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Str_Size.html">iRICMI_Read_Grid2d_Str_Size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Coords.html">iRICMI_Read_Grid2d_Coords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_TriangleElementsSize.html">iRICMI_Read_Grid_TriangleElementsSize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_TriangleElements.html">iRICMI_Read_Grid_TriangleElements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Integer_Node.html">iRICMI_Read_Grid_Integer_Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Real_Node.html">iRICMI_Read_Grid_Real_Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Complex_Node.html">iRICMI_Read_Grid_Complex_Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Integer_Cell.html">iRICMI_Read_Grid_Integer_Cell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Real_Cell.html">iRICMI_Read_Grid_Real_Cell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Complex_Cell.html">iRICMI_Read_Grid_Complex_Cell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_FunctionalDimensionSize.html">iRICMI_Read_Grid_FunctionalDimensionSize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_FunctionalDimension_Integer.html">iRICMI_Read_Grid_FunctionalDimension_Integer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_FunctionalDimension_Real.html">iRICMI_Read_Grid_FunctionalDimension_Real</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Functional_Integer_Node.html">iRICMI_Read_Grid_Functional_Integer_Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Functional_Real_Node.html">iRICMI_Read_Grid_Functional_Real_Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Functional_Integer_Cell.html">iRICMI_Read_Grid_Functional_Integer_Cell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid_Functional_Real_Cell.html">iRICMI_Read_Grid_Functional_Real_Cell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Open.html">iRICMI_Read_Grid2d_Open</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Close.html">iRICMI_Read_Grid2d_Close</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_CellArea.html">iRICMI_Read_Grid2d_CellArea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_CellNodeCount.html">iRICMI_Read_Grid2d_CellNodeCount</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_FindCell.html">iRICMI_Read_Grid2d_FindCell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_Interpolate.html">iRICMI_Read_Grid2d_Interpolate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Read_Grid2d_InterpolateWithCell.html">iRICMI_Read_Grid2d_InterpolateWithCell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Write_Grid1d_Coords.html">iRICMI_Write_Grid1d_Coords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Write_Grid2d_Coords.html">iRICMI_Write_Grid2d_Coords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Write_Grid3d_Coords.html">iRICMI_Write_Grid3d_Coords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Write_NamedGrid1d_Coords.html">iRICMI_Write_NamedGrid1d_Coords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Write_NamedGrid2d_Coords.html">iRICMI_Write_NamedGrid2d_Coords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/iRICMI_Write_NamedGrid3d_Coords.html">iRICMI_Write_NamedGrid3d_Coords</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../refs/iRICMI_Read_FunctionalWithName_RealSingle.html" class="btn btn-neutral float-left" title="iRICMI_Read_FunctionalWithName_RealSingle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../refs/iRICMI_Read_Grid_NodeCount.html" class="btn btn-neutral float-right" title="iRICMI_Read_Grid_NodeCount" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

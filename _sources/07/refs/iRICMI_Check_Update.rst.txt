@@ -1,0 +1,52 @@
+.. _sec_ref_iRICMI_Check_Update:
+
+iRICMI_Check_Update
+===================
+
+Check if user requested flushing of the calculation result output.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Check_Update(ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Check_Update()
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   iRICMI_Check_Update()
+
+Arguments and returned value
+----------------------------
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

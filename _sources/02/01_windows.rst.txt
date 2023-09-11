@@ -1,0 +1,10 @@
+Windows
+=========
+
+Please download installer of iRIC from the following URL:
+
+https://i-ric.org/en/download/
+
+When you've downloaded iRIC installer, launch it to install iRIC.
+Please note that you need to check on "iRIC-MI for Miniconda 3"
+on "Select components" page to install iRIC-MI.

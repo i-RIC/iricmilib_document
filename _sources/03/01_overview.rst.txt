@@ -1,0 +1,153 @@
+.. _sec_how_to_run_models_overview:
+
+Overview
+===========
+
+.. contents:: Contents
+   :depth: 3
+
+This section describes how to run models that implements iRIC-MI library.
+
+The model can be run in two modes below:
+
+* "standalone" mode
+* "coupled" mode
+
+Running a model in "standalone" mode
+----------------------------------------
+
+In "standalone" mode, only one model is launched.
+
+"standalone" mode will be used for simple simulations, that can done within one model.
+
+Also, users will use "standalone" mode before running models in "coupled" mode, to make sure that input data for each model is appropriately prepared.
+
+"standalone" mode will also be used when developer develop a new model using iRIC-MI library. When running a model in "standalone" mode, it is easier to debug.
+
+To run a model in "standalone" mode, user should follow the steps below:
+
+1. Preparing input data for the model
+2. Running the model
+
+.. _sec_prepare_input_data_using_iric:
+
+Preparing input data for the model
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Create a project for the model using iRIC GUI, and save as project folder.
+
+Please refer to iRIC GUI User's manual to know how to prepare input data for models.
+
+Running the model
+~~~~~~~~~~~~~~~~~~~
+
+User can run the model in two ways below:
+
+* Running from iRIC GUI
+* Running from shell (or command prompt)
+
+Running from iRIC GUI
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+When you open a project for a model, you can start running the model
+with menu "Simulation" --> "Run", or clicking "Run" button in tool bar.
+
+When launched in this way,  the log the model output to STDOUT is saved to consoleLog.txt in the project folder, and also displayed in "Solver Console Window".
+
+Running from shell (or command prompt)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can run from shell (on Linux) or command prompt (on Windows) with the steps below:
+
+1. Chdir to the project folder where you've prepared input data in :ref:`sec_prepare_input_data_using_iric`.
+2. Launch ``iricmi_run``.
+
+When launched in this way, the log is saved to consoleLog.txt, and also displayed to the shell (or command prompt) window.
+
+.. _sec_how_to_run_coupled:
+
+Running models in "coupled" mode
+------------------------------------
+
+In "coupled" mode, ``iricmi_server`` and multiple models are launched,
+and they run exchanging data each other through ``iricmi_server``.
+
+The detail of how they exchange data is described in
+:ref:`sec_sequence`.
+
+We call it "coupled" mode, but actually the number of the models to launch is not limited to two, it can be three or four.
+
+To run models in "coupled" mode, user should follow the steps below:
+
+1. Preparing input data for each model
+2. Preparing iricmi_project.xml.
+3. Running the model
+
+Preparing input data for each model
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This step is identical to that for "standalone" mode.
+
+At first, create a folder, that is the "root folder" of the "coupled mode" project, create subfolders in it, and save projects in the subfolders.
+
+.. _sec_how_to_run_overview_iricmi_project:
+
+Preparing iricmi_project.xml
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Please create iricmi_project.xml in the "root folder", and define the settings related to model coupling.
+
+:numref:`how_to_run_iricmi_project_example` shows an example of iricmi_project.xml.
+
+.. code-block:: xml
+   :caption: Example of iricmi_project.xml
+   :name: how_to_run_iricmi_project_example
+   :linenos:
+
+   <iRICMIProject>
+     <Models>
+       <Model name="global_send_c++" nodes="1" />
+       <Model name="global_receive_c++" nodes="1" />
+     </Models>
+     <Connections>
+       <Connection>
+         <From model="global_send_c++" type="global" name="discharge" />
+         <To model="global_receive_c++" type="calculationCondition" name="discharge" />
+       </Connection>
+     </Connections>
+   </iRICMIProject>
+
+Please refer to :ref:`sec_preparing_iricmi_project` to know the detail about how to prepare iricmi_project.xml.
+
+Running the model
+~~~~~~~~~~~~~~~~~~~
+
+You can run from shell (on Linux) or command prompt (on Windows) with the steps below:
+
+1. Chdir to the "root folder" of "coupled project", where iricmi_project.xml exists.
+2. Launch ``iricmi_run``
+
+Sample solvers
+-----------------
+
+Two sets of sample solvers are bundled with iRIC-MI like below.
+The source code of solvers are in testmodels folder.
+
+* Solvers to send or receive global real value with name "discharge":
+
+  * global_send
+  * global_recieve
+
+* Solvers to send or receive real grid attribute value defined at cell with name "rain":
+
+  * grid_att_send
+  * grid_att_recieve
+
+Sample projects
+-----------------------
+
+Sample projects are bundled with iRIC-MI like below:
+
+* global_send_receive: Run "global_send" and "global_receive" connected, to send/receive "discharge" value.
+* grid_att_send_receive: Run "grid_att_send" and "grid_att_receive" connected, to send/receive "rain" value.
+

@@ -1,0 +1,22 @@
+.. _sec_read_complex_att:
+
+Complex type grid attributes
+================================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ../refs/iRICMI_Read_Complex_Count
+   ../refs/iRICMI_Read_Complex_Integer
+   ../refs/iRICMI_Read_Complex_Real
+   ../refs/iRICMI_Read_Complex_RealSingle
+   ../refs/iRICMI_Read_Complex_StringLen
+   ../refs/iRICMI_Read_Complex_String
+   ../refs/iRICMI_Read_Complex_FunctionalSize
+   ../refs/iRICMI_Read_Complex_Functional
+   ../refs/iRICMI_Read_Complex_FunctionalWithName
+   ../refs/iRICMI_Read_Complex_FunctionalWithName_StringLen
+   ../refs/iRICMI_Read_Complex_FunctionalWithName_String
+   ../refs/iRICMI_Read_Complex_Functional_RealSingle
+   ../refs/iRICMI_Read_Complex_FunctionalWithName_RealSingle

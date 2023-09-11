@@ -1,0 +1,244 @@
+.. _sec_creating_definition_xml:
+
+Creating "definition.xml"
+=============================
+
+.. contents:: Contents
+   :depth: 3
+
+definition.xml is the file that defines the interface of the model.
+
+The grammer of definition.xml is the extended version of iRIC.
+Please refer to the URL below, about how to create definition.xml for iRIC.
+
+https://iric-solver-dev-manual.readthedocs.io/en/latest/02/02_folder_solverdef.html#creating-a-solver-definition-file
+
+There are two points that the model developer should be careful.
+
+* Defining time dependent input
+* Defining time dependent output
+
+They are important, because they are the data that iRIC-MI framework will make it 
+possible to exchange between models.
+
+Defining time dependent input
+-----------------------------------
+
+There are two types of time dependent input:
+
+* Scalar value (calculation condition, boundary condition, complex type grid attribute)
+* Grid attribute
+
+Please refer to :ref:`sec_types_of_io` for the detail about the types.
+
+How to define time dependent input in definition.xml is described below.
+
+.. _sec_defining_scalar_value:
+
+Defining a scalar value
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can define scalar value time dependent input, as functional
+input. The key is that the caption of \<Parameter\> element should be "Time".
+
+When the caption is "Time", the variable is recognized to be time dependent input value,
+and the value can be received using ``iRICMI_RIn_Real`` etc.
+
+:numref:`def_time_dependent_input_single` shows an example.
+It can appear in \<CalculationCondition\>, \<BoundaryCondition/\>, or \<GridRelatedCondition type="complex" /\>. 
+
+.. code-block:: xml
+   :caption: definition.xml to define single time dependent input value
+   :name: def_time_dependent_input_single
+   :linenos:
+
+   <Item name="discharge" caption="Discharge">
+     <Definition conditionType="functional">
+       <Parameter valueType="real" caption="Time"/>
+       <Value valueType="real" caption="Discharge(m3/s)"/>
+     </Definition>
+   </Item>
+
+.. _sec_defining_grid_att_value:
+
+Defnining a grid attribute
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can define time dependent grid attribute, as a grid attribute with
+dimension "Time".
+
+The key is that it contains the definition of \<Dimension\>, and the name of
+the \<Dimension\> is "Time".
+
+When a grid attribute satisfies the condition above, the grid attribute is recognized to be
+time dependent input data, and the values can be received using ``iRICMI_RIn_Grid_Node_Real`` etc.
+
+:numref:`def_time_dependent_input_gridatt` shows an example.
+
+.. code-block:: xml
+   :caption: definition.xml to define time dependent input value defined at grid cell
+   :name: def_time_dependent_input_gridatt
+   :linenos:
+
+   <Item name="rain" caption="Rainfall">
+     <Definition position="cell" valueType="real" default="0">
+       <Dimension name="Time" caption="Time" valueType="real"/>
+     </Definition>
+   </Item>
+
+Defining time dependent output
+----------------------------------------
+
+Global
+~~~~~~~~
+
+:numref:`def_ex_global_output` shows an example of global output.
+
+.. code-block:: xml
+   :caption: definition.xml to define global output
+   :name: def_ex_global_output
+   :linenos:
+   :emphasize-lines: 20-24
+
+   <SolverDefinition
+     xmlns="www.iric.net/SolverDefinition/1.0"
+     name="sample"
+     caption="Sample Model"
+     version="1.0"
+     copyright="iRIC organization"
+     release="2020.6.20"
+     homepage="http://i-ric.org"
+     executable="sample.exe"
+     iterationtype="time"
+     gridtype="structured2d"
+   >
+     <CalculationCondition>
+     </CalculationCondition>
+     <GridRelatedCondition>
+       <Item name="Elevation" caption="Elevation (m)">
+         <Definition position="node" valueType="real" default="max" />
+       </Item>
+     </GridRelatedCondition>
+     <GlobalOutput>
+       <Output name="discharge" caption="Discharge">
+         <Definition valueType="real" />
+       </Output>
+     </GlobalOutput>
+   </SolverDefinition>
+
+Boundary condition
+~~~~~~~~~~~~~~~~~~~~~~~
+
+:numref:`def_ex_boundary_condition` shows an example of grid attribute output.
+
+.. code-block:: xml
+   :caption: definition.xml to define boundary condition output
+   :name: def_ex_boundary_condition
+   :linenos:
+   :emphasize-lines: 19-21
+
+   <SolverDefinition
+     xmlns="www.iric.net/SolverDefinition/1.0"
+	 name="global_send_c++"
+	 caption="Model for testing sending global value (C++)"
+	 version="1.0"
+	 copyright="iRIC organization"
+	 release="2020.6.20"
+	 homepage="http://i-ric.org"
+	 executable="global_send_c++.exe"
+	 iterationtype="time"
+	 gridtype="structured2d"
+   >
+     <CalculationCondition>
+     </CalculationCondition>
+     <BoundaryCondition name="inflow" caption="Inflow" position="edge">
+       <Item name="discharge" caption="Discharge">
+         <Definition valueType="real" default="0" />
+       </Item>
+       <Output name="water_elevation" caption="Water Surface Elevation">
+         <Definition valueType="real" />
+       </Output>
+     </BoundaryCondition>
+   </SolverDefinition>
+
+Complex grid attribute
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:numref:`def_ex_grid_attribute_complex` shows an example of complex type grid attribute output.
+
+.. code-block:: xml
+   :caption: definition.xml to define complex type grid attribute output
+   :name: def_ex_grid_attribute_complex
+   :linenos:
+   :emphasize-lines: 18-20
+
+   <SolverDefinition
+     xmlns="www.iric.net/SolverDefinition/1.0"
+     name="sample"
+     caption="Sample Model"
+     version="1.0"
+     copyright="iRIC organization"
+     release="2020.6.20"
+     homepage="http://i-ric.org"
+     executable="sample.exe"
+     iterationtype="time"
+     gridtype="structured2d"
+   >
+     <CalculationCondition>
+     </CalculationCondition>
+     <GridRelatedCondition>
+       <Item name="area" caption="Area">
+         <Definition position="node" valueType="complex">
+           <Output name="average_depth" caption="Average Depth">
+             <Definition valueType="real" />
+           </Output>
+         </Definition>
+       </Item>
+     </GridRelatedCondition>
+   </SolverDefinition>
+
+Grid attribute
+~~~~~~~~~~~~~~~~
+
+:numref:`def_ex_grid_attribute` shows an example of grid attribute output.
+
+For "position" attriute, use can use the values below:
+
+* node
+* cell
+* iface
+* jface
+* kface
+
+.. code-block:: xml
+   :caption: definition.xml to define grid attribute output
+   :name: def_ex_grid_attribute
+   :linenos:
+   :emphasize-lines: 19-24
+
+   <SolverDefinition
+     xmlns="www.iric.net/SolverDefinition/1.0"
+     name="sample"
+     caption="Sample Model"
+     version="1.0"
+     copyright="iRIC organization"
+     release="2020.6.20"
+     homepage="http://i-ric.org"
+     executable="sample.exe"
+     iterationtype="time"
+     gridtype="structured2d"
+   >
+     <CalculationCondition>
+     </CalculationCondition>
+     <GridRelatedCondition>
+       <Item name="Elevation" caption="Elevation (m)">
+         <Definition position="node" valueType="real" default="max" />
+       </Item>
+       <Output name="Depth_node" caption="Depth (m)">
+         <Definition position="node" valueType="real"/>
+       </Output>
+       <Output name="Depth_cell" caption="Depth (m)">
+         <Definition position="cell" valueType="real"/>
+       </Output>
+     </GridRelatedCondition>
+   </SolverDefinition>

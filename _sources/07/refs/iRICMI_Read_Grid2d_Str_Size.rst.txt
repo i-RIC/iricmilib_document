@@ -1,0 +1,96 @@
+.. _sec_ref_iRICMI_Read_Grid2d_Str_Size:
+
+iRICMI_Read_Grid2d_Str_Size
+===========================
+
+Reads the size of a structured grid (the number of nodes in I direction and J direction) from the CGNS file.
+
+Format (FORTRAN)
+-----------------
+
+.. code-block:: fortran
+
+   call iRICMI_Read_Grid2d_Str_Size(isize, jsize, ier)
+
+Format (C/C++)
+-----------------
+
+.. code-block:: c
+
+   ier = iRICMI_Read_Grid2d_Str_Size(isize, jsize)
+
+Format (Python)
+-----------------
+
+.. code-block:: python
+
+   isize, jsize = iRICMI_Read_Grid2d_Str_Size()
+
+Arguments and returned value
+----------------------------
+
+isize
+~~~~~
+
+.. list-table:: Information about isize
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - isize
+   * - I/O
+     - Output
+
+   * - Description
+     - The size (number of nodes) of the grid in I direction
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+jsize
+~~~~~
+
+.. list-table:: Information about jsize
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - jsize
+   * - I/O
+     - Output
+
+   * - Description
+     - The size (number of nodes) of the grid in J direction
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int*
+   * - Type (Python)
+     - int
+
+ier
+~~~
+
+.. list-table:: Information about ier
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - Name
+     - ier
+   * - I/O
+     - Output
+
+   * - Description
+     - Error code. If an error occured, the value is not 0.
+   * - Type (FORTRAN)
+     - integer
+   * - Type (C/C++)
+     - int
+   * - Type (Python)
+     - (not defined)

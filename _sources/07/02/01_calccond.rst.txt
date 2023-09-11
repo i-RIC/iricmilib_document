@@ -1,0 +1,21 @@
+.. _sec_read_calculation_conditions:
+
+Calculation conditions
+=======================
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ../refs/iRICMI_Read_Integer
+   ../refs/iRICMI_Read_Real
+   ../refs/iRICMI_Read_RealSingle
+   ../refs/iRICMI_Read_StringLen
+   ../refs/iRICMI_Read_String
+   ../refs/iRICMI_Read_FunctionalSize
+   ../refs/iRICMI_Read_Functional
+   ../refs/iRICMI_Read_FunctionalWithName
+   ../refs/iRICMI_Read_FunctionalWithName_StringLen
+   ../refs/iRICMI_Read_FunctionalWithName_String
+   ../refs/iRICMI_Read_Functional_RealSingle
+   ../refs/iRICMI_Read_FunctionalWithName_RealSingle
