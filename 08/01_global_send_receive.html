@@ -11,10 +11,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -173,7 +172,7 @@ On this page FORTRAN version is explained.</p>
 <span class="linenos">31</span>
 <span class="linenos">32</span><span class="w">	</span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(&#39;In global_send t = &#39;, f5.1, &#39;, discharge = &#39;, f8.1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">discharge</span>
 <span class="linenos">33</span>
-<span class="linenos">34</span><span class="w">	</span><span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">34</span><span class="w">	</span><span class="k">do while</span><span class="w"> </span><span class="p">(.</span><span class="n">true</span><span class="p">.)</span>
 <span class="linenos">35</span><span class="w">		</span><span class="nb">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span>
 <span class="linenos">36</span><span class="w">		</span><span class="n">discharge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">discharge</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span>
 <span class="linenos">37</span>
@@ -269,7 +268,7 @@ On this page FORTRAN version is explained.</p>
 <span class="linenos">29</span>
 <span class="linenos">30</span><span class="w">	</span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(&#39;In global_receieve t = &#39;, f5.1, &#39;, discharge = &#39;, f8.1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">discharge</span>
 <span class="linenos">31</span><span class="w">	</span>
-<span class="linenos">32</span><span class="w">	</span><span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">32</span><span class="w">	</span><span class="k">do while</span><span class="w"> </span><span class="p">(.</span><span class="n">true</span><span class="p">.)</span>
 <span class="linenos">33</span><span class="w">		</span><span class="nb">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span>
 <span class="linenos">34</span><span class="w">		</span><span class="n">discharge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">discharge</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.01</span>
 <span class="linenos">35</span>

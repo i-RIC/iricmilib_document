@@ -64,6 +64,17 @@ You can run from shell (on Linux) or command prompt (on Windows) with the steps 
 
 When launched in this way, the log is saved to consoleLog.txt, and also displayed to the shell (or command prompt) window.
 
+.. note::
+
+   When running on Windows, please open a command prompt with the following steps:
+
+   1. Open "Anaconda Prompt (Miniconda3)" from Start Menu.
+   2. Input the following command.
+
+   .. code-block:: shell
+
+      conda activate iric
+
 .. _sec_how_to_run_coupled:
 
 Running models in "coupled" mode
@@ -126,6 +137,17 @@ You can run from shell (on Linux) or command prompt (on Windows) with the steps 
 
 1. Chdir to the "root folder" of "coupled project", where iricmi_project.xml exists.
 2. Launch ``iricmi_run``
+
+.. note::
+
+   When running on Windows, please open a command prompt with the following steps:
+
+   1. Open "Anaconda Prompt (Miniconda3)" from Start Menu.
+   2. Input the following command.
+
+   .. code-block:: shell
+
+      conda activate iric
 
 Sample solvers
 -----------------
