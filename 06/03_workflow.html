@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic workflow &mdash; iRIC-MI Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Function reference" href="04_reference.html" />
+    <link rel="prev" title="How to launch iRIC-MI GUI" href="02_how_to_launch.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            iRIC-MI Documentation
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_install.html">How to Install iRIC-MI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../06_iricmi_gui.html">iRIC-MI GUI User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_about.html">About iRIC-MI GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_how_to_launch.html">How to launch iRIC-MI GUI</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basic workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-new-project">Create New Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-subfolders-for-each-models">Add subfolders for each models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-connections-between-models">Setup connections between models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-project">Save project</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="04_reference.html">Function reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_sample_models.html">Sample models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_iricmi_pymt_util.html">iricmi_pymt_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_future_works.html">Future works</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">iRIC-MI Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../06_iricmi_gui.html">iRIC-MI GUI User Manual</a></li>
+      <li class="breadcrumb-item active">Basic workflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/06/03_workflow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basic-workflow">
+<h1>Basic workflow<a class="headerlink" href="#basic-workflow" title="Permalink to this heading"></a></h1>
+<p>This page describes the basic workflow to use iRIC-MI GUI.</p>
+<ol class="arabic simple">
+<li><p>Create New Project</p></li>
+<li><p>Add subfolders for each models</p></li>
+<li><p>Setup connections between models</p></li>
+<li><p>Save project</p></li>
+</ol>
+<p>Please refer to below for the detail.</p>
+<section id="create-new-project">
+<span id="sec-iricmi-gui-create-new-project"></span><h2>Create New Project<a class="headerlink" href="#create-new-project" title="Permalink to this heading"></a></h2>
+<p>Select menu [File] -&gt; [New Project] to create a new project.</p>
+<p>When you select the menu, a dialog to select the folder to save project is shown.
+Create an empty folder, select it, and click on [Select Folder] button.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you want to edit the project that you previously created,
+please use [File] -&gt; [Open] menu, and select the iricmi_project.xml that you previously saved.</p>
+</div>
+<p>Please refer to <a class="reference internal" href="04/01_menu.html#sec-iricmi-ref-file-newproject"><span class="std std-ref">[New Project]</span></a> for detail.</p>
+</section>
+<section id="add-subfolders-for-each-models">
+<h2>Add subfolders for each models<a class="headerlink" href="#add-subfolders-for-each-models" title="Permalink to this heading"></a></h2>
+<p>On [Models] tab of iRIC-MI GUI, click on [Add] button (Refer to <a class="reference internal" href="#image-iricmi-gui-model-add-button"><span class="std std-numref">Fig. 7</span></a>).
+Then, [Add Model] dialog is shown (Refer to <a class="reference internal" href="#image-iricmi-gui-add-model-dialog"><span class="std std-numref">Fig. 8</span></a>).</p>
+<p>On [Add Model] dialog:</p>
+<ol class="arabic simple">
+<li><p>Input the [Folder Name], in which you save the project for that model.</p></li>
+<li><p>Select the model to run, from the list in [Model] group box.</p></li>
+<li><p>Click on [OK] button.</p></li>
+</ol>
+<p>Then, the folder is created, and basic project information is saved to that folder.</p>
+<p>You need to open the project with iRIC GUI, and setup input data for that model, i. e. calculation condition and input grid. You can do this by clicking on [Open] button
+(Refer to <a class="reference internal" href="#image-iricmi-gui-model-open-button"><span class="std std-numref">Fig. 9</span></a>). Please refer to the iRIC User manual for detail about how to setup input data for each model using iRIC GUI.</p>
+<p>We strongly recommend that you run each model separately from iRIC GUI, to make sure you’ve setup input data for the model correctly.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use only ASCII characters for folder name.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In [Model] group box, please select the model that implements iRIC-MI library. Currently, all iRIC models (that include the models that implement iRIClib library) are shown in the list, but actually, you can only use the models that implement iRIC-MI library.</p>
+</div>
+<figure class="align-default" id="id1">
+<span id="image-iricmi-gui-model-add-button"></span><img alt="../_images/iricmi_gui_model_add_button.png" src="../_images/iricmi_gui_model_add_button.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">[Add] button on [Models] tab of iRIC-MI GUI</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2">
+<span id="image-iricmi-gui-add-model-dialog"></span><img alt="../_images/iricmi_gui_add_model_dialog.png" src="../_images/iricmi_gui_add_model_dialog.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">[Add Model] dialog</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<span id="image-iricmi-gui-model-open-button"></span><img alt="../_images/iricmi_gui_model_openbutton.png" src="../_images/iricmi_gui_model_openbutton.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">[Open] button on [Models] tab of iRIC-MI GUI</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="setup-connections-between-models">
+<h2>Setup connections between models<a class="headerlink" href="#setup-connections-between-models" title="Permalink to this heading"></a></h2>
+<p>On [Connections] tab of iRIC-MI GUI, click on “Add…” button (Refer to <a class="reference internal" href="#image-iricmi-gui-connection-add-button"><span class="std std-numref">Fig. 10</span></a>).
+Then, [Add Connection] dialog is shown (Refer to <a class="reference internal" href="#image-iricmi-gui-add-connection-dialog"><span class="std std-numref">Fig. 11</span></a>).</p>
+<p>On [Add Connection] dialog:</p>
+<ol class="arabic simple">
+<li><p>Select the [Model] and [Value] for Output.</p></li>
+<li><p>Select the [Model] and [Value] for Input.</p></li>
+<li><p>Click on [OK] button.</p></li>
+</ol>
+<p>Then a connection between the selected Output and Input is created. Then while the models are running in “coupled” mode, the value that model output is passed to the model input.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please select the [Model] and [Value] of [Output] first, then those of [Input]. That’s because the options in the combo boxes in [Input] group box changes dependent on what you select in the combo boxes in [Output] group box.</p>
+</div>
+<figure class="align-default" id="id4">
+<span id="image-iricmi-gui-connection-add-button"></span><img alt="../_images/iricmi_gui_connection_add_button.png" src="../_images/iricmi_gui_connection_add_button.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">[Add] button on [Connections] tab of iRIC-MI GUI</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5">
+<span id="image-iricmi-gui-add-connection-dialog"></span><img alt="../_images/iricmi_gui_add_connection_dialog.png" src="../_images/iricmi_gui_add_connection_dialog.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">[Add Connection] dialog</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="save-project">
+<h2>Save project<a class="headerlink" href="#save-project" title="Permalink to this heading"></a></h2>
+<p>Save the project, by selecting menu [File] -&gt; [Save].</p>
+<p>Then, the information about models and connections that you’ve setup is saved to iricmi_project.xml in the folder that you’ve selected in
+<a class="reference internal" href="#sec-iricmi-gui-create-new-project"><span class="std std-ref">Create New Project</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_how_to_launch.html" class="btn btn-neutral float-left" title="How to launch iRIC-MI GUI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_reference.html" class="btn btn-neutral float-right" title="Function reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, iRIC organization.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

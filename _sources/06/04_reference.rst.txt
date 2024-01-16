@@ -1,0 +1,9 @@
+Function reference
+==============================
+
+.. toctree::
+   :maxdepth: 2
+
+   04/01_menu
+   04/02_models_tab
+   04/03_connections_tab

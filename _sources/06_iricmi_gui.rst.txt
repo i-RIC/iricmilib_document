@@ -1,0 +1,10 @@
+iRIC-MI GUI User Manual
+==========================
+
+.. toctree::
+   :maxdepth: 2
+
+   06/01_about
+   06/02_how_to_launch
+   06/03_workflow
+   06/04_reference

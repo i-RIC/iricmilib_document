@@ -1,0 +1,73 @@
+[Connections] tab
+=====================
+
+This page describes the functions available on [Connections] tab.
+
+:numref:`image_iricmi_gui_connections_tab` shows the example of [Connections] tab.
+
+.. _image_iricmi_gui_connections_tab:
+
+.. figure:: images/iricmi_gui_connections_tab.png
+
+   [Connections] tab of iRIC-MI GUI
+
+Connections table
+------------------
+
+The table shows the list of connections in the iRIC-MI project.
+
+.. list-table:: The items in table
+   :header-rows: 1
+
+   * - Item
+     - Description
+
+   * - Output model
+     - The name of subfolder that stores the project of output data
+
+   * - Output value
+     - The name of value of output data
+
+   * - Input model
+     - The name of subfolder that stores the project of input data
+
+   * - Input value
+     - The name of value of input data
+
+[Add] button
+--------------------
+
+Add a new connection between the models.
+
+[Add Connection] dialog is shown (Refer to :numref:`image_iricmi_gui_add_connection_dialog2`).
+
+On [Add Connection] dialog:
+
+1. Select the [Model] and [Value] for Output.
+2. Select the [Model] and [Value] for Input.
+3. Click on [OK] button.
+
+Then a connection between the selected Output and Input is created. Then while the models are running in "coupled" mode, the value that model output is passed to the model input.
+
+.. note:: Please select the [Model] and [Value] of [Output] first, then those of [Input]. That's because the options in the combo boxes in [Input] group box changes dependent on what you select in the combo boxes in [Output] group box.
+
+.. _image_iricmi_gui_add_connection_dialog2:
+
+.. figure:: images/iricmi_gui_add_connection_dialog.png
+
+   [Add Connection] dialog
+
+[Remove] button
+---------------------
+
+Remove the connection that is currently selected.
+
+[Visualize] button
+------------------------
+
+.. note::
+
+   This button is under construction.
+
+   We plan that when the button is clicked, a chart to show a graph chart based on information of connections, using Graphviz.
+   It will help users understand the relationship between the models, when the project contains many models and connections.

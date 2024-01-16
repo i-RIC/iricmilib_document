@@ -1,0 +1,89 @@
+[Models] tab
+==========================
+
+This page describes the functions available on [Models] tab.
+
+:numref:`image_iricmi_gui_models_tab` shows the example of [Models] tab.
+
+.. _image_iricmi_gui_models_tab:
+
+.. figure:: images/iricmi_gui_models_tab.png
+
+   [Models] tab of iRIC-MI GUI
+
+Models table
+------------------
+
+The table shows the information about the projects in the subfolders.
+
+.. list-table:: The items in table
+   :header-rows: 1
+
+   * - Item
+     - Description
+
+   * - Folder name
+     - The name of subfolder
+
+   * - Solver
+     - The name and version number of solver for which the project in the subfolder is setup.
+
+   * - Description
+     - Not used now. In the future, user can add comment about the subfolder here.
+
+   * - Open
+     - The button to open the project in the subfolder with iRIC GUI
+
+[Add] button
+--------------------
+
+Add a new subfolder for a model.
+
+[Add Model] dialog is shown (Refer to :numref:`image_iricmi_gui_add_model_dialog2`).
+
+On "Add Model" dialog:
+
+1. Input the "Folder Name", in which you save the project for that model. 
+2. Select the model to run, from the list in "Model" group box.
+3. Click on "OK" button.
+
+Then, the folder is created, and basic project information is saved to that folder.
+
+.. _image_iricmi_gui_add_model_dialog2:
+
+.. figure:: images/iricmi_gui_add_model_dialog.png
+
+   [Add Model] dialog
+
+[Add Existing] button
+--------------------------
+
+Add existing projects to the iRIC-MI project that is currently opened.
+
+When the button is clicked, iRIC-MI GUI scans the subfolders, setup the list of 
+subfolders that stores projects not added to the iRIC-MI project yet, and show [Add Existing Models] dialog
+(Refer to :numref:`image_iricmi_gui_add_existing_model_dialog`).
+
+Check on the check boxes next to the folders you want to add, and click on [OK] button.
+
+.. note:: You need to copy the project folder to the iRIC-MI project folder that you are currently editing before you start this operation.
+
+.. _image_iricmi_gui_add_existing_model_dialog:
+
+.. figure:: images/iricmi_gui_add_existing_model_dialog.png
+
+   [Add Existing Models] dialog
+
+[Remove] button
+---------------------
+
+Remove the model project from iRIC-MI project.
+
+[Delete Model] dialog is shown (Refer to :numref:`image_iricmi_gui_remove_model_dialog`).
+Check the [Target Folder] and [Mode] setting, and click on [OK] button to remove the model project.
+
+.. _image_iricmi_gui_remove_model_dialog:
+
+.. figure:: images/iricmi_gui_remove_model_dialog.png
+
+   [Delete Model] dialog

@@ -1,0 +1,12 @@
+About iRIC-MI GUI
+======================
+
+iRIC-MI GUI is the GUI program to prepare iricmi_project.xml,
+and launch iRIC-GUI to open projects for each models in "coupled" mode.
+
+iricmi_project.xml is the file that a user needs to prepare to run models in "coupled" mode.
+Please refer to :ref:`sec_preparing_iricmi_project` for detail about iricmi_project.xml.
+
+We strongly recommend to use iRIC-MI GUI to prepare iricmi_project.xml, because it is much easier,
+than writing it manually.
+

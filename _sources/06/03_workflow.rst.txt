@@ -1,0 +1,103 @@
+Basic workflow
+==============================
+
+This page describes the basic workflow to use iRIC-MI GUI.
+
+1. Create New Project
+2. Add subfolders for each models
+3. Setup connections between models
+4. Save project
+
+Please refer to below for the detail.
+
+.. _sec_iricmi_gui_create_new_project:
+
+Create New Project
+-----------------------
+
+Select menu [File] -> [New Project] to create a new project.
+
+When you select the menu, a dialog to select the folder to save project is shown.
+Create an empty folder, select it, and click on [Select Folder] button.
+
+.. note:: When you want to edit the project that you previously created,
+   please use [File] -> [Open] menu, and select the iricmi_project.xml that you previously saved.
+
+Please refer to :ref:`sec_iricmi_ref_file_newproject` for detail.
+
+Add subfolders for each models
+---------------------------------------
+
+On [Models] tab of iRIC-MI GUI, click on [Add] button (Refer to :numref:`image_iricmi_gui_model_add_button`).
+Then, [Add Model] dialog is shown (Refer to :numref:`image_iricmi_gui_add_model_dialog`).
+
+On [Add Model] dialog:
+
+1. Input the [Folder Name], in which you save the project for that model. 
+2. Select the model to run, from the list in [Model] group box.
+3. Click on [OK] button.
+
+Then, the folder is created, and basic project information is saved to that folder.
+
+You need to open the project with iRIC GUI, and setup input data for that model, i. e. calculation condition and input grid. You can do this by clicking on [Open] button
+(Refer to :numref:`image_iricmi_gui_model_open_button`). Please refer to the iRIC User manual for detail about how to setup input data for each model using iRIC GUI.
+
+We strongly recommend that you run each model separately from iRIC GUI, to make sure you've setup input data for the model correctly.
+
+.. note:: You can use only ASCII characters for folder name.
+
+.. note:: In [Model] group box, please select the model that implements iRIC-MI library. Currently, all iRIC models (that include the models that implement iRIClib library) are shown in the list, but actually, you can only use the models that implement iRIC-MI library.
+
+.. _image_iricmi_gui_model_add_button:
+
+.. figure:: images/iricmi_gui_model_add_button.png
+
+   [Add] button on [Models] tab of iRIC-MI GUI
+
+.. _image_iricmi_gui_add_model_dialog:
+
+.. figure:: images/iricmi_gui_add_model_dialog.png
+
+   [Add Model] dialog
+
+.. _image_iricmi_gui_model_open_button:
+
+.. figure:: images/iricmi_gui_model_openbutton.png
+
+   [Open] button on [Models] tab of iRIC-MI GUI
+
+Setup connections between models
+---------------------------------------
+
+On [Connections] tab of iRIC-MI GUI, click on "Add..." button (Refer to :numref:`image_iricmi_gui_connection_add_button`).
+Then, [Add Connection] dialog is shown (Refer to :numref:`image_iricmi_gui_add_connection_dialog`).
+
+On [Add Connection] dialog:
+
+1. Select the [Model] and [Value] for Output.
+2. Select the [Model] and [Value] for Input.
+3. Click on [OK] button.
+
+Then a connection between the selected Output and Input is created. Then while the models are running in "coupled" mode, the value that model output is passed to the model input.
+
+.. note:: Please select the [Model] and [Value] of [Output] first, then those of [Input]. That's because the options in the combo boxes in [Input] group box changes dependent on what you select in the combo boxes in [Output] group box.
+
+.. _image_iricmi_gui_connection_add_button:
+
+.. figure:: images/iricmi_gui_connection_add_button.png
+
+   [Add] button on [Connections] tab of iRIC-MI GUI
+
+.. _image_iricmi_gui_add_connection_dialog:
+
+.. figure:: images/iricmi_gui_add_connection_dialog.png
+
+   [Add Connection] dialog
+
+Save project
+-----------------
+
+Save the project, by selecting menu [File] -> [Save].
+
+Then, the information about models and connections that you've setup is saved to iricmi_project.xml in the folder that you've selected in
+:ref:`sec_iricmi_gui_create_new_project`.

@@ -12,6 +12,7 @@ iRIC-MI Documentation
    03_how_to_run
    04_how_to_develop_models
    05_how_iricmi_works
+   06_iricmi_gui
    07_iricmilib_ref
    08_sample_models
    09_iricmi_pymt_util

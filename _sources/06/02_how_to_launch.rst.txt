@@ -1,0 +1,13 @@
+How to launch iRIC-MI GUI
+==============================
+
+You can launch iRIC-MI GUI with the steps below.
+
+1. Launch iRIC GUI. If you have installed iRIC version 4, iRIC GUI can be launched from the icon with label "iRIC v4 (develop) on the desktop.
+2. When iRIC GUI is launched, "iRIC Start Page" dialog is shown. Click on "Start iRIC-MI GUI" button on the dialog (Refer to :numref:`image_iric_startpage_iricmi_gui_button`).
+
+.. _image_iric_startpage_iricmi_gui_button:
+
+.. figure:: images/iric_startpage_iricmi_gui_button.png
+
+   iRIC Start Page

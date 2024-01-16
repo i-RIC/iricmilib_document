@@ -1,0 +1,102 @@
+Menu
+=======
+
+[File]
+---------
+
+.. _sec_iricmi_ref_file_newproject:
+
+[New Project]
+~~~~~~~~~~~~~~~~~~
+
+.. |new-project-icon| image:: images/new-project-icon.png
+
+Create a new project.
+
+**Menu bar:** [File] -> [New Project]
+
+**Toolbar:** |new-project-icon|
+
+A dialog to select folder to save new project is shown
+(Refer to :numref:`image_new_project_select_dialog`).
+Please create an empty folder, and select it, to start a new project.
+
+.. _image_new_project_select_dialog:
+
+.. figure:: images/new_project_select_dialog.png
+
+   Dialog to select folder to save new project
+
+[Open]
+~~~~~~~~
+
+.. |open-project-icon| image:: images/open-project-icon.png
+
+Open a project.
+
+**Menu bar:** [File] -> [Open]
+
+**Toolbar:** |open-project-icon|
+
+A dialog to select iricmi_project.xml is shown. Select the iricmi_project.xml that
+you want to open, and click on "Open" button.
+
+[Save]
+~~~~~~~~
+
+.. |save-project-icon| image:: images/save-project-icon.png
+
+Save the currently opened project.
+
+**Menu bar:** [File] -> [Save]
+
+**Toolbar:** |save-project-icon|
+
+The information of models and connections you've setup is saved to the iricmi_project.xml.
+
+[Close]
+~~~~~~~~~
+
+Close the currently opened project.
+
+**Menu bar:** [File] -> [Close]
+
+[Reload]
+~~~~~~~~~~
+
+.. |reload-project-icon| image:: images/reload-project-icon.png
+
+Reload the currently opened project.
+
+**Menu bar:** [File] -> [Reload]
+
+**Toolbar:** |reload-project-icon|
+
+.. note::
+
+   It is important that you need to reload the project after you edited the input data of projects in the subfolders.
+
+   For example, if you've added a boundary condition to the grid of a project in a subfolder, maybe you want to make a connection using the new boundary condition.
+   In that case, you need to reload the project before adding a new connection, because iRIC-MI does not recognize the new boundary condition until the project is reloaded.
+
+[Recent Projects]
+~~~~~~~~~~~~~~~~~~~
+
+Open the project that you've recently opened.
+
+[Exit]
+~~~~~~~
+
+Close iRIC-MI GUI.
+
+[Help]
+---------
+
+[Help]
+~~~~~~~~
+
+.. note::
+
+   This menu is under construction.
+
+   We plan that when the menu is selected, a new web browser window is opened and online manual is shown.

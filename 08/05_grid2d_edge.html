@@ -52,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_iricmi_gui.html">iRIC-MI GUI User Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../08_sample_models.html">Sample models</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_global_send_receive.html"><code class="docutils literal notranslate"><span class="pre">global_send</span></code> and <code class="docutils literal notranslate"><span class="pre">global_receive</span></code></a></li>
@@ -313,9 +314,9 @@ Flux at upstream edge is exchanged from “Region1” to “Region2” and “Re
 <p>The project data to run <code class="docutils literal notranslate"><span class="pre">grid2d_edge</span></code> is stored in testdata/grid2d_edge_fortran folder.</p>
 <p><a class="reference internal" href="#grid2d-edge-fortran-iricmi-project"><span class="std std-numref">Listing 44</span></a> shows iricmi_project.xml. You can see that
 connections are defined to exchange data between three regions. Flux data is sent from “Region1” to “Region2” and “Region3”.</p>
-<p><a class="reference internal" href="#image-grid2d-edge-region1-input"><span class="std std-numref">Fig. 34</span></a>, <a class="reference internal" href="#image-grid2d-edge-region2-input"><span class="std std-numref">Fig. 35</span></a>
-and <a class="reference internal" href="#image-grid2d-edge-region3-input"><span class="std std-numref">Fig. 36</span></a> shows the shapes of grids.
-* As shown in <a class="reference internal" href="#image-grid2d-edge-region1-input"><span class="std std-numref">Fig. 34</span></a>, the region of “Region2” and “Region3” are inside that of “Region1”.
+<p><a class="reference internal" href="#image-grid2d-edge-region1-input"><span class="std std-numref">Fig. 47</span></a>, <a class="reference internal" href="#image-grid2d-edge-region2-input"><span class="std std-numref">Fig. 48</span></a>
+and <a class="reference internal" href="#image-grid2d-edge-region3-input"><span class="std std-numref">Fig. 49</span></a> shows the shapes of grids.
+* As shown in <a class="reference internal" href="#image-grid2d-edge-region1-input"><span class="std std-numref">Fig. 47</span></a>, the region of “Region2” and “Region3” are inside that of “Region1”.
 * The resolution (height and width of cell) of the grid of “Region1” is 0.1, and those of “Region2” and “Region3” are 0.05.</p>
 <p>Please note that Delta T value is also different. For “Region1” Delta T is 1, and for “Region2” and “Region3” it is 0.5.</p>
 <p>As explained in <a class="reference internal" href="../03/01_overview.html#sec-how-to-run-coupled"><span class="std std-ref">Running models in “coupled” mode</span></a>, you can run the models for the project, by “chdir”ing to the
@@ -346,62 +347,62 @@ project folder, and launch <code class="docutils literal notranslate"><span clas
 <figure class="align-default" id="id2">
 <span id="image-grid2d-edge-region1-input"></span><img alt="../_images/grid2d_edge_region1_input.png" src="../_images/grid2d_edge_region1_input.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 34 </span><span class="caption-text">The grid defined for “Region1”</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 47 </span><span class="caption-text">The grid defined for “Region1”</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id3">
 <span id="image-grid2d-edge-region2-input"></span><img alt="../_images/grid2d_edge_region2_input.png" src="../_images/grid2d_edge_region2_input.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 35 </span><span class="caption-text">The grid defined for “Region2”</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 48 </span><span class="caption-text">The grid defined for “Region2”</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id4">
 <span id="image-grid2d-edge-region3-input"></span><img alt="../_images/grid2d_edge_region3_input.png" src="../_images/grid2d_edge_region3_input.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 36 </span><span class="caption-text">The grid defined for “Region3”</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 49 </span><span class="caption-text">The grid defined for “Region3”</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="result">
 <h2>Result<a class="headerlink" href="#result" title="Permalink to this heading"></a></h2>
 <p>The screenshots to visualize the calculation result are shown from
-<a class="reference internal" href="#image-grid2d-edge-region1-amount8"><span class="std std-numref">Fig. 37</span></a> to <a class="reference internal" href="#image-grid2d-edge-region3-amount60"><span class="std std-numref">Fig. 42</span></a>.</p>
+<a class="reference internal" href="#image-grid2d-edge-region1-amount8"><span class="std std-numref">Fig. 50</span></a> to <a class="reference internal" href="#image-grid2d-edge-region3-amount60"><span class="std std-numref">Fig. 55</span></a>.</p>
 <p>From the screenshots, we can check the followings:
 * “Region2” and “Region3” receive flux data at upstream edge from “Region1” so the amount data is exactly the same to “Region1”.</p>
 <figure class="align-default" id="id5">
 <span id="image-grid2d-edge-region1-amount8"></span><img alt="../_images/grid2d_edge_region1_amount8.png" src="../_images/grid2d_edge_region1_amount8.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 37 </span><span class="caption-text">amount of “Region1” (t = 8)</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 50 </span><span class="caption-text">amount of “Region1” (t = 8)</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id6">
 <span id="image-grid2d-edge-region1-amount16"></span><img alt="../_images/grid2d_edge_region1_amount16.png" src="../_images/grid2d_edge_region1_amount16.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 38 </span><span class="caption-text">amount of “Region1” (t = 16)</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 51 </span><span class="caption-text">amount of “Region1” (t = 16)</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id7">
 <span id="image-grid2d-edge-region1-amount60"></span><img alt="../_images/grid2d_edge_region1_amount60.png" src="../_images/grid2d_edge_region1_amount60.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 39 </span><span class="caption-text">amount of “Region1” (t = 60)</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 52 </span><span class="caption-text">amount of “Region1” (t = 60)</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id8">
 <span id="image-grid2d-edge-region2-amount16"></span><img alt="../_images/grid2d_edge_region2_amount16.png" src="../_images/grid2d_edge_region2_amount16.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 40 </span><span class="caption-text">amount of “Region2” (t = 16)</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 53 </span><span class="caption-text">amount of “Region2” (t = 16)</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id9">
 <span id="image-grid2d-edge-region2-amount60"></span><img alt="../_images/grid2d_edge_region2_amount60.png" src="../_images/grid2d_edge_region2_amount60.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 41 </span><span class="caption-text">amount of “Region2” (t = 60)</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 54 </span><span class="caption-text">amount of “Region2” (t = 60)</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id10">
 <span id="image-grid2d-edge-region3-amount60"></span><img alt="../_images/grid2d_edge_region3_amount60.png" src="../_images/grid2d_edge_region3_amount60.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 42 </span><span class="caption-text">amount of “Region3” (t = 60)</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 55 </span><span class="caption-text">amount of “Region3” (t = 60)</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>

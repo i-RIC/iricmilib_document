@@ -52,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../03_how_to_run.html">How to run models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_how_to_develop_models.html">How to develop models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_how_iricmi_works.html">How iRIC-MI works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_iricmi_gui.html">iRIC-MI GUI User Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../07_iricmilib_ref.html">iRIC-MI library Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../08_sample_models.html">Sample models</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_global_send_receive.html"><code class="docutils literal notranslate"><span class="pre">global_send</span></code> and <code class="docutils literal notranslate"><span class="pre">global_receive</span></code></a></li>
@@ -328,8 +329,8 @@ in both direction.</p>
 <p>The project data to run <code class="docutils literal notranslate"><span class="pre">grid2d_unst</span></code> and <code class="docutils literal notranslate"><span class="pre">grid2d3d</span></code> is stored in testdata/grid2d_unst_fortran folder.</p>
 <p><a class="reference internal" href="#grid2d-unst-fortran-iricmi-project"><span class="std std-numref">Listing 41</span></a> shows iricmi_project.xml. You can see that
 connections are defined to exchange data between two regions.</p>
-<p><a class="reference internal" href="#image-grid2d-unst-st-input"><span class="std std-numref">Fig. 24</span></a> and <a class="reference internal" href="#image-grid2d-unst-unst-input"><span class="std std-numref">Fig. 25</span></a> shows the shape of grids defined for “st” and “unst”.
-The gray area in <a class="reference internal" href="#image-grid2d-unst-unst-input"><span class="std std-numref">Fig. 25</span></a> corresponds to the grid region of “st”, so the grid of “unst” is inside that of “st”.</p>
+<p><a class="reference internal" href="#image-grid2d-unst-st-input"><span class="std std-numref">Fig. 37</span></a> and <a class="reference internal" href="#image-grid2d-unst-unst-input"><span class="std std-numref">Fig. 38</span></a> shows the shape of grids defined for “st” and “unst”.
+The gray area in <a class="reference internal" href="#image-grid2d-unst-unst-input"><span class="std std-numref">Fig. 38</span></a> corresponds to the grid region of “st”, so the grid of “unst” is inside that of “st”.</p>
 <p>For “unst”, dx = 0.01, dy = -0.02. It means that for “unst” the region of the grids slide every time step.</p>
 <p>As explained in <a class="reference internal" href="../03/01_overview.html#sec-how-to-run-coupled"><span class="std std-ref">Running models in “coupled” mode</span></a>, you can run the models for the project, by “chdir”ing to the
 project folder, and launch <code class="docutils literal notranslate"><span class="pre">iricmi_run</span></code>.</p>
@@ -366,69 +367,69 @@ project folder, and launch <code class="docutils literal notranslate"><span clas
 <figure class="align-default" id="id2">
 <span id="image-grid2d-unst-st-input"></span><img alt="../_images/grid2d_unst_st_input.png" src="../_images/grid2d_unst_st_input.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 24 </span><span class="caption-text">The grid defined for “st”</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 37 </span><span class="caption-text">The grid defined for “st”</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id3">
 <span id="image-grid2d-unst-unst-input"></span><img alt="../_images/grid2d_unst_unst_input.png" src="../_images/grid2d_unst_unst_input.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 25 </span><span class="caption-text">The grid defined for “unst”</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 38 </span><span class="caption-text">The grid defined for “unst”</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="result">
 <h2>Result<a class="headerlink" href="#result" title="Permalink to this heading"></a></h2>
 <p>The screenshots to visualize the calculation result are shown from
-<a class="reference internal" href="#image-grid2d-unst-st-output1"><span class="std std-numref">Fig. 26</span></a> to <a class="reference internal" href="#image-grid2d-unst-unst-received100"><span class="std std-numref">Fig. 33</span></a>.</p>
+<a class="reference internal" href="#image-grid2d-unst-st-output1"><span class="std std-numref">Fig. 39</span></a> to <a class="reference internal" href="#image-grid2d-unst-unst-received100"><span class="std std-numref">Fig. 46</span></a>.</p>
 <p>From the screenshots, we can check the followings:
 * Mapping grid atribute values works for structured grid and unstructured grid.
 * When the grid coordinates are changed for each time step, it is applied to mapping result.</p>
 <figure class="align-default" id="id4">
 <span id="image-grid2d-unst-st-output1"></span><img alt="../_images/grid2d_unst_st_output1.png" src="../_images/grid2d_unst_st_output1.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 26 </span><span class="caption-text">outputNode2d of “st” (t = 0)</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 39 </span><span class="caption-text">outputNode2d of “st” (t = 0)</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id5">
 <span id="image-grid2d-unst-st-output100"></span><img alt="../_images/grid2d_unst_st_output100.png" src="../_images/grid2d_unst_st_output100.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 27 </span><span class="caption-text">outputNode2d of “st” (t = 100)</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 40 </span><span class="caption-text">outputNode2d of “st” (t = 100)</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id6">
 <span id="image-grid2d-unst-st-received1"></span><img alt="../_images/grid2d_unst_st_received1.png" src="../_images/grid2d_unst_st_received1.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 28 </span><span class="caption-text">receivedNode2d of “st” (t = 0)</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 41 </span><span class="caption-text">receivedNode2d of “st” (t = 0)</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id7">
 <span id="image-grid2d-unst-st-received100"></span><img alt="../_images/grid2d_unst_st_received100.png" src="../_images/grid2d_unst_st_received100.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 29 </span><span class="caption-text">receivedNode2d of “st” (t = 100)</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 42 </span><span class="caption-text">receivedNode2d of “st” (t = 100)</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id8">
 <span id="image-grid2d-unst-unst-output1"></span><img alt="../_images/grid2d_unst_unst_output1.png" src="../_images/grid2d_unst_unst_output1.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 30 </span><span class="caption-text">outputNode2d of “unst” (t = 0)</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 43 </span><span class="caption-text">outputNode2d of “unst” (t = 0)</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id9">
 <span id="image-grid2d-unst-unst-output100"></span><img alt="../_images/grid2d_unst_unst_output100.png" src="../_images/grid2d_unst_unst_output100.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 31 </span><span class="caption-text">outputNode2d of “unst” (t = 100)</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 44 </span><span class="caption-text">outputNode2d of “unst” (t = 100)</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id10">
 <span id="image-grid2d-unst-unst-received1"></span><img alt="../_images/grid2d_unst_unst_received1.png" src="../_images/grid2d_unst_unst_received1.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 32 </span><span class="caption-text">receivedNode2d of “unst” (t = 0)</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 45 </span><span class="caption-text">receivedNode2d of “unst” (t = 0)</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id11">
 <span id="image-grid2d-unst-unst-received100"></span><img alt="../_images/grid2d_unst_unst_received100.png" src="../_images/grid2d_unst_unst_received100.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 33 </span><span class="caption-text">receivedNode2d of “unst” (t = 100)</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+<p><span class="caption-number">Fig. 46 </span><span class="caption-text">receivedNode2d of “unst” (t = 100)</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
